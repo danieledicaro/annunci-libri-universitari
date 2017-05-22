@@ -7,7 +7,7 @@
  */
 
 
-public class EUtente {
+class EUtente {
     private $username;
     private $password;
     private $tipologia;

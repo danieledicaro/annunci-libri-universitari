@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-public class EMessaggio {
+class EMessaggio {
     
     private $data;
     private $testo;
