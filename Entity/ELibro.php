@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-    public class ELibro {
+class ELibro {
         private $isbn;
         private $titolo;
         private $autore;

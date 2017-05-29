@@ -6,9 +6,8 @@
  * and open the template in the editor.
  */
 
-public class Annuncio {
+class Annuncio {
     private $id;
-    private $utente;
     private $seSpedisce;
     private $condizione;
     private $descrizione;
@@ -19,7 +18,6 @@ public class Annuncio {
     
     public function __construct($id, $utente, $seSpedice, $condizione, $descrizione, $libro, $venditore, $corso, $cittaConsegna) {
         $this->id = id;
-        $this->utente = utente;
         $this->seSpedisce = seSpedisce;
         $this->condizione = condizione;
         $this->descrizione = descrizione;
@@ -27,6 +25,45 @@ public class Annuncio {
         $this->venditore = venditore;
         $this->corso = corso;
         $this->cittaConsegna=cittaConsegna;
+    }
+    public function getId() {
+        return $this->id;
+    }
+    public function getSeSpedisce() {
+        return $this->seSpedisce;
+    }
+    public function getCondizione() {
+        return $this->condizione;
+    }
+    public function getDescrizione() {
+        return $this->descrizione;
+    }
+    public function getLibro() {
+        return $this->libro;
+    }
+    public function getVenditore() {
+        return $this->venditore;
+    }
+    public function getCorso() {
+        return $this->corso;
+    }
+    public function getCittaConsegna() {
+        return $this->cittaConsegna;
+    }
+    public function setSeSpedisce($nuovoSeSpedisce){
+        $this->seSpedisce = $nuovoSeSpedisce;
+    }
+    public function setCondizione($nuovoCondizione){
+        $this->condizione = $nuovoCondizione;
+    }
+    public function setDescrizione($nuovoDescrizione){
+        $this->descrizione = $nuovoDescrizione;
+    }
+    public function setCorso($nuovoCorso){
+        $this->corso = $nuovoCorso;
+    }
+    public function setCittaConsegna($nuovoCittaConsegna){
+        $this->cittaConsegna = $nuovoCittaConsegna;
     }
 }
 ?>
