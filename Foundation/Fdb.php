@@ -30,7 +30,6 @@ class Fdb {
 
         $this->doQuery('SET names \'utf8\'');
         return true;
-
     }
 
     // doQuery con controllo su errore

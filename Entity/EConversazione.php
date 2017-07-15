@@ -1,7 +1,11 @@
 <?php
 
-class EConversazione {
 
+
+
+
+
+class EConversazione {
     private $messaggio;
     private $idAnnuncio;
 

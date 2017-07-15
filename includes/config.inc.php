@@ -6,7 +6,7 @@ $config['db']['type'] = 'mysql';
 $config['db']['user'] = 'root';
 $config['db']['password'] = '';
 $config['db']['host'] = 'localhost';
-$config['db']['dbname'] = 'annunci-libri-universitari';
+$config['db']['database'] = 'annunci-libri-universitari';
 
 
 function debug($var){

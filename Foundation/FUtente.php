@@ -1,5 +1,4 @@
 <?php
-
 class FUtente extends Fdb{
     public function __construct() {
         $this->_table='Utente';
