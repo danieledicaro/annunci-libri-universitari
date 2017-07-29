@@ -1,11 +1,7 @@
 <?php
 
-
-
-
-
-
 class EConversazione {
+
     private $messaggio;
     private $idAnnuncio;
 
@@ -20,6 +16,10 @@ class EConversazione {
 
     public function getIdAnnuncio() {
         return $this->idAnnuncio;
+    }
+
+    public function getObjectVars() {
+        return get_object_vars($this);
     }
 
 }

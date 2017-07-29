@@ -3,12 +3,12 @@
 class EUtente {
     private $username;
     private $password;
-    private $tipologia;
+    private $tipologia_utente;
     private $nome;
     private $cognome;
     private $mail;
     private $stato;
-    private $annunciOsservati;
+    //private $annunciOsservati;
     
     // public function creaAnnuncio($isbn,)
     
@@ -21,7 +21,7 @@ class EUtente {
     }
     
     public function getTipologia() {
-        return $this->tipologia;
+        return $this->tipologia_utente;
     }
     
     public function getNome() {
@@ -39,6 +39,9 @@ class EUtente {
     public function getStato() {
         return $this->stato;
     }
-    
+
+    public function getObjectVars() {
+        return get_object_vars($this);
+    }
 }
 ?>

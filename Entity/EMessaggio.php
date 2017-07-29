@@ -22,5 +22,9 @@ class EMessaggio {
     public function getDaAcquirente(){    
         return $this->daAcquirente; 
     }
+
+    public function getObjectVars() {
+        return get_object_vars($this);
+    }
 }
 ?>
