@@ -17,10 +17,7 @@ class Annuncio {
     private $venditore;
     private $corso;
     private $cittaConsegna;
-
-    public function getObjectVars() {
-        return get_object_vars($this);
-    }
+    
 
 }
 ?>
