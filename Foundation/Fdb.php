@@ -124,7 +124,7 @@ class Fdb {
     }
 
     /**
-     * Funziona
+     * Funziona array della tupla
      *
      * @param $object
      * @return bool
@@ -164,7 +164,7 @@ class Fdb {
     }
 
     /**
-     * FUNZIONA
+     * FUNZIONA chiave della tupla
      *
      * @param $key
      * @return bool
@@ -178,13 +178,15 @@ class Fdb {
     }
 
     /**
-     * Funziona
+     * Funziona oggetto preso con load
      *
      * @param $object
      * @return bool
      */
     public function delete(& $object) {
-        $arrayObject=get_object_vars($object);
+        debug($object);
+        $arrayObject=$object->getObjectVars();
+        debug($arrayObject);
         $query='DELETE ' .
                 'FROM `'.$this->_table.'` ' .
                 'WHERE `'.$this->_key.'` = \''.$arrayObject[$this->_key].'\'';
@@ -193,7 +195,7 @@ class Fdb {
     }
 
     /**
-     * NON SO COME USARLO
+     * FUNZIONA array della tupla con chiave di riferimento alla tupla da modificare
      *
      * @param $object
      * @return bool
@@ -210,12 +212,20 @@ class Fdb {
                 }
                 $i++;
             }
+            debug($fields);
         }
-        $arrayObject=get_object_vars($object);
-        $query='UPDATE `'.$this->_table.'` SET '.$fields.' WHERE `'.$this->_key.'` = \''.$arrayObject[$this->_key].'\'';
+        $query='UPDATE `'.$this->_table.'` SET '.$fields.' WHERE `'.$this->_key.'` = \''.$object["$this->_key"].'\'';
         return $this->doQuery($query);
     }
 
+    /**
+     * Non ancora testato e non so ancora come testarlo
+     *
+     * @param array $parametri
+     * @param string $ordinamento
+     * @param string $limit
+     * @return array|bool
+     */
     public function search($parametri = array(), $ordinamento = '', $limit = '') {
         $filtro='';
         for ($i=0; $i<count($parametri); $i++) {
