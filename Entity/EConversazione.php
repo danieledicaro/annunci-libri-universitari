@@ -5,9 +5,10 @@ class EConversazione {
     private $messaggio;
     private $idAnnuncio;
 
-    public function aggiungiMessaggio($testo, $orario, $daAcquirente) {
-        $this->messaggio[] = new EMessaggio($testo, $orario, $daAcquirente);
-        // to Foundation
+    public function __construct(){}
+
+    public function aggiungiMessaggio($messaggio) {
+        $this->messaggio[] = $messaggio;
     }
 
     public function getMessaggi() {
@@ -17,6 +18,11 @@ class EConversazione {
     public function getIdAnnuncio() {
         return $this->idAnnuncio;
     }
+
+    public function setIdAnnuncio($idAnnuncio) {
+        $this->idAnnuncio = $idAnnuncio;
+    }
+
 
 }
 

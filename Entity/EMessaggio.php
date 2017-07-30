@@ -2,10 +2,22 @@
 
 class EMessaggio {
 
+    private $acquirente;
+    private $annuncio;
+    private $ora;
     private $data;
     private $testo;
-    private $orario;
-    private $daAcquirente;
+    private $da_acquirente;
+
+    public function getAcquirente()
+    {
+        return $this->acquirente;
+    }
+
+    public function getAnnuncio()
+    {
+        return $this->annuncio;
+    }
 
     public function getData(){
         return $this->data;
@@ -15,12 +27,12 @@ class EMessaggio {
         return $this->testo; 
     }
     
-    public function getOrario(){    
-        return $this->orario; 
+    public function getOra(){
+        return $this->ora;
     }
     
     public function getDaAcquirente(){    
-        return $this->daAcquirente; 
+        return $this->da_acquirente;
     }
 
     public function getObjectVars() {
