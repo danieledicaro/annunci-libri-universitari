@@ -7,7 +7,6 @@ class Fdb {
     protected $_table;
     protected $_key;
     protected  $_return_class;
-    protected $_auto_increment=false;
 
     public function __construct() {
         global $config;
@@ -135,7 +134,7 @@ class Fdb {
         $fields='';
         debug($this->_table);
         foreach ($object as $key=>$value) {
-            if (!($this->_auto_increment && $key == $this->_key) && substr($key, 0, 1)!='_') {
+            if (!($key == $this->_key) && substr($key, 0, 1)!='_') {
                 if ($i==0) {
                     $fields.='`'.$key.'`';
                     $values.='\''.$value.'\'';
