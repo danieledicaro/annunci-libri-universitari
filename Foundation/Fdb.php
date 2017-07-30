@@ -204,7 +204,7 @@ class Fdb {
         $i=0;
         $fields='';
         foreach ($object as $key=>$value) {
-            if (!($key == $this->_key) && substr($key, 0, 1)!='_') {
+            if (!($this->_auto_increment && $key == $this->_key) && substr($key, 0, 1)!='_') {
                 if ($i==0) {
                     $fields.='`'.$key.'` = \''.$value.'\'';
                 } else {
