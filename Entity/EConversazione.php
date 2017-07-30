@@ -18,10 +18,6 @@ class EConversazione {
         return $this->idAnnuncio;
     }
 
-    public function getObjectVars() {
-        return get_object_vars($this);
-    }
-
 }
 
 ?>

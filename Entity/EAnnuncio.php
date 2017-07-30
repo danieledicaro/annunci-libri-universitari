@@ -6,18 +6,20 @@
  * and open the template in the editor.
  */
 
-class Annuncio {
+class EAnnuncio {
 
-    private $id;
-    private $utente;
-    private $seSpedisce;
-    private $condizione;
-    private $descrizione;
+    private $id_annuncio;
     private $libro;
     private $venditore;
     private $corso;
-    private $cittaConsegna;
-    
+    private $citta_consegna;
+    private $se_spedisce;
+    private $descrizione;
+    private $condizione;
+
+    public function getObjectVars() {
+        return get_object_vars($this);
+    }
 
 }
 ?>

@@ -10,29 +10,6 @@ class ELibro {
     private $ambito;
 
 
-    public function setIsbn($nuovoIsbn) {
-        // to Foundation
-    }
-
-    public function setTitolo($nuovoTitolo) {
-        // to Foundation
-    }
-
-    public function setAutore($nuovoAutore) {
-        // to Foundation
-    }
-
-    public function setCasaEditrice($nuovaCasaEditrice) {
-        // to Foundation
-    }
-
-    public function setAnnoStampa($nuovoAnnoStampa) {
-        // to Foundation
-    }
-
-    public function setAmbito($nuovoAmbito) {
-        // to Foundation
-    }
 
     public function getIsbn() {
         return $this->isbn;
@@ -63,5 +40,6 @@ class ELibro {
     }
 
 }
+
 
 ?>
