@@ -2,7 +2,7 @@
 class Fdb {
 
     private $_connection;
-    private $_result;
+    protected $_result;
     private $_error;
     protected $_table;
     protected $_key;
