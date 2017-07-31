@@ -1,12 +1,12 @@
 <?php
 global $config;
 
-$config['debug']=false;
+$config['debug']=true;
 $config['db']['type'] = 'mysql';
 $config['db']['user'] = 'root';
 $config['db']['password'] = '';
-$config['db']['host'] = 'localhost';
-$config['db']['database'] = 'annunci-libri-universitari';
+$config['db']['host'] = '127.0.0.1';
+$config['db']['dbname'] = 'Unibookstore';
 
 
 function debug($var){

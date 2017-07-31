@@ -7,11 +7,13 @@
  */
 
 class FAnnuncio extends Fdb {
+
     public function __construct() {
+        parent::__construct();
         $this->_table='Annuncio';
         $this->_key= 'id_annuncio';
         $this->_return_class='EAnnuncio';
-        parent::__construct();
+        $this->_auto_increment=true;
         //USingleton::getInstance('Fdb');
     }
 

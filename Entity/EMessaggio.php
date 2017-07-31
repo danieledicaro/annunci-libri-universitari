@@ -4,8 +4,8 @@ class EMessaggio {
 
     private $acquirente;
     private $annuncio;
-    private $ora;
     private $data;
+    private $ora;
     private $testo;
     private $da_acquirente;
 
