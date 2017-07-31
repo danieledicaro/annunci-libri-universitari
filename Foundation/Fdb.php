@@ -217,32 +217,6 @@ class Fdb {
         $query='UPDATE `'.$this->_table.'` SET '.$fields.' WHERE `'.$this->_key.'` = \''.$object["$this->_key"].'\'';
         return $this->doQuery($query);
     }
-
-    /**
-     * Non ancora testato e non so ancora come testarlo
-     *
-     * @param array $parametri
-     * @param string $ordinamento
-     * @param string $limit
-     * @return array|bool
-     */
-    public function search($parametri = array(), $ordinamento = '', $limit = '') {
-        $filtro='';
-        for ($i=0; $i<count($parametri); $i++) {
-            if ($i>0) $filtro .= ' AND';
-            $filtro .= ' `'.$parametri[$i][0].'` '.$parametri[$i][1].' \''.$parametri[$i][2].'\'';
-        }
-        $query='SELECT * ' .
-                'FROM `'.$this->_table.'` ';
-        if ($filtro != '')
-            $query.='WHERE '.$filtro.' ';
-        if ($ordinamento!='')
-            $query.='ORDER BY '.$ordinamento.' ';
-        if ($limit != '')
-            $query.='LIMIT '.$limit.' ';
-        $this->doQuery($query);
-        return $this->getObjectArray();
-    }
 }
 
 ?>

@@ -8,12 +8,20 @@
 include ("./Utility/USingleton.php");
 include ("../includes/config.inc.php");
 include ("../Entity/EUtente.php");
-include ("Fdb.php");
-include ("FUtente.php");
-include ("FLibro.php");
-$db = new FUtente();
-var_dump($db);
+include ("./Fdb.php");
+include ("./FUtente.php");
+include ("./FLibro.php");
+include ("../Entity/ELibro.php");
+include ("./FAnnuncio.php");
+include ("../Entity/EAnnuncio.php");
+include ("FConversazione.php");
+include ("../Entity/EMessaggio.php");
+include ("../Entity/EConversazione.php");
+include ("FCatalogo.php");
+include ("../Entity/ECatalogo.php");
+$db = new FCatalogo();
 //$dbl = new FLibro();
+//$dba = new FAnnuncio();
 /*$foo=array(
     "username" => "ciao",
     "password" => "ciao",
@@ -23,9 +31,30 @@ var_dump($db);
     "mail" => "ciao@ciao.com",
     "stato" => "IT"
     );
-$dbu->store($foo);*/
-/*$user = $db->load('daniele');
+/*$foo = array(
+    "id_annuncio" => "",
+    "libro" => 9788879591379,
+    "venditore" => "ciao",
+    "corso" => 1,
+    "citta_consegna" => 1,
+    "se_spedisce" => 1,
+    "descrizione" => "",
+    "condizione" => "",
+);*/
+$a = array('titolo' => "'Fisica Generale I'", 'anno_stampa' => 2001);
+$foo = array($a, 'id_annuncio', '');
+$annuncio = $db->search($foo);
+var_dump($annuncio);
+/*$foo = array('daniele',1);
+$conversazione = $db->load($foo);
+var_dump($conversazione);
+$db->store($foo);
+$annuncio = $dba->load(1);
+var_dump($annuncio->getObjectVars());
+$libro = $dbl->load('9788879591379');
+$user = $db->load('ciao');
 echo $user->mail."\r\n";
-//$db->delete($user);
-//$db->close();*/
+$db->update($foo);
+$db->delete($user);
+$db->close();*/
 ?>

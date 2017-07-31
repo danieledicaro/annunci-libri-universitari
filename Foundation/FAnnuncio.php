@@ -7,6 +7,7 @@
  */
 
 class FAnnuncio extends Fdb {
+
     public function __construct() {
         parent::__construct();
         $this->_table='Annuncio';
