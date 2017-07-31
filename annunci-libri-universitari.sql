@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 29, 2017 at 05:36 
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Creato il: Lug 31, 2017 alle 13:22
+-- Versione del server: 10.1.21-MariaDB
+-- Versione PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `annunci-libri-universitari`
+-- Database: `Unibookstore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Ambito`
+-- Struttura della tabella `Ambito`
 --
 
 CREATE TABLE `Ambito` (
@@ -32,7 +32,7 @@ CREATE TABLE `Ambito` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Ambito`
+-- Dump dei dati per la tabella `Ambito`
 --
 
 INSERT INTO `Ambito` (`id_ambito`, `nome`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `Ambito` (`id_ambito`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Annuncio`
+-- Struttura della tabella `Annuncio`
 --
 
 CREATE TABLE `Annuncio` (
@@ -53,20 +53,23 @@ CREATE TABLE `Annuncio` (
   `se_spedisce` tinyint(1) NOT NULL,
   `descrizione` varchar(200) DEFAULT NULL,
   `condizione` enum('1','2','3','4','5') NOT NULL,
-  `foto` blob NOT NULL
+  `foto` blob NOT NULL,
+  `data` date NOT NULL,
+  `prezzo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Annuncio`
+-- Dump dei dati per la tabella `Annuncio`
 --
 
-INSERT INTO `Annuncio` (`id_annuncio`, `libro`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`, `descrizione`, `condizione`, `foto`) VALUES
-(1, '9788879591379', 'enrico', 1, 1, 1, 'è proprio un libro carino :)', '5', '');
+INSERT INTO `Annuncio` (`id_annuncio`, `libro`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`, `descrizione`, `condizione`, `foto`, `data`, `prezzo`) VALUES
+(1, '9788879591379', 'enrico', 1, 1, 1, 'è proprio un libro carino :)', '5', '', '2017-07-31', 0),
+(9, '9788879591379', 'ciao', 1, 1, 0, '', '', '', '2017-08-23', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AnnunciOsservati`
+-- Struttura della tabella `AnnunciOsservati`
 --
 
 CREATE TABLE `AnnunciOsservati` (
@@ -77,7 +80,7 @@ CREATE TABLE `AnnunciOsservati` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `AnnunciOsservati`
+-- Dump dei dati per la tabella `AnnunciOsservati`
 --
 
 INSERT INTO `AnnunciOsservati` (`id`, `utente`, `annuncio`, `data_aggiunta`) VALUES
@@ -88,7 +91,7 @@ INSERT INTO `AnnunciOsservati` (`id`, `utente`, `annuncio`, `data_aggiunta`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Autore`
+-- Struttura della tabella `Autore`
 --
 
 CREATE TABLE `Autore` (
@@ -97,7 +100,7 @@ CREATE TABLE `Autore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Autore`
+-- Dump dei dati per la tabella `Autore`
 --
 
 INSERT INTO `Autore` (`id_autore`, `nome`) VALUES
@@ -108,7 +111,7 @@ INSERT INTO `Autore` (`id_autore`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AutoreLibro`
+-- Struttura della tabella `AutoreLibro`
 --
 
 CREATE TABLE `AutoreLibro` (
@@ -118,7 +121,7 @@ CREATE TABLE `AutoreLibro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `AutoreLibro`
+-- Dump dei dati per la tabella `AutoreLibro`
 --
 
 INSERT INTO `AutoreLibro` (`id`, `autore`, `libro`) VALUES
@@ -129,7 +132,7 @@ INSERT INTO `AutoreLibro` (`id`, `autore`, `libro`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CasaEditrice`
+-- Struttura della tabella `CasaEditrice`
 --
 
 CREATE TABLE `CasaEditrice` (
@@ -138,7 +141,7 @@ CREATE TABLE `CasaEditrice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `CasaEditrice`
+-- Dump dei dati per la tabella `CasaEditrice`
 --
 
 INSERT INTO `CasaEditrice` (`id_casaeditrice`, `nome`) VALUES
@@ -147,7 +150,7 @@ INSERT INTO `CasaEditrice` (`id_casaeditrice`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Citta`
+-- Struttura della tabella `Citta`
 --
 
 CREATE TABLE `Citta` (
@@ -158,7 +161,7 @@ CREATE TABLE `Citta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Citta`
+-- Dump dei dati per la tabella `Citta`
 --
 
 INSERT INTO `Citta` (`id_citta`, `comune`, `provincia`, `stato`) VALUES
@@ -167,7 +170,7 @@ INSERT INTO `Citta` (`id_citta`, `comune`, `provincia`, `stato`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Corso`
+-- Struttura della tabella `Corso`
 --
 
 CREATE TABLE `Corso` (
@@ -178,7 +181,7 @@ CREATE TABLE `Corso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Corso`
+-- Dump dei dati per la tabella `Corso`
 --
 
 INSERT INTO `Corso` (`id_corso`, `nome`, `universita`, `professore`) VALUES
@@ -187,28 +190,28 @@ INSERT INTO `Corso` (`id_corso`, `nome`, `universita`, `professore`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Libro`
+-- Struttura della tabella `Libro`
 --
 
 CREATE TABLE `Libro` (
   `isbn` varchar(13) NOT NULL,
   `titolo` varchar(100) NOT NULL,
-  `anno_stampa` year(4) NOT NULL,
+  `anno_stampa` date NOT NULL,
   `casaeditrice` int(10) DEFAULT NULL,
   `ambito` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Libro`
+-- Dump dei dati per la tabella `Libro`
 --
 
 INSERT INTO `Libro` (`isbn`, `titolo`, `anno_stampa`, `casaeditrice`, `ambito`) VALUES
-('9788879591379', 'Fisica Generale I', 2001, 1, 1);
+('9788879591379', 'Fisica Generale I', '0000-00-00', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Messaggio`
+-- Struttura della tabella `Messaggio`
 --
 
 CREATE TABLE `Messaggio` (
@@ -221,7 +224,7 @@ CREATE TABLE `Messaggio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Messaggio`
+-- Dump dei dati per la tabella `Messaggio`
 --
 
 INSERT INTO `Messaggio` (`acquirente`, `annuncio`, `data`, `ora`, `testo`, `da_acquirente`) VALUES
@@ -233,7 +236,7 @@ INSERT INTO `Messaggio` (`acquirente`, `annuncio`, `data`, `ora`, `testo`, `da_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Professore`
+-- Struttura della tabella `Professore`
 --
 
 CREATE TABLE `Professore` (
@@ -242,7 +245,7 @@ CREATE TABLE `Professore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Professore`
+-- Dump dei dati per la tabella `Professore`
 --
 
 INSERT INTO `Professore` (`id_professore`, `nome`) VALUES
@@ -251,7 +254,7 @@ INSERT INTO `Professore` (`id_professore`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Stato`
+-- Struttura della tabella `Stato`
 --
 
 CREATE TABLE `Stato` (
@@ -260,7 +263,7 @@ CREATE TABLE `Stato` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Stato`
+-- Dump dei dati per la tabella `Stato`
 --
 
 INSERT INTO `Stato` (`id_stato`, `nome`) VALUES
@@ -269,7 +272,7 @@ INSERT INTO `Stato` (`id_stato`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Universita`
+-- Struttura della tabella `Universita`
 --
 
 CREATE TABLE `Universita` (
@@ -279,7 +282,7 @@ CREATE TABLE `Universita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Universita`
+-- Dump dei dati per la tabella `Universita`
 --
 
 INSERT INTO `Universita` (`id_universita`, `nome`, `citta`) VALUES
@@ -288,7 +291,7 @@ INSERT INTO `Universita` (`id_universita`, `nome`, `citta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Utente`
+-- Struttura della tabella `Utente`
 --
 
 CREATE TABLE `Utente` (
@@ -302,27 +305,28 @@ CREATE TABLE `Utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Utente`
+-- Dump dei dati per la tabella `Utente`
 --
 
 INSERT INTO `Utente` (`username`, `password`, `tipologia_utente`, `nome`, `cognome`, `mail`, `stato`) VALUES
+('ciao', 'ciao', 0, '', '', 'ciao@ciao.com', 'IT'),
 ('daniele', 'daniele', 0, NULL, NULL, 'daniele@daniele.com', 'IT'),
 ('enrico', 'enrico', 0, NULL, NULL, 'enrico@enrico.com', 'IT'),
 ('ilaria', 'ilaria', 0, NULL, NULL, 'ilaria@ilaria.com', 'IT'),
 ('rajan', 'rajan', 0, NULL, NULL, 'rajan@rajan.com', 'IT');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `Ambito`
+-- Indici per le tabelle `Ambito`
 --
 ALTER TABLE `Ambito`
   ADD PRIMARY KEY (`id_ambito`);
 
 --
--- Indexes for table `Annuncio`
+-- Indici per le tabelle `Annuncio`
 --
 ALTER TABLE `Annuncio`
   ADD PRIMARY KEY (`id_annuncio`),
@@ -332,7 +336,7 @@ ALTER TABLE `Annuncio`
   ADD KEY `fk_annuncio_corso` (`corso`);
 
 --
--- Indexes for table `AnnunciOsservati`
+-- Indici per le tabelle `AnnunciOsservati`
 --
 ALTER TABLE `AnnunciOsservati`
   ADD PRIMARY KEY (`id`),
@@ -340,13 +344,13 @@ ALTER TABLE `AnnunciOsservati`
   ADD KEY `fk_annunciOsservati_annuncio` (`annuncio`);
 
 --
--- Indexes for table `Autore`
+-- Indici per le tabelle `Autore`
 --
 ALTER TABLE `Autore`
   ADD PRIMARY KEY (`id_autore`);
 
 --
--- Indexes for table `AutoreLibro`
+-- Indici per le tabelle `AutoreLibro`
 --
 ALTER TABLE `AutoreLibro`
   ADD PRIMARY KEY (`id`),
@@ -354,20 +358,20 @@ ALTER TABLE `AutoreLibro`
   ADD KEY `fk_autorilibri_libro` (`libro`);
 
 --
--- Indexes for table `CasaEditrice`
+-- Indici per le tabelle `CasaEditrice`
 --
 ALTER TABLE `CasaEditrice`
   ADD PRIMARY KEY (`id_casaeditrice`);
 
 --
--- Indexes for table `Citta`
+-- Indici per le tabelle `Citta`
 --
 ALTER TABLE `Citta`
   ADD PRIMARY KEY (`id_citta`),
   ADD KEY `fk_citta_stato` (`stato`);
 
 --
--- Indexes for table `Corso`
+-- Indici per le tabelle `Corso`
 --
 ALTER TABLE `Corso`
   ADD PRIMARY KEY (`id_corso`),
@@ -375,7 +379,7 @@ ALTER TABLE `Corso`
   ADD KEY `fk_corso_professore` (`professore`);
 
 --
--- Indexes for table `Libro`
+-- Indici per le tabelle `Libro`
 --
 ALTER TABLE `Libro`
   ADD PRIMARY KEY (`isbn`),
@@ -383,7 +387,7 @@ ALTER TABLE `Libro`
   ADD KEY `fk_libro_ambito` (`ambito`);
 
 --
--- Indexes for table `Messaggio`
+-- Indici per le tabelle `Messaggio`
 --
 ALTER TABLE `Messaggio`
   ADD PRIMARY KEY (`acquirente`,`annuncio`,`data`,`ora`),
@@ -391,91 +395,91 @@ ALTER TABLE `Messaggio`
   ADD KEY `fk_messaggio_annuncio` (`annuncio`);
 
 --
--- Indexes for table `Professore`
+-- Indici per le tabelle `Professore`
 --
 ALTER TABLE `Professore`
   ADD PRIMARY KEY (`id_professore`);
 
 --
--- Indexes for table `Stato`
+-- Indici per le tabelle `Stato`
 --
 ALTER TABLE `Stato`
   ADD PRIMARY KEY (`id_stato`);
 
 --
--- Indexes for table `Universita`
+-- Indici per le tabelle `Universita`
 --
 ALTER TABLE `Universita`
   ADD PRIMARY KEY (`id_universita`),
   ADD KEY `citta` (`citta`);
 
 --
--- Indexes for table `Utente`
+-- Indici per le tabelle `Utente`
 --
 ALTER TABLE `Utente`
   ADD PRIMARY KEY (`username`),
   ADD KEY `fk_persona_stato` (`stato`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `Ambito`
+-- AUTO_INCREMENT per la tabella `Ambito`
 --
 ALTER TABLE `Ambito`
   MODIFY `id_ambito` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `Annuncio`
+-- AUTO_INCREMENT per la tabella `Annuncio`
 --
 ALTER TABLE `Annuncio`
-  MODIFY `id_annuncio` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_annuncio` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `AnnunciOsservati`
+-- AUTO_INCREMENT per la tabella `AnnunciOsservati`
 --
 ALTER TABLE `AnnunciOsservati`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `Autore`
+-- AUTO_INCREMENT per la tabella `Autore`
 --
 ALTER TABLE `Autore`
   MODIFY `id_autore` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `AutoreLibro`
+-- AUTO_INCREMENT per la tabella `AutoreLibro`
 --
 ALTER TABLE `AutoreLibro`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `CasaEditrice`
+-- AUTO_INCREMENT per la tabella `CasaEditrice`
 --
 ALTER TABLE `CasaEditrice`
   MODIFY `id_casaeditrice` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `Citta`
+-- AUTO_INCREMENT per la tabella `Citta`
 --
 ALTER TABLE `Citta`
   MODIFY `id_citta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `Corso`
+-- AUTO_INCREMENT per la tabella `Corso`
 --
 ALTER TABLE `Corso`
   MODIFY `id_corso` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `Professore`
+-- AUTO_INCREMENT per la tabella `Professore`
 --
 ALTER TABLE `Professore`
   MODIFY `id_professore` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `Universita`
+-- AUTO_INCREMENT per la tabella `Universita`
 --
 ALTER TABLE `Universita`
   MODIFY `id_universita` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Constraints for dumped tables
+-- Limiti per le tabelle scaricate
 --
 
 --
--- Constraints for table `Annuncio`
+-- Limiti per la tabella `Annuncio`
 --
 ALTER TABLE `Annuncio`
   ADD CONSTRAINT `fk_annuncio_citta` FOREIGN KEY (`citta_consegna`) REFERENCES `Citta` (`id_citta`),
@@ -484,47 +488,47 @@ ALTER TABLE `Annuncio`
   ADD CONSTRAINT `fk_annuncio_persona` FOREIGN KEY (`venditore`) REFERENCES `Utente` (`username`);
 
 --
--- Constraints for table `AnnunciOsservati`
+-- Limiti per la tabella `AnnunciOsservati`
 --
 ALTER TABLE `AnnunciOsservati`
   ADD CONSTRAINT `fk_annunciOsservati_annuncio` FOREIGN KEY (`annuncio`) REFERENCES `Annuncio` (`id_annuncio`),
   ADD CONSTRAINT `fk_annunciOsservati_utente` FOREIGN KEY (`utente`) REFERENCES `Utente` (`username`);
 
 --
--- Constraints for table `Citta`
+-- Limiti per la tabella `Citta`
 --
 ALTER TABLE `Citta`
   ADD CONSTRAINT `fk_citta_stato` FOREIGN KEY (`stato`) REFERENCES `Stato` (`id_stato`);
 
 --
--- Constraints for table `Corso`
+-- Limiti per la tabella `Corso`
 --
 ALTER TABLE `Corso`
   ADD CONSTRAINT `fk_corso_professore` FOREIGN KEY (`professore`) REFERENCES `Professore` (`id_professore`),
   ADD CONSTRAINT `fk_corso_universita` FOREIGN KEY (`universita`) REFERENCES `Universita` (`id_universita`);
 
 --
--- Constraints for table `Libro`
+-- Limiti per la tabella `Libro`
 --
 ALTER TABLE `Libro`
   ADD CONSTRAINT `fk_libro_ambito` FOREIGN KEY (`ambito`) REFERENCES `Ambito` (`id_ambito`),
   ADD CONSTRAINT `fk_libro_casaeditrice` FOREIGN KEY (`casaeditrice`) REFERENCES `CasaEditrice` (`id_casaeditrice`);
 
 --
--- Constraints for table `Messaggio`
+-- Limiti per la tabella `Messaggio`
 --
 ALTER TABLE `Messaggio`
   ADD CONSTRAINT `fk_messaggio_annuncio` FOREIGN KEY (`annuncio`) REFERENCES `Annuncio` (`id_annuncio`),
   ADD CONSTRAINT `fk_messaggio_persona` FOREIGN KEY (`acquirente`) REFERENCES `Utente` (`username`);
 
 --
--- Constraints for table `Universita`
+-- Limiti per la tabella `Universita`
 --
 ALTER TABLE `Universita`
   ADD CONSTRAINT `fk_universita_citta` FOREIGN KEY (`citta`) REFERENCES `Citta` (`id_citta`);
 
 --
--- Constraints for table `Utente`
+-- Limiti per la tabella `Utente`
 --
 ALTER TABLE `Utente`
   ADD CONSTRAINT `fk_persona_stato` FOREIGN KEY (`stato`) REFERENCES `Stato` (`id_stato`);
