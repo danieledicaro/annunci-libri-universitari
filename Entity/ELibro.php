@@ -5,8 +5,8 @@ class ELibro {
     private $isbn;
     private $titolo;
     private $autore;
-    private $casaEditrice;
-    private $annoStampa;
+    private $casaeditrice;
+    private $anno_stampa;
     private $ambito;
 
 
@@ -23,12 +23,12 @@ class ELibro {
         return $this->autore;
     }
 
-    public function getCasaEditrice() {
-        return $this->casaEditrice;
+    public function getCasaeditrice() {
+        return $this->casaeditrice;
     }
 
-    public function getAnnoStampa() {
-        return $this->annoStampa;
+    public function getAnno_stampa() {
+        return $this->anno_stampa;
     }
 
     public function getAmbito() {

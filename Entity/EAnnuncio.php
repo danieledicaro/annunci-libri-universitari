@@ -9,6 +9,7 @@
 class EAnnuncio {
 
     private $id_annuncio;
+    private $data;
     private $libro;
     private $venditore;
     private $corso;
@@ -16,6 +17,8 @@ class EAnnuncio {
     private $se_spedisce;
     private $descrizione;
     private $condizione;
+    private $foto;
+    private $prezzo;
 
     public function getObjectVars() {
         return get_object_vars($this);

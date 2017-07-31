@@ -5,8 +5,6 @@ class EConversazione {
     private $messaggio;
     private $idAnnuncio;
 
-    public function __construct(){}
-
     public function aggiungiMessaggio($messaggio) {
         $this->messaggio[] = $messaggio;
     }
