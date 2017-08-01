@@ -41,7 +41,7 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('titolo' => "'Fisica Generale I'", 'anno_stampa' => 2001);
+$a = array('titolo' => 'Fisica Generale I', 'anno_stampa' => 2001);
 $foo = array($a, 'id_annuncio', '');
 $annuncio = $db->search($foo);
 var_dump($annuncio);
