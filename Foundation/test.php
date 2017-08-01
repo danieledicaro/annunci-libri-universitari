@@ -41,10 +41,11 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('titolo' => 'Fisica Generale I', 'anno_stampa' => 2001);
+$a = array('titolo' => 'fisica');
 $foo = array($a, 'id_annuncio', '');
-$annuncio = $db->search($foo);
-var_dump($annuncio);
+$annuncio = new ECatalogo();
+$annuncio->setCatalogo($db->search($foo));
+var_dump($annuncio->getObjectVars());
 /*$foo = array('daniele',1);
 $conversazione = $db->load($foo);
 var_dump($conversazione);
