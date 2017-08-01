@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Lug 31, 2017 alle 13:22
+-- Creato il: Ago 01, 2017 alle 11:39
 -- Versione del server: 10.1.21-MariaDB
 -- Versione PHP: 5.6.30
 
@@ -196,7 +196,7 @@ INSERT INTO `Corso` (`id_corso`, `nome`, `universita`, `professore`) VALUES
 CREATE TABLE `Libro` (
   `isbn` varchar(13) NOT NULL,
   `titolo` varchar(100) NOT NULL,
-  `anno_stampa` date NOT NULL,
+  `anno_stampa` year(4) NOT NULL,
   `casaeditrice` int(10) DEFAULT NULL,
   `ambito` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -206,7 +206,7 @@ CREATE TABLE `Libro` (
 --
 
 INSERT INTO `Libro` (`isbn`, `titolo`, `anno_stampa`, `casaeditrice`, `ambito`) VALUES
-('9788879591379', 'Fisica Generale I', '0000-00-00', 1, 1);
+('9788879591379', 'Fisica Generale I', 2001, 1, 1);
 
 -- --------------------------------------------------------
 
