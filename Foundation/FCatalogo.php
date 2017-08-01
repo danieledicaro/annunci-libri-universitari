@@ -17,8 +17,8 @@ class FCatalogo extends Fdb {
     }
 
     /**
-     * Funziona, l'array $a è un array con parametri di ricerca del tipo chiave => valore; quelle che nella query sono
-     * stringhe devono avere gli apici '' (es. 'titolo' => "'Fisica Generale I'")
+     * Funziona, l'array $a è un array con parametri di ricerca del tipo chiave => valore;
+     * es. 'titolo' => 'Fisica Generale I'
      *
      * @param array $a
      * @param string $ordinamento
@@ -31,7 +31,13 @@ class FCatalogo extends Fdb {
         end($b);
         $last=key($b);
         foreach ($b as $key => $value) {
-            if($key!=$last) {
+            if ($key=='titolo' && $key!=$last) {
+                $filtro .= '`Libro`.'.$key." LIKE '%".$value."%' AND ";
+            }
+            elseif ($key=='titolo' && $key==$last) {
+                $filtro .= '`Libro`.'.$key." LIKE '%".$value."%'";
+            }
+            else if($key!=$last) {
                 $filtro .= '`Libro`.'.$key.' = '.$value.' AND ';
             }
             else $filtro .= '`Libro`.'.$key.' = '.$value;
