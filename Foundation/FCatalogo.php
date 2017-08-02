@@ -17,39 +17,51 @@ class FCatalogo extends Fdb {
     }
 
     /**
-     * Funziona, l'array $a è un array con parametri di ricerca del tipo chiave => valore;
-     * es. 'titolo' => 'Fisica Generale I'
+     * Funziona, l'array $a è un array con parametri di ricerca del tipo array(array(valori), ordinamento, limite)
+     * array(valorei)=[parola chiave (stringa), anno_stampa (int), se_spedisce (0 o 1), condizione (da 0 a 5), prezzo (int)]
+     * inserendo la condizione mostra solo condizioni uguali o migliori
+     * inserendo un prezzo cercherà in un range di +/- 10 dal prezzo inserito
      *
      * @param array $a
-     * @param string $ordinamento
-     * @param string $limit
      * @return array|bool
      */
-    public function search(array $a, $ordinamento = '', $limit = '') {
+    public function search(array $a) {
         $filtro='';
         $b=$a[0];
-        end($b);
-        $last=key($b);
-        foreach ($b as $key => $value) {
-            if ($key=='titolo' && $key!=$last) {
-                $filtro .= '`Libro`.'.$key." LIKE '%".$value."%' AND ";
-            }
-            elseif ($key=='titolo' && $key==$last) {
-                $filtro .= '`Libro`.'.$key." LIKE '%".$value."%'";
-            }
-            else if($key!=$last) {
-                $filtro .= '`Libro`.'.$key.' = '.$value.' AND ';
-            }
-            else $filtro .= '`Libro`.'.$key.' = '.$value;
+        if (count($b)==1) {
+            $query = "SELECT DISTINCT `".$this->_table.'`.* '.
+                "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` ".
+                "WHERE `Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn = '".$b[0].
+                "' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
+                "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%' AND ";
         }
-        $query='SELECT `'.$this->_table.'`.* '.
-            'FROM `'.$this->_table.'`, `Libro` ';
-        if ($filtro != '')
-            $query.='WHERE '.$filtro.' ';
-        if ($ordinamento!='')
-            $query.='ORDER BY '.$a[1].' ';
-        if ($limit != '')
-            $query.='LIMIT '.$a[2].' ';
+        else {
+            if ( $b[0]!=''){
+                $query="SELECT DISTINCT `".$this->_table.'`.* '.
+                    "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` ".
+                    "WHERE `Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn = '".$b[0].
+                    "' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
+                    "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%'";
+            }
+            else $query='SELECT DISTINCT `'.$this->_table.'`.* '.
+                'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` '.
+                'WHERE ';
+            for( $i = 1 ; $i < count($b) ; ++$i ){
+                if($i==1 && $b[$i]!='') $filtro .= '`Libro`.anno_stampa = '.$b[$i].' AND';
+                elseif ($i==2 && $b[$i]!='') $filtro .= '`Annuncio`.citta_stampa = '.$b[$i].' AND';
+                elseif ($i==3 && $b[$i]!='') $filtro .= '`Annuncio`.se_spedisce = '.$b[$i].' AND';
+                elseif ($i==4 && $b[$i]!='') $filtro .= '`Annuncio`.condizione > '.$b[$i].' AND';
+                elseif ($b[$i]!='') $filtro .= '`Annuncio`.prezzo '.$b[$i].'-10 <= '.$b[$i].' <= 10+'.$b[$i].' AND';
+            }
+            if ($filtro != '')
+                $query.=substr($filtro, 0, strlen($filtro)-3);
+            if ($filtro == '')
+                $query=substr($query, 0, strlen($query)-5);
+            if ($a[1] != '')
+                $query.='ORDER BY '.$a[1].' ';
+            if ($a[2] != '')
+                $query.='LIMIT '.$a[2].' ';
+        }
         $this->doQuery($query);
         return $this->getObjectArray();
     }

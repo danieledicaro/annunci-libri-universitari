@@ -41,8 +41,8 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('titolo' => 'fisica');
-$foo = array($a, 'id_annuncio', '');
+$a = array('', '', '', 1, '', '');
+$foo = array($a, 'data', '');
 $annuncio = new ECatalogo();
 $annuncio->setCatalogo($db->search($foo));
 var_dump($annuncio->getObjectVars());
@@ -54,7 +54,7 @@ $annuncio = $dba->load(1);
 var_dump($annuncio->getObjectVars());
 $libro = $dbl->load('9788879591379');
 $user = $db->load('ciao');
-echo $user->mail."\r\n";
+/*echo $user->mail."\r\n";
 $db->update($foo);
 $db->delete($user);
 $db->close();*/
