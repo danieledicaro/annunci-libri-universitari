@@ -5,7 +5,7 @@
  * Date: 24/07/17
  * Time: 12.18
  */
-include ("./Utility/USingleton.php");
+//include ("./Utility/USingleton.php");
 include ("../includes/config.inc.php");
 include ("../Entity/EUtente.php");
 include ("./Fdb.php");
