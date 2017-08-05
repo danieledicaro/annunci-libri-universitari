@@ -41,10 +41,9 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('', '', '', 1, '', '');
+$a = array('', '', "L\'Aquila", '', '', '');
 $foo = array($a, 'data', '');
-$annuncio = new ECatalogo();
-$annuncio->setCatalogo($db->search($foo));
+$annuncio = $db->search($foo);
 var_dump($annuncio->getObjectVars());
 /*$foo = array('daniele',1);
 $conversazione = $db->load($foo);
