@@ -31,7 +31,7 @@ class FCatalogo extends Fdb {
         if (count($b)==1) {
             $query = "SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Annuncio`.`libro`, `Annuncio`.`venditore`,".
                 " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
-                " `Annuncio`.`condizione`, `Annuncio`.`prezzo`".
+                " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                 "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` ".
                 "WHERE `Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn LIKE '%".$b[0].
                 "%' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
@@ -41,7 +41,7 @@ class FCatalogo extends Fdb {
             if ( $b[0]!=''){
                 $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Annuncio`.`libro`, `Annuncio`.`venditore`,".
                     " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
-                    " `Annuncio`.`condizione`, `Annuncio`.`prezzo`".
+                    " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                     "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` ".
                     "WHERE (`Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn LIKE '%".$b[0].
                     "%' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
@@ -49,18 +49,18 @@ class FCatalogo extends Fdb {
             }
             else $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Annuncio`.`libro`, `Annuncio`.`venditore`,".
                 " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
-                " `Annuncio`.`condizione`, `Annuncio`.`prezzo`".
+                " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                 'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` '.
                 'WHERE ';
             for( $i = 1 ; $i < count($b) ; ++$i ){
-                if($i==1 && $b[$i]!='') $filtro .= "`Libro`.anno_stampa = ".$b[$i]." AND `Annuncio`.libro = `Libro`.isbn AND";
-                elseif ($i==2 && $b[$i]!='') $filtro .= "`Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b[$i]."' AND";
-                elseif ($i==3 && $b[$i]!='') $filtro .= "`Annuncio`.se_spedisce = ".$b[$i]." AND";
-                elseif ($i==4 && $b[$i]!='') $filtro .= "`Annuncio`.condizione > ".$b[$i]." AND";
-                elseif ($b[$i]!='') $filtro .= "`Annuncio`.prezzo >=".$b[$i]."-10 AND `Annuncio`.prezzo <= 10+".$b[$i]." AND";
+                if($i==1 && $b[$i]!='') $filtro .= "`Libro`.anno_stampa = ".$b[$i]." AND `Annuncio`.libro = `Libro`.isbn AND ";
+                elseif ($i==2 && $b[$i]!='') $filtro .= "`Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b[$i]."' AND ";
+                elseif ($i==3 && $b[$i]!='') $filtro .= "`Annuncio`.se_spedisce = ".$b[$i]." AND ";
+                elseif ($i==4 && $b[$i]!='') $filtro .= "`Annuncio`.condizione > ".$b[$i]." AND ";
+                elseif ($b[$i]!='') $filtro .= "`Annuncio`.prezzo >=".$b[$i]."-10 AND `Annuncio`.prezzo <= 10+".$b[$i]." AND ";
             }
             if ($filtro != '')
-                $query.=substr($filtro, 0, strlen($filtro)-3);
+                $query.=substr($filtro, 0, strlen($filtro)-4);
             if ($filtro == '')
                 $query=substr($query, 0, strlen($query)-4);
             if ($filtro == '' && $b[0] == '')
@@ -71,6 +71,7 @@ class FCatalogo extends Fdb {
             if ($a[2] != '')
                 $query.='LIMIT '.$a[2].' ';
         }
+        $query=substr($query, 0, strlen($query)-1);
         $this->doQuery($query);
         $catalogo = new ECatalogo();
         $catalogo->setCatalogo($this->getObjectArray());
