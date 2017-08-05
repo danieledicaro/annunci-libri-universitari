@@ -18,7 +18,7 @@ class FCatalogo extends Fdb {
 
     /**
      * Funziona, l'array $a è un array con parametri di ricerca del tipo array(array(valori), ordinamento, limite)
-     * array(valorei)=[parola chiave (stringa), anno_stampa (int), se_spedisce (0 o 1), condizione (da 0 a 5), prezzo (int)]
+     * array(valorei)=[parola chiave (stringa), anno_stampa (int), citta_consegna (string), se_spedisce (0 o 1), condizione (da 0 a 5), prezzo (int)]
      * inserendo la condizione mostra solo condizioni uguali o migliori
      * inserendo un prezzo cercherà in un range di +/- 10 dal prezzo inserito
      *
@@ -44,14 +44,14 @@ class FCatalogo extends Fdb {
                     "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%'";
             }
             else $query='SELECT DISTINCT `'.$this->_table.'`.* '.
-                'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` '.
+                'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` '.
                 'WHERE ';
             for( $i = 1 ; $i < count($b) ; ++$i ){
-                if($i==1 && $b[$i]!='') $filtro .= '`Libro`.anno_stampa = '.$b[$i].' AND';
-                elseif ($i==2 && $b[$i]!='') $filtro .= '`Annuncio`.citta_stampa = '.$b[$i].' AND';
-                elseif ($i==3 && $b[$i]!='') $filtro .= '`Annuncio`.se_spedisce = '.$b[$i].' AND';
-                elseif ($i==4 && $b[$i]!='') $filtro .= '`Annuncio`.condizione > '.$b[$i].' AND';
-                elseif ($b[$i]!='') $filtro .= '`Annuncio`.prezzo '.$b[$i].'-10 <= '.$b[$i].' <= 10+'.$b[$i].' AND';
+                if($i==1 && $b[$i]!='') $filtro .= "`Libro`.anno_stampa = ".$b[$i]." AND";
+                elseif ($i==2 && $b[$i]!='') $filtro .= "`Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b[$i]."' AND";
+                elseif ($i==3 && $b[$i]!='') $filtro .= "`Annuncio`.se_spedisce = ".$b[$i]." AND";
+                elseif ($i==4 && $b[$i]!='') $filtro .= "`Annuncio`.condizione > ".$b[$i]." AND";
+                elseif ($b[$i]!='') $filtro .= "`Annuncio`.prezzo ".$b[$i]."-10 <= ".$b[$i]." <= 10+".$b[$i]." AND";
             }
             if ($filtro != '')
                 $query.=substr($filtro, 0, strlen($filtro)-3);
@@ -63,7 +63,9 @@ class FCatalogo extends Fdb {
                 $query.='LIMIT '.$a[2].' ';
         }
         $this->doQuery($query);
-        return $this->getObjectArray();
+        $catalogo = new ECatalogo();
+        $catalogo->setCatalogo($this->getObjectArray());
+        return $catalogo;
     }
 
 }
