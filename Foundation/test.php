@@ -41,7 +41,7 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('', '', "L\'Aquila", '', '', '');
+$a = array('', '', '', '', '', '');
 $foo = array($a, 'data', '');
 $annuncio = $db->search($foo);
 var_dump($annuncio->getObjectVars());
