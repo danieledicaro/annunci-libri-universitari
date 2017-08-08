@@ -30,8 +30,8 @@ class CRegistrazione {
      */
     public function getUtenteRegistrato() {
         $autenticato = false;
-        $session = new USession();
-        $VRegistrazione = new VRegistrazione();
+        $session = USingleton::getInstance('USession');
+        $VRegistrazione = USingleton::getInstance('VRegistrazione');
         $task = $VRegistrazione->getTask();
         $controller = $VRegistrazione->getController();
         $this->_username = $VRegistrazione->getUsername();
@@ -65,7 +65,7 @@ class CRegistrazione {
         $utente = $FUtente->load($username);
         if ($utente != false) {
             if ($username == $utente->getUsername() && $password == $utente->getPassword()) {
-                $session = new USession();
+                $session = USingleton::getInstance('USession');
                 $session->imposta_valore('username',$username);
                 $session->imposta_valore('nome_cognome',$utente->getNome().' '.$utente->getCognome());
                 return true;
@@ -83,7 +83,7 @@ class CRegistrazione {
      * @return mixed
      */
     public function creaUtente() {
-        $view = new VRegistrazione();
+        $view = USingleton::getInstance('VRegistrazione');
         $dati_registrazione = $view->getDatiRegistrazione();
         $FUtente = new FUtente();
         $result = $FUtente->load($dati_registrazione['username']);
@@ -179,16 +179,16 @@ class CRegistrazione {
      * @return string
      */
     public function moduloRegistrazione() {
-        $VRegistrazione = new VRegistrazione();
+        $VRegistrazione = USingleton::getInstance('VRegistrazione');
         $VRegistrazione->setLayout('modulo');
         return $VRegistrazione->processaTemplate();
     }
 
     /**
-     * EfFettua il logout
+     * Effettua il logout
      */
     public function logout() {
-        $session = new USession();
+        $session = USingleton::getInstance('USession');
         $session->cancella_valore('username');
         $session->cancella_valore('nome_cognome');
     }
@@ -199,7 +199,7 @@ class CRegistrazione {
      * @return mixed
      */
     public function smista() {
-        $view = new VRegistrazione();
+        $view = USingleton::getInstance('VRegistrazione');
         switch ($view->getTask()) {
             case 'recupera_password':
                 return $this->recuperaPassword();

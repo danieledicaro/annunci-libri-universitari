@@ -11,10 +11,11 @@ class CHome {
      * Imposta la pagina, controlla l'autenticazione
      */
     public function impostaPagina () {
-        $CRegistrazione = new CRegistrazione();
+        $CRegistrazione = USingleton::getInstance('CRegistrazione');
         $registrato=$CRegistrazione->getUtenteRegistrato();
-        $VHome = new VHome();
-        //$VHome->impostaContenuto($contenuto);
+        $VHome = USingleton::getInstance('VHome');
+        $contenuto = $this->smista();
+        $VHome->impostaContenuto($contenuto);
         if ($registrato) {
             $VHome->impostaPaginaRegistrato();
         } else {
@@ -29,7 +30,7 @@ class CHome {
      * @return mixed
      */
     public function smista() {
-        $view = new VHome();
+        $view = USingleton::getInstance('VHome');
         switch ($view->getController()) {
             case 'registrazione':
                 $CRegistrazione=USingleton::getInstance('CRegistrazione');
@@ -37,9 +38,11 @@ class CHome {
             case 'ricerca':
                 $CRicerca=USingleton::getInstance('CRicerca');
                 return $CRicerca->smista();
-            case 'ordine':
-                $COrdine=USingleton::getInstance('COrdine');
-                return $COrdine->smista();
+            case 'profilo':
+                $CUtente=USingleton::getInstance('CUtente');
+                return $CUtente->smista();
+            default:
+                return NULL; //schermata iniziale del sito
         }
     }
 

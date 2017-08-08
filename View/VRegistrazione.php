@@ -112,11 +112,11 @@ class VRegistrazione {
      *
      * @return mixed
      */
-    public function getDatiAttivazione() {
+    /*public function getDatiAttivazione() {
         if(isset($_REQUEST['codice_attivazione']) && isset($_REQUEST['username']))
             return array('codice'=>$_REQUEST['codice_attivazione'], 'username'=>$_REQUEST['username']);
         else
             return false;
-    }
+    }*/
 
 }
