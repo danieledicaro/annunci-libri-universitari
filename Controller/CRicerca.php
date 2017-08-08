@@ -54,8 +54,9 @@ class CRicerca {
         $pagine = ceil($num_risultati/$this->_annunci_per_pagina);
         $foo = array ($parametri, 'data', $limit);
         $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
+        $view->setLayout('catalogo');
         $view->impostaDati('pagine',$pagine);
-        $view->impostaDati('task','lista');
+        $view->impostaDati('task','cerca');
         $view->impostaDati('parametri','keyword='.$parametri);
         $view->impostaDati('dati',$risultato);
         return $view->processaTemplate();
@@ -70,8 +71,8 @@ class CRicerca {
         $view = USingleton::getInstance('VRicerca');
         $id_annuncio = $view->getIdAnnuncio();
         $FAnnuncio = new FAnnuncio();
-        $annuncio = $FAnnuncio->load($id_annuncio);
-        $dati = $annuncio->getObjectVars();
+        $dati = $FAnnuncio->load($id_annuncio)->getObjectVars();
+        $view->setLayout('annuncio');
         $view->impostaDati('dati',$dati);
         return $view->processaTemplate();
     }
@@ -102,16 +103,14 @@ class CRicerca {
      * @return mixed
      */
     public function smista() {
-        $view=USingleton::getInstance('VRegistrazione');
+        $view=USingleton::getInstance('VRicerca');
         switch ($view->getTask()) {
             case 'dettagli':
                 return $this->dettagli();
-            case 'Contatta venditore':
+            case 'contatta_venditore':
                 $CMessaggio = USingleton::getInstance('CMessaggio');
                 return $CMessaggio->smista();
-            case 'lista':
-                return $this->lista();
-            case 'Cerca':
+            case 'cerca':
                 return $this->lista();
         }
     }

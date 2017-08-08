@@ -58,9 +58,9 @@ class VRicerca {
     /**
      * @param string $layout
      */
-    /*public function setLayout($layout) {
+    public function setLayout($layout) {
         $this->_layout=$layout;
-    }*/
+    }
 
     /**
      * restituisce il voto passato tramite GET o POST

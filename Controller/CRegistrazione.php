@@ -201,12 +201,12 @@ class CRegistrazione {
     public function smista() {
         $view = USingleton::getInstance('VRegistrazione');
         switch ($view->getTask()) {
-            case 'recupera_password':
-                return $this->recuperaPassword();
             case 'registra':
                 return $this->moduloRegistrazione();
             case 'salva':
                 return $this->creaUtente();
+            case 'esci':
+                return $this->logout();
         }
     }
 

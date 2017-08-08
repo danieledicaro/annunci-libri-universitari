@@ -10,7 +10,7 @@ class EAnnuncio {
 
     private $id_annuncio;
     private $data;
-    private $libro;
+    private $titolo;
     private $venditore;
     private $corso;
     private $citta_consegna;

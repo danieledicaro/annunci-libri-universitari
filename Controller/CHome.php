@@ -25,7 +25,6 @@ class CHome {
     }
     /**
      * Smista le richieste ai vari controller
-     * QUANDO E DA CHI VIENE RICHIAMATA?
      *
      * @return mixed
      */
@@ -33,16 +32,21 @@ class CHome {
         $view = USingleton::getInstance('VHome');
         switch ($view->getController()) {
             case 'registrazione':
-                $CRegistrazione=USingleton::getInstance('CRegistrazione');
+                $CRegistrazione = USingleton::getInstance('CRegistrazione');
                 return $CRegistrazione->smista();
             case 'ricerca':
-                $CRicerca=USingleton::getInstance('CRicerca');
+                $CRicerca = USingleton::getInstance('CRicerca');
                 return $CRicerca->smista();
-            case 'profilo':
-                $CUtente=USingleton::getInstance('CUtente');
+            case 'profile':
+                $CUtente = USingleton::getInstance('CUtente');
                 return $CUtente->smista();
+            case 'boxmail':
+                $CBoxmail = USingleton::getInstance('CBoxmail');
+                return $CBoxmail->smista();
             default:
-                return NULL; //schermata iniziale del sito
+                $VRicerca = USingleton::getInstance('VRicerca');
+                $VRicerca->setLayout('default');
+                return $VRicerca->processaTemplate();
         }
     }
 

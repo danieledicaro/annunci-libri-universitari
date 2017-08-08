@@ -81,6 +81,8 @@ class VHome {
         $this->assign('content_title','Benvenuto, '.$nickname);
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button);
+        $this->aggiungiTastoProfilo();
+        $this->aggiungiTastoBoxmail();
         $this->aggiungiTastoLogout();
     }
 
@@ -97,7 +99,7 @@ class VHome {
     }
 
     /**
-     * aggiunge il tasto logout al menu laterale
+     * aggiunge il tasto logout al menu
      */
     public function aggiungiTastoLogout() {
         $tasto_logout=array();
@@ -106,12 +108,23 @@ class VHome {
     }
 
     /**
-     * aggiunge il tasto per la registrazione nel menu laterale (per gli utenti non autenticati)
+     * aggiunge il tasto per la registrazione nel menu (per gli utenti non autenticati)
      */
     public function aggiungiTastoRegistrazione() {
-        $menu_registrazione=array();
-        $menu_registrazione[]=array('testo' => 'Attivati', 'link' => '?controller=registrazione&task=attivazione');
-        $this->_top_button[]=array_merge(array('testo' => 'Registrati', 'link' => '?controller=registrazione&task=registra', 'submenu' => $menu_registrazione),$this->_top_button);
+        $tasto_registrazione = array('testo' => 'Registrati', 'link' => '?controller=registrazione&task=registra');
+        $this->_top_button[] = $tasto_registrazione;
+    }
+
+    public function aggiungiTastoBoxmail() {
+        $tasto_boxmail []= array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=lista');
+        $this->_top_button[] = array_merge($tasto_boxmail, $this->_top_button);
+
+    }
+
+    public function aggiungiTastoProfilo() {
+        $tasto_profilo []= array('testo' => 'Il mio profilo', 'link' => '?controller=profile&task=mostra');
+        $this->_top_button[] = array_merge($tasto_profilo, $this->_top_button);
+
     }
 
     /**
