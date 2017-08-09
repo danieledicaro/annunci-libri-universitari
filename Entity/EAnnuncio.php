@@ -24,5 +24,9 @@ class EAnnuncio {
         return get_object_vars($this);
     }
 
+    public function getVenditore() {
+        return $this->venditore;
+    }
+
 }
 ?>

@@ -47,11 +47,11 @@ class FCatalogo extends Fdb {
                     "%' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
                     "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%') AND `Libro`.isbn = `Annuncio`.libro AND ";
             }
-            else $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Annuncio`.`libro`, `Annuncio`.`venditore`,".
+            else $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo`, `Annuncio`.`venditore`,".
                 " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
                 " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                 'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` '.
-                'WHERE ';
+                'WHERE `Libro`.isbn = `Annuncio`.libro AND ';
             for( $i = 1 ; $i < count($b) ; ++$i ){
                 if($i==1 && $b[$i]!='') $filtro .= "`Libro`.anno_stampa = ".$b[$i]." AND `Annuncio`.libro = `Libro`.isbn AND ";
                 elseif ($i==2 && $b[$i]!='') $filtro .= "`Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b[$i]."' AND ";
@@ -64,8 +64,8 @@ class FCatalogo extends Fdb {
             if ($filtro == '')
                 $query=substr($query, 0, strlen($query)-4);
             if ($filtro == '' && $b[0] == '')
-                $query='SELECT `id_annuncio`, `data` , `libro`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
-                    ' `descrizione`, `condizione`, `prezzo` FROM `Annuncio`';
+                $query='SELECT `id_annuncio`, `data` , `Libro`.`titolo`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
+                    ' `descrizione`, `condizione`, `prezzo` FROM `Annuncio`, `Libro` WHERE `Libro`.`isbn` = `Annuncio`.`Libro`';
             if ($a[1] != '')
                 $query.='ORDER BY '.$a[1].' ';
             if ($a[2] != '')

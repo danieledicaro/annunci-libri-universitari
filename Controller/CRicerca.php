@@ -108,8 +108,8 @@ class CRicerca {
             case 'dettagli':
                 return $this->dettagli();
             case 'contatta_venditore':
-                $CMessaggio = USingleton::getInstance('CMessaggio');
-                return $CMessaggio->smista();
+                $CBoxmail = USingleton::getInstance('CBoxmail');
+                return $CBoxmail->nuovoConversazione();
             case 'cerca':
                 return $this->lista();
         }
