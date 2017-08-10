@@ -10,8 +10,6 @@ class EUtente {
     private $stato;
     //private $annunciOsservati;
     
-    // public function creaAnnuncio($isbn,)
-    
     public function getUsername() {
         return $this->username;
     }

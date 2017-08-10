@@ -110,4 +110,14 @@ class VRicerca {
             return false;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTask() {
+        if (isset($_REQUEST['task']))
+            return $_REQUEST['task'];
+        else
+            return false;
+    }
+
 }

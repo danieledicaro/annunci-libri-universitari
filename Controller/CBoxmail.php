@@ -29,26 +29,23 @@ class CBoxmail {
     }
 
     public function nuovaConversazione() {
-        $CRegistrazione = USingleton::getInstance('CRegistrazione');
-        $registrato = $CRegistrazione->getUtenteRegistrato();
-        if ($registrato) {
-            $view = USingleton::getInstance('VBoxmail');
-            $view->setLayout('Messaggio');
-            $view->mostraPagina();
-            if($view->getMessaggio()) {
-                $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
-                $FMessaggio = new FMessaggio();
-                $FMessaggio->store($messaggio);
-                return 'Messaggio inviato correttamente';
-            }
-            else return 'Questo campo non può essere vuoto';
+        $view = USingleton::getInstance('VBoxmail');
+        if($view->getMessaggio() != false) {
+            $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
+            $FMessaggio = new FMessaggio();
+            $FMessaggio->store($messaggio);
+            return $view->processaTemplate();
         }
-        else return 'Devi prima effetturare il login';
+        else {
+            $view->impostaErrore('Devi scrivere un messaggio');
+            $view->setLayout('problemi');
+            return $view->processaTemplate();
+        }
     }
 
     public function nuovoMessaggio() {
         $view = USingleton::getInstance('VBoxmail');
-        if($view->getMessaggio()) {
+        if($view->getMessaggio() != false) {
             $id_annuncio = $view->getDati()['idAnnuncio'];
             $FAnnuncio = new FAnnuncio();
             $annuncio = $FAnnuncio->load($id_annuncio);
@@ -57,8 +54,7 @@ class CBoxmail {
             $messaggio = array ($annuncio->getVenditore(), $id_annuncio, date("d-m-y"), date("H:i:s"), $view->getMessaggio(), $a);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
-            $view->mostraPagina();
-
+            return $view->processaTemplate();
         }
     }
 
@@ -71,6 +67,9 @@ class CBoxmail {
                 return $this->dettagli();
             case 'nuovo_messaggio':
                 return $this->nuovoMessaggio();
+            case 'contatta_venditore':
+                $VBoxmail = USingleton::getInstance('VBoxmail');
+                return $VBoxmail->nuovaConversazione();
         }
     }
 

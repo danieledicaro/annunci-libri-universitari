@@ -105,11 +105,10 @@ class CRicerca {
     public function smista() {
         $view=USingleton::getInstance('VRicerca');
         switch ($view->getTask()) {
+            case 'nuovo':
+                return $this->nuovoAnnuncio();
             case 'dettagli':
                 return $this->dettagli();
-            case 'contatta_venditore':
-                $CBoxmail = USingleton::getInstance('CBoxmail');
-                return $CBoxmail->nuovoConversazione();
             case 'cerca':
                 return $this->lista();
         }
