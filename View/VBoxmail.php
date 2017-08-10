@@ -77,10 +77,10 @@ class VBoxmail {
      * @return mixed
      */
     public function getConversazione() {
-        if (isset($_REQUEST['idAnnuncio'])) {
-            $a = $_REQUEST['idAnnuncio'];
-            if (isset($_REQUEST['acquirente'])){
-                $a = array_merge($a, $_REQUEST['acquirente']);
+        if (isset($_REQUEST['acquirente'])) {
+            $a = $_REQUEST['acquirente'];
+            if (isset($_REQUEST['idAnnuncio'])){
+                $a = array_merge($a, $_REQUEST['idAnnuncio']);
                 return $a;
             }
             else return false;

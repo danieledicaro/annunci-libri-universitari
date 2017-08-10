@@ -11,7 +11,7 @@ class CBoxmail {
     public function lista() {
         $view = USingleton::getInstance('CBoxmail');
         $FBoxmail = new FBoxmail();
-        $risultato = $FBoxmail->search()->getConversazioni();
+        $risultato = $FBoxmail->pop()->getConversazioni();
         $view->setLayout('default');
         $view->impostaDati('task', 'mostra');
         $view->impostaDati('dati', $risultato);

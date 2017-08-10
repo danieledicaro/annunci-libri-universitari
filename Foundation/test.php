@@ -19,7 +19,9 @@ include ("../Entity/EMessaggio.php");
 include ("../Entity/EConversazione.php");
 include ("FCatalogo.php");
 include ("../Entity/ECatalogo.php");
-$db = new FCatalogo();
+include ("../Entity/EBoxmail.php");
+include ("FBoxmail.php");
+$db = new FBoxmail();
 //$dbl = new FLibro();
 //$dba = new FAnnuncio();
 /*$foo=array(
@@ -41,11 +43,13 @@ $db = new FCatalogo();
     "descrizione" => "",
     "condizione" => "",
 );*/
-$a = array('', '', '', '', '', '');
+$a = $db->pop('daniele');
+var_dump($a->getConversazioni());
+/*$a = array('', '', '', '', '', '');
 $foo = array($a, 'data', '');
 $annuncio = $db->search($foo);
 var_dump($annuncio->getObjectVars());
-/*$foo = array('daniele',1);
+$foo = array('daniele',1);
 $conversazione = $db->load($foo);
 var_dump($conversazione);
 $db->store($foo);
