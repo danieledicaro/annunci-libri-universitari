@@ -6,7 +6,7 @@
  * Time: 10.01
  */
 
-class VHome {
+class VHome extends View {
     /**
      * @var string $_main_content
      */

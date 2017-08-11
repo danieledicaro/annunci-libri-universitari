@@ -6,7 +6,7 @@
  * Time: 16.39
  */
 
-class VUtente {
+class VUtente extends View {
     /**
      * @var string $_layout
      */

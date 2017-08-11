@@ -6,7 +6,7 @@
  * Time: 17.13
  */
 
-class VRegistrazione {
+class VRegistrazione extends View {
     /**
      * @var string $_layout
      */

@@ -6,7 +6,7 @@
  * Time: 17.23
  */
 
-class VBoxmail {
+class VBoxmail extends View {
     private $_layout;
 
     public function nuovaConversazione() {

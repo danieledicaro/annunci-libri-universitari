@@ -6,7 +6,7 @@
  * Time: 12.57
  */
 
-class VRicerca {
+class VRicerca extends View {
 
     /**
      * @var string _layout
