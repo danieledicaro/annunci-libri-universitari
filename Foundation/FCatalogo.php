@@ -23,9 +23,9 @@ class FCatalogo extends Fdb {
      * inserendo un prezzo cercherà in un range di +/- 10 dal prezzo inserito
      *
      * @param array $a
-     * @return array|bool
+     * @return ECatalogo
      */
-    public function search(array $a) {
+    public function search (array $a) {
         $filtro='';
         $b=$a[0];
         if (count($b)==1) {
@@ -72,6 +72,16 @@ class FCatalogo extends Fdb {
                 $query.='LIMIT '.$a[2].' ';
         }
         $query=substr($query, 0, strlen($query)-1);
+        $this->doQuery($query);
+        $catalogo = new ECatalogo();
+        $catalogo->setCatalogo($this->getObjectArray());
+        return $catalogo;
+    }
+
+    public function iMieiAnnunci ($username) {
+        $query = 'SELECT DISTINCT `id_annuncio`, `data` , `Libro`.`titolo`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
+            ' `descrizione`, `condizione`, `foto`, `prezzo` '.'FROM `Annuncio`, `Libro` WHERE `Annuncio`.`venditore` = \''.$username.
+            '\' AND `Libro`.`isbn` = `Annuncio`.`libro` ORDER BY data DESC';
         $this->doQuery($query);
         $catalogo = new ECatalogo();
         $catalogo->setCatalogo($this->getObjectArray());

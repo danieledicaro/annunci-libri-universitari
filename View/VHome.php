@@ -82,6 +82,7 @@ class VHome {
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button);
         $this->aggiungiTastoProfilo();
+        $this->aggiungiTastoMieiAnnunci();
         $this->aggiungiTastoBoxmail();
         $this->aggiungiTastoLogout();
     }
@@ -124,6 +125,12 @@ class VHome {
     public function aggiungiTastoProfilo() {
         $tasto_profilo []= array('testo' => 'Il mio profilo', 'link' => '?controller=profile&task=mostra');
         $this->_top_button[] = array_merge($tasto_profilo, $this->_top_button);
+
+    }
+
+    public function aggiungiTastoMieiAnnunci() {
+        $tasto_mieiannunci []= array('testo' => 'I miei annunci', 'link' => '?controller=ricerca&task=miei_annunci');
+        $this->_top_button[] = array_merge($tasto_mieiannunci, $this->_top_button);
 
     }
 

@@ -44,13 +44,76 @@ class VRicerca {
     }
 
     /**
-     * Ritorna l'id del libro passato tramite GET o POST
+     * Ritorna l'id dell'annuncio passato tramite GET o POST
      *
      * @return mixed
      */
     public function getIdAnnuncio() {
         if (isset($_REQUEST['id_annuncio'])) {
             return $_REQUEST['id_annuncio'];
+        } else
+            return false;
+    }
+
+    public function getIsbn() {
+        if (isset($_REQUEST['isbn'])) {
+            return $_REQUEST['isbn'];
+        } else
+            return false;
+    }
+
+    public function getUsername() {
+        if (isset($_REQUEST['username'])) {
+            return $_REQUEST['username'];
+        } else
+            return false;
+    }
+
+    public function getCorso() {
+        if (isset($_REQUEST['corso'])) {
+            return $_REQUEST['corso'];
+        } else
+            return false;
+    }
+
+    public function getCittà() {
+        if (isset($_REQUEST['città'])) {
+            return $_REQUEST['città'];
+        } else
+            return false;
+    }
+
+    public function getSpedisce() {
+        if (isset($_REQUEST['spedisce'])) {
+            return $_REQUEST['spedisce'];
+        } else
+            return false;
+    }
+
+    public function getCondizione() {
+        if (isset($_REQUEST['condzione'])) {
+            return $_REQUEST['condzione'];
+        } else
+            return false;
+    }
+
+    public function getDescrizione() {
+        if (isset($_REQUEST['descrizione'])) {
+            return $_REQUEST['descrizione'];
+        } else
+            return false;
+    }
+
+    public function getFoto() {
+        if (isset($_REQUEST['foto'])) {
+            return $_REQUEST['foto'];
+        } else
+            return false;
+    }
+
+    public function getPrezzo() {
+        if (isset($_REQUEST['prezzo'])) {
+            return $_REQUEST['prezzo'];
         } else
             return false;
     }

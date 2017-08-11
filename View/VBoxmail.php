@@ -72,6 +72,18 @@ class VBoxmail {
     }
 
     /**
+     * restituisce l'id dell'annuncio
+     *
+     * @return mixed
+     */
+    public function getAnnuncio() {
+        if (isset($_REQUEST['idAnnuncio']))
+            return $_REQUEST['idAnnuncio'];
+        else
+            return false;
+    }
+
+    /**
      * restituisce le chiavi della conversazione
      *
      * @return mixed

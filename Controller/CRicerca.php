@@ -12,6 +12,8 @@ class CRicerca {
      */
     private $_annunci_per_pagina=10;
 
+    private $_errore = '';
+
     /**
      * Seleziona sul database i libri con id più alto e li mostra nella pagina principale
      *
@@ -78,6 +80,19 @@ class CRicerca {
     }
 
     /**
+     * Mostra gli annunci dell'utente registrato
+     * @return mixed
+     */
+    public function mieiAnnunci() {
+        $view = USingleton::getInstance('VRicerca');
+        $FCatalogo = new FCatalogo();
+        $dati = $FCatalogo->iMieiAnnunci($view->getUsername())->getCatalogo();
+        $view->setLayout('catalogo');
+        $view->impostaDati('dati',$dati);
+        return $view->processaTemplate();
+    }
+
+    /**
      * Inserisce un commento nel database collegandolo al relativo libro
      *
      * @return string
@@ -97,6 +112,32 @@ class CRicerca {
         }
     }*/
 
+    public function nuovoAnnuncio() {
+        $view = USingleton::getInstance('VRicerca');
+        $FAnnuncio = new FAnnuncio();
+        $FLibro = new FLibro();
+        if ($FLibro->load($view->getIsbn) != false) {
+            $FAnnuncio->store(array('', date("d-m-y"), $view->getIsbn(), $view->getUsername(), $view->getCorso(),
+                $view->getCittà(), $view->getSpedisce(), $view->getDescrizione(), $view->getCondizione(), $view->getFoto(), $view->getPrezzo()));
+        }
+        else $this->_errore = 'Isbn non trovato, controllare i dati immessi';
+
+        if ($this->_errore != '') {
+            $view->impostaErrore($this->_errore);
+            $this->_errore='';
+            $view->setLayout('problemi');
+            $result=$view->processaTemplate();
+            $view->setLayout('modulo');
+            $result.=$view->processaTemplate();
+            $view->impostaErrore('');
+            return $result;
+        }
+        else {
+            $view->setLayout('conferma_creazione');
+            return $view->processaTemplate();
+        }
+    }
+
     /**
      * Smista le richieste ai vari metodi
      *
@@ -111,6 +152,8 @@ class CRicerca {
                 return $this->dettagli();
             case 'cerca':
                 return $this->lista();
+            case 'miei_annunci':
+                return $this->mieiAnnunci();
         }
     }
 

@@ -9,16 +9,6 @@
 class CRegistrazione {
 
     /**
-     * @var string $_username
-     */
-    private $_username=null;
-
-    /**
-     * @var string $_password
-     */
-    private $_password=null;
-
-    /**
      * @var string $_errore
      */
     private $_errore='';
