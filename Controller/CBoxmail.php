@@ -34,8 +34,8 @@ class CBoxmail {
             $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
-            return $view->processaTemplate();
         }
+        return $view->processaTemplate();
         else {
             $view->impostaErrore('Devi scrivere un messaggio');
             $view->setLayout('problemi');
