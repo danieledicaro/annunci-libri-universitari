@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Ilaria
+ * Date: 02/09/2017
+ * Time: 10:03
+ */
+//parte iniziale delle pagine template che sono uguali dappertutto
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,60 +104,3 @@
             {/section}
         </ul>
     </div>
-
-    <!-- C. MAIN SECTION -->
-    <div class="main">
-        <h1 class="pagetitle">{$content_title}</h1>
-
-        <!-- C.1 CONTENT -->
-        <div class="content">
-            {$main_content}
-        </div>
-
-
-        <!-- **   4. SUBCONTENT                                                                              ** -->
-
-
-        <!-- C.2 SUBCONTENT -->
-        <div class="subcontent">
-            {$right_content}
-            {if $tasti_laterali!=false}
-            <a id="anchor-sidemenu-4"></a>
-            <div class="corner-subcontent-top"></div>
-            <div class="subcontent-box">
-                <h1 class="menu">Menu </h1>
-                <div class="sidemenu1">
-                    <ul>
-                        {section name=i loop=$tasti_laterali}
-                        <li><a href="{$tasti_laterali[i].link}">{$tasti_laterali[i].testo}</a>
-                            {if $tasti_laterali[i].submenu !=false}
-                            <ul>
-                                {section name=j loop=$tasti_laterali[i].submenu}
-                                <li><a href="{$tasti_laterali[i].submenu[j].link}">{$tasti_laterali[i].submenu[j].testo}</a></li>
-                                {/section}
-                            </ul>
-                            {/if}
-                        </li>
-                        {/section}
-                    </ul>
-                </div>
-            </div>
-            <div class="corner-subcontent-bottom"></div>
-            {/if}
-        </div>
-
-    </div>
-
-    <!-- *******************************   END OF AVAILABLE CONTENT STYLES   ****************************** -->
-
-
-    <!-- D. FOOTER -->
-    <div class="footer">
-        <p class="credits">Layout design by <a href="http://1234.info/" title="Designer Homepage">1234.info</a> | Modified by <a href="http://lamjex.com" title="Modifyer Homepage">Alessandro Verzicco</a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML code">XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate CSS code">CSS 2.0</a></p>
-    </div>
-    <div class="corner-page-bottom"></div>
-</div>
-
-</body>
-
-</html>
