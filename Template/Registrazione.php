@@ -3,7 +3,7 @@
 a cui inviare i dati dell'utente, metod definisce la modalità con cui invi i dati in questa pagina, può essere post o get, il get passa
 i dati dell'utente sull'URL, e Post li manda come intestazione nascosta della pagina...di solito si usa post-->
 <form action="Registrazione.php"
-metod="Post">
+method="Post">
     <!--input prende vari attributi, il più importante è type, che ti dice il tipo di campo,
      in questo ho messo type text per fare un campo di testo libero-->
     username: <input type="text"
