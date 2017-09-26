@@ -17,5 +17,13 @@ class FLibro extends Fdb {
         return $this->getResultAssoc();
     }
 
+    public function load ($key) {
+        $query='SELECT `isbn`, `titolo`, NULL AS `autore`, `CasaEditrice`.`nome` AS `casaeditrice`, `anno_stampa`, `ambito` ' .
+            'FROM `CasaEditrice`, `'.$this->_table.'` ' .
+            'WHERE `casaeditrice` = `CasaEditrice`.`id_casaeditrice` AND `'.$this->_key.'` = \''.$key.'\'';
+        $this->doQuery($query);
+        return $this->getObject();
+    }
+
 }
 ?>
