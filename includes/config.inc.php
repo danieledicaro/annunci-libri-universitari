@@ -1,21 +1,23 @@
 <?php
 global $config;
 
-$config['debug']=false;
+$config['debug']=true;
 $config['db']['type'] = 'mysql';
 $config['db']['user'] = 'root';
 $config['db']['password'] = '';
 $config['db']['host'] = '127.0.0.1';
 $config['db']['dbname'] = 'Unibookstore';
 
+$pathPERSONALE = '/opt/lampp/htdocs/WebProg/annunci-libri-universitari';
+
 $config['smarty']['template_dir'] =
-    'C:\xampp\htdocs\progetto_bookstore\bookstore\templates\main\template';
+    $pathPERSONALE.'/Templates/main/template';
 $config['smarty']['compile_dir'] =
-    '/opt/lampp/htdocs/unibookstore/templates/main/templates_c/';
+    $pathPERSONALE.'/Templates/main/templates_c/';
 $config['smarty']['config_dir'] =
-    '/opt/lampp/htdocs/unibookstore/templates/main/configs/';
+    $pathPERSONALE.'/Templates/main/configs/';
 $config['smarty']['cache_dir'] =
-    '/opt/lampp/htdocs/unibookstore/templates/main/cache/';
+    $pathPERSONALE.'/Templates/main/cache/';
 
 
 function debug($var){
