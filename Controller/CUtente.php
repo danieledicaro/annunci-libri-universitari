@@ -42,13 +42,13 @@ class CUtente {
             $this->_errore='';
             $view->setLayout('problemi');
             $result=$view->processaTemplate();
-            $view->setLayout('modulo');
+            $view->setLayout('modPassword');
             $result.=$view->processaTemplate();
             $view->impostaErrore('');
             return $result;
         }
         else {
-            $view->setLayout('conferma_modifica');
+            $view->setLayout('conferma');
             return $view->processaTemplate();
         }
 
@@ -70,13 +70,13 @@ class CUtente {
             $this->_errore='';
             $view->setLayout('problemi');
             $result=$view->processaTemplate();
-            $view->setLayout('modulo');
+            $view->setLayout('modMail');
             $result.=$view->processaTemplate();
             $view->impostaErrore('');
             return $result;
         }
         else {
-            $view->setLayout('conferma_modifica');
+            $view->setLayout('conferma');
             return $view->processaTemplate();
         }
     }

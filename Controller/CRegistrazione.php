@@ -112,7 +112,7 @@ class CRegistrazione {
             $view->impostaErrore('');
             return $result;
         } else {
-            $view->setLayout('conferma_registrazione');
+            $view->setLayout('conferma');
             return $view->processaTemplate();
         }
     }

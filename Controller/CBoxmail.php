@@ -28,7 +28,7 @@ class CBoxmail {
         return $view->processaTemplate();
     }
 
-    public function nuovaConversazione() {
+    public function primoMessaggio() {  // da chiamare dal form del primo messaggio (dopo click "contatta venditore")
         $view = USingleton::getInstance('VBoxmail');
         if($view->getMessaggio() != false) {
             $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
@@ -43,7 +43,7 @@ class CBoxmail {
         }
     }
 
-    public function nuovoMessaggio() {
+    public function nuovoMessaggio() { // da chiamare dal form di un messaggio scritto da una conversazione esistente
         $view = USingleton::getInstance('VBoxmail');
         if($view->getMessaggio() != false) {
             $id_annuncio = $view->getDati()['idAnnuncio'];
@@ -65,9 +65,9 @@ class CBoxmail {
                 return $this->lista();
             case 'dettagli':
                 return $this->dettagli();
-            case 'nuovo_messaggio':
+            case 'nuovo_messaggio': // form da conversazione
                 return $this->nuovoMessaggio();
-            case 'contatta_venditore':
+            case 'contatta_venditore':  // form da click contatta venditore
                 $VBoxmail = USingleton::getInstance('VBoxmail');
                 return $VBoxmail->nuovaConversazione();
         }

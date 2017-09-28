@@ -56,7 +56,7 @@ class CRicerca {
         $pagine = ceil($num_risultati/$this->_annunci_per_pagina);
         $foo = array ($parametri, 'data', $limit);
         $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
-        $view->setLayout('catalogo');
+        $view->setLayout('lista');
         $view->impostaDati('pagine',$pagine);
         $view->impostaDati('task','cerca');
         $view->impostaDati('parametri','keyword='.$parametri);
@@ -74,7 +74,7 @@ class CRicerca {
         $id_annuncio = $view->getIdAnnuncio();
         $FAnnuncio = new FAnnuncio();
         $dati = $FAnnuncio->load($id_annuncio)->getObjectVars();
-        $view->setLayout('annuncio');
+        $view->setLayout('dettagli');
         $view->impostaDati('dati',$dati);
         return $view->processaTemplate();
     }
@@ -87,7 +87,7 @@ class CRicerca {
         $view = USingleton::getInstance('VRicerca');
         $FCatalogo = new FCatalogo();
         $dati = $FCatalogo->iMieiAnnunci($view->getUsername())->getCatalogo();
-        $view->setLayout('catalogo');
+        $view->setLayout('mieiAnnunci');
         $view->impostaDati('dati',$dati);
         return $view->processaTemplate();
     }
