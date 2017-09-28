@@ -60,7 +60,7 @@ class VUtente extends View {
      * @return string
      */
     public function processaTemplate() {
-        $contenuto=$this->fetch('registrazione_'.$this->_layout.'.tpl');
+        $contenuto=$this->fetch('utente_'.$this->_layout.'.tpl');
         return $contenuto;
     }
 

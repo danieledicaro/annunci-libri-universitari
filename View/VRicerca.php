@@ -34,6 +34,15 @@ class VRicerca extends View {
     }
 
     /**
+     * Imposta l'eventuale errore nel template
+     *
+     * @param string $errore
+     */
+    public function impostaErrore($errore) {
+        $this->assign('errore',$errore);
+    }
+
+    /**
      * Imposta i dati nel template identificati da una chiave ed il relativo valore
      *
      * @param string $key

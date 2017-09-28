@@ -9,12 +9,12 @@
 class VBoxmail extends View {
     private $_layout;
 
-    public function nuovaConversazione() {
+    public function nuovaConversazione() {  // form da click "contatta venditore"
         $CRegistrazione = USingleton::getInstance('CRegistrazione');
         $registrato = $CRegistrazione->getUtenteRegistrato();
         $view = USingleton::getInstance('VBoxmail');
         if ($registrato) {
-            $view->setLayout('messaggio');
+            $view->setLayout('primoMessaggio');
             return $view->processaTemplate();
         }
         else {
@@ -28,7 +28,7 @@ class VBoxmail extends View {
      * @return string
      */
     public function processaTemplate() {
-        return $this->fetch('registrazione_'.$this->_layout.'.tpl');
+        return $this->fetch('boxmail_'.$this->_layout.'.tpl');
     }
 
     /**
