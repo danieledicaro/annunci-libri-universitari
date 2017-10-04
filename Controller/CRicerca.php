@@ -50,7 +50,8 @@ class CRicerca {
     public function lista(){
         $view = USingleton::getInstance('VRicerca');
         $FCatalogo = new FCatalogo();
-        $parametri = array($view->getParola());
+        $parametri = $view->getParola();
+        var_dump($parametri);
         $limit = $view->getPage()*$this->_annunci_per_pagina.','.$this->_annunci_per_pagina;
         $num_risultati=count($FCatalogo->search(array($parametri, '', '')));
         $pagine = ceil($num_risultati/$this->_annunci_per_pagina);
@@ -59,7 +60,7 @@ class CRicerca {
         $view->setLayout('lista');
         $view->impostaDati('pagine',$pagine);
         $view->impostaDati('task','cerca');
-        $view->impostaDati('parametri','keyword='.$parametri);
+        $view->impostaDati('parametri','keyword='.implode(",^,", $parametri));
         $view->impostaDati('dati',$risultato);
         return $view->processaTemplate();
     }

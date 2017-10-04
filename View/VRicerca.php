@@ -171,13 +171,13 @@ class VRicerca extends View {
     }*/
 
     /**
-     * restituisce la stringa di ricerca
+     * restituisce la stringa di ricerca in un array
      *
      * @return mixed
      */
     public function getParola() {
         if (isset($_REQUEST['stringa']))
-            return $_REQUEST['stringa'];
+            return explode(",^,",  $_REQUEST['stringa']);
         else
             return false;
     }
