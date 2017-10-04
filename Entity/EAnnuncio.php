@@ -28,5 +28,37 @@ class EAnnuncio {
         return $this->venditore;
     }
 
+    public function getIdAnnuncio() {
+        return $this->id_annuncio;
+}
+    public function getData() {
+        return $this->data;
+    }
+    public function getLibro() {
+        return $this->libro;
+    }
+    public function getCorso() {
+        return $this->corso;
+    }
+    public function getCittaConsegna() {
+        return $this->citta_consegna;
+    }
+    public function getSeSpedisce() {
+        return $this->se_spedisce;
+    }
+    public function getDescrizione() {
+        return $this->descrizione;
+    }
+    public function getCondizione() {
+        return $this->condizione;
+    }
+    public function getFoto() {
+        return $this->foto;
+    }
+    public function getPrezzo() {
+        return $this->prezzo;
+    }
+
+
 }
 ?>

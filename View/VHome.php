@@ -91,7 +91,7 @@ class VHome extends View {
      * imposta la pagina per gli utenti non registrati/autenticati
      */
     public function impostaPaginaGuest() {
-        $this->assign('title','Bookstore');
+        $this->assign('title','Unibookstore');
         $this->assign('content_title','Benvenuto ospite');
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button);
