@@ -33,7 +33,7 @@ class VHome extends View {
     private $_layout='default';
 
     /**
-     * Aggiunge il modulo di login nella pagina principale, per gli utenti non autenticato
+     * Aggiunge il modulo di login in $_top_content per l'utente non autenticato
      */
     public function aggiungiModuloLogin() {
         $VRegistrazione=USingleton::getInstance('VRegistrazione');
@@ -41,6 +41,15 @@ class VHome extends View {
         $modulo_login=$VRegistrazione->processaTemplate();
         $this->_top_content.=$modulo_login;
 
+    }
+
+    /**
+     * aggiunge il tasto per il login nel menu (per gli utenti non autenticati)
+     */
+
+    public function aggiungiTastoLogin() {
+        $tasto_registrazione = array('testo' => 'LogIn', 'link' => '?controller=registrazione&task=login');
+        $this->_top_button[] = $tasto_registrazione;
     }
 
     /**
@@ -77,10 +86,10 @@ class VHome extends View {
     public function impostaPaginaRegistrato() {
         $session=USingleton::getInstance('USession');
         $this->assign('title','UniBookstore');
-        $nickname=$session->leggi_valore('nickname');
+        $nickname=$session->leggi_valore('username');
         $this->assign('content_title','Benvenuto, '.$nickname);
         $this->assign('main_content',$this->_main_content);
-        $this->assign('menu',$this->_main_button);
+        $this->assign('menu',$this->_main_button); //non usato
         $this->aggiungiTastoProfilo();
         $this->aggiungiTastoMieiAnnunci();
         $this->aggiungiTastoBoxmail();
@@ -91,11 +100,12 @@ class VHome extends View {
      * imposta la pagina per gli utenti non registrati/autenticati
      */
     public function impostaPaginaGuest() {
-        $this->assign('title','Unibookstore');
+        $this->assign('title','UBS - UniBookStore');
         $this->assign('content_title','Benvenuto ospite');
         $this->assign('main_content',$this->_main_content);
-        $this->assign('menu',$this->_main_button);
+        $this->assign('menu',$this->_main_button); //non usato
         $this->aggiungiModuloLogin();
+        $this->aggiungiTastoLogin();
         $this->aggiungiTastoRegistrazione();
     }
 
@@ -103,9 +113,8 @@ class VHome extends View {
      * aggiunge il tasto logout al menu
      */
     public function aggiungiTastoLogout() {
-        $tasto_logout=array();
-        $tasto_logout[]=array('testo' => 'Logout', 'link' => '?controller=registrazione&task=esci');
-        $this->_top_button=array_merge($tasto_logout,$this->_top_button);
+        $tasto_logout=array('testo' => 'Logout', 'link' => '?controller=registrazione&task=esci');
+        $this->_top_button[]=$tasto_logout;
     }
 
     /**
@@ -117,20 +126,20 @@ class VHome extends View {
     }
 
     public function aggiungiTastoBoxmail() {
-        $tasto_boxmail []= array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=lista');
-        $this->_top_button[] = array_merge($tasto_boxmail, $this->_top_button);
+        $tasto_boxmail = array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=lista');
+        $this->_top_button[] = $tasto_boxmail;
 
     }
 
     public function aggiungiTastoProfilo() {
-        $tasto_profilo []= array('testo' => 'Il mio profilo', 'link' => '?controller=profile&task=mostra');
-        $this->_top_button[] = array_merge($tasto_profilo, $this->_top_button);
+        $tasto_profilo = array('testo' => 'Il mio profilo', 'link' => '?controller=profile&task=mostra');
+        $this->_top_button[] = $tasto_profilo;
 
     }
 
     public function aggiungiTastoMieiAnnunci() {
-        $tasto_mieiannunci []= array('testo' => 'I miei annunci', 'link' => '?controller=ricerca&task=miei_annunci');
-        $this->_top_button[] = array_merge($tasto_mieiannunci, $this->_top_button);
+        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => '?controller=ricerca&task=miei_annunci');
+        $this->_top_button[] = $tasto_mieiannunci;
 
     }
 

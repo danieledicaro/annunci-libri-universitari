@@ -170,7 +170,18 @@ class CRegistrazione {
      */
     public function moduloRegistrazione() {
         $VRegistrazione = USingleton::getInstance('VRegistrazione');
-        $VRegistrazione->setLayout('modulo');
+        $VRegistrazione->setLayout('registrazione');
+        return $VRegistrazione->processaTemplate();
+    }
+
+    /**
+     * Mostra il modulo di login
+     *
+     * @return string
+     */
+    public function moduloLogin() {
+        $VRegistrazione = USingleton::getInstance('VRegistrazione');
+        $VRegistrazione->setLayout('moduloLogin');
         return $VRegistrazione->processaTemplate();
     }
 
@@ -181,6 +192,9 @@ class CRegistrazione {
         $session = USingleton::getInstance('USession');
         $session->cancella_valore('username');
         $session->cancella_valore('nome_cognome');
+        $VRegistrazione = USingleton::getInstance('VRegistrazione');
+        $VRegistrazione->setLayout('logout');
+        return $VRegistrazione->processaTemplate();
     }
 
     /**
@@ -191,6 +205,8 @@ class CRegistrazione {
     public function smista() {
         $view = USingleton::getInstance('VRegistrazione');
         switch ($view->getTask()) {
+            case 'login':
+                return $this->moduloLogin();
             case 'registra':
                 return $this->moduloRegistrazione();
             case 'salva':

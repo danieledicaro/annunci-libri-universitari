@@ -29,18 +29,20 @@ class FCatalogo extends Fdb {
         $filtro='';
         $b=$a[0];
         if (count($b)==1) {
-            $query = "SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo`, `Annuncio`.`venditore`,".
-                " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
+            $query = "SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo` AS libro, `Annuncio`.`venditore`,".
+                " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`foto`, `Annuncio`.`foto_tipo`, `Annuncio`.`descrizione`,".
                 " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                 "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita` ".
                 "WHERE (`Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn LIKE '%".$b[0].
                 "%' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%' OR `Universita`.nome LIKE '%".$b[0].
-                "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%') AND `Libro`.isbn = `Annuncio`.libro ";
+                "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%') ".
+                "AND `Libro`.isbn = `Annuncio`.libro AND `CasaEditrice`.id_casaeditrice = `Libro`.casaeditrice AND `Autore`.id_autore = `AutoreLibro`.autore ".
+                "AND `Libro`.isbn = `AutoreLibro`.libro AND `Corso`.universita = `Universita`.id_universita AND `Professore`.id_professore = `Corso`.professore AND `Annuncio`.corso = `Corso`.id_corso ";
         }
         else {
             if ( $b[0]!=''){
                 $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo`, `Annuncio`.`venditore`,".
-                    " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
+                    " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`foto`,`Annuncio`.`descrizione`,".
                     " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                     "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` ".
                     "WHERE (`Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn LIKE '%".$b[0].
@@ -48,7 +50,7 @@ class FCatalogo extends Fdb {
                     "%' OR `Professore`.nome LIKE '%".$b[0]."%' OR `Corso`.nome LIKE '%".$b[0]."%') AND `Libro`.isbn = `Annuncio`.libro AND ";
             }
             else $query="SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo`, `Annuncio`.`venditore`,".
-                " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`descrizione`,".
+                " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`foto`,`Annuncio`.`descrizione`,".
                 " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
                 'FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Corso`, `Professore`, `Universita`, `Citta` '.
                 'WHERE `Libro`.isbn = `Annuncio`.libro AND ';
@@ -64,7 +66,7 @@ class FCatalogo extends Fdb {
             if ($filtro == '')
                 $query=substr($query, 0, strlen($query)-4);
             if ($filtro == '' && $b[0] == '')
-                $query='SELECT `id_annuncio`, `data` , `Libro`.`titolo`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
+                $query='SELECT `id_annuncio`, `data` , `Libro`.`titolo`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`, `foto`,'.
                     ' `descrizione`, `condizione`, `prezzo` FROM `Annuncio`, `Libro` WHERE `Libro`.`isbn` = `Annuncio`.`Libro`';
             if ($a[1] != '')
                 $query.='ORDER BY '.$a[1].' ';
@@ -79,8 +81,9 @@ class FCatalogo extends Fdb {
     }
 
     public function iMieiAnnunci ($username) {
-        $query = 'SELECT DISTINCT `id_annuncio`, `data` , `Libro`.`titolo`, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
-            ' `descrizione`, `condizione`, `foto`, `prezzo` '.'FROM `Annuncio`, `Libro` WHERE `Annuncio`.`venditore` = \''.$username.
+        var_dump($username);
+        $query = 'SELECT DISTINCT `id_annuncio`, `data` , `Libro`.`titolo` AS libro, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
+            ' `descrizione`, `condizione`, `foto`, `Annuncio`.`foto_tipo`, `prezzo` '.'FROM `Annuncio`, `Libro` WHERE `Annuncio`.`venditore` = \''.$username.
             '\' AND `Libro`.`isbn` = `Annuncio`.`libro` ORDER BY data DESC';
         $this->doQuery($query);
         $catalogo = new ECatalogo();

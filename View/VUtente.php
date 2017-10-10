@@ -18,8 +18,8 @@ class VUtente extends View {
      * @return mixed
      */
     public function getPassword() {
-        if (isset($_REQUEST['password']))
-            return $_REQUEST['password'];
+        if (isset($_SESSION['password']))
+            return $_SESSION['password'];
         else
             return false;
     }
@@ -29,12 +29,19 @@ class VUtente extends View {
      *
      * @return mixed
      */
-    public function getUsername() {
+    /*public function getUsername() {
         if (isset($_REQUEST['username']))
             return $_REQUEST['username'];
         else
             return false;
+    }*/
+    public function getUsername() {
+        if (isset($_SESSION['username']))
+            return $_SESSION['username'];
+        else
+            return false;
     }
+
 
     /**
      * @return mixed

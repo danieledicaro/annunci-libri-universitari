@@ -72,8 +72,8 @@ class VRicerca extends View {
     }
 
     public function getUsername() {
-        if (isset($_REQUEST['username'])) {
-            return $_REQUEST['username'];
+        if (isset($_SESSION['username'])) {
+            return $_SESSION['username'];
         } else
             return false;
     }

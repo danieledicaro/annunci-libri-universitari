@@ -18,6 +18,7 @@ class EAnnuncio {
     private $descrizione;
     private $condizione;
     private $foto;
+    private $foto_tipo;
     private $prezzo;
 
     public function getObjectVars() {
@@ -54,6 +55,9 @@ class EAnnuncio {
     }
     public function getFoto() {
         return $this->foto;
+    }
+    public function getFotoTipo() {
+        return $this->foto_tipo;
     }
     public function getPrezzo() {
         return $this->prezzo;
