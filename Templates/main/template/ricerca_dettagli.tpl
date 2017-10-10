@@ -10,7 +10,8 @@
     {$dati.se_spedisce}
     {$dati.descrizione}
     {$dati.condizione}
-    {$dati.foto}
+    foto{*$dati.foto*}
+    {$dati.foto_tipo}
     {$dati.prezzo}
     pulsante "contatta il venditore"
 </div>

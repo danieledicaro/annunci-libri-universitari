@@ -1,0 +1,2 @@
+{$errore}
+logout avvenuto correttamente

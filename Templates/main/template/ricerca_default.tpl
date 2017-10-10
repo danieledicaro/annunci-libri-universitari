@@ -3,7 +3,7 @@
     <div class="searchform">
         <form action="index.php" method="get">
             <fieldset>
-                <input name="stringa" class="field"  value="Ricerca..." />
+                <input name="stringa" class="field"  placeholder="Ricerca..." />
                 <input type="hidden" name="controller" value="ricerca" />
                 <input type="submit" name="task" class="button" value="cerca" />
             </fieldset>
