@@ -34,7 +34,7 @@
         <section id="slider">immagine di ingresso</section>
         <!-- main content -->
         <div id="homepage">
-            <div style="border: 1px solid red">TOP CONTENT da poter mettere lateralmente $top_content </div>
+            <div style="border: 1px solid red">$top_content dove inserire gli strumenti</div>
             {$main_content}
         </div>
         <!-- / content body -->

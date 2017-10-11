@@ -23,16 +23,17 @@ class FConversazione extends Fdb {
      * @return EConversazione
      */
     public function load ($key) {
-        $query='SELECT * ' .
-            'FROM `'.$this->_table.'` ' .
-            'WHERE `'.$this->_key[0].'` = \''.$key[0].'\' AND `'.$this->_key[1].'` = \''.$key[1].'\'';
+        $query='SELECT `Messaggio`.`acquirente`, `Messaggio`.`annuncio`, `Libro`.`titolo` AS libro, `Messaggio`.`data`, `Messaggio`.`ora`, `Messaggio`.`testo`, `Messaggio`.`da_acquirente` ' .
+            'FROM `Messaggio`, `Libro`, `Annuncio` ' .
+            'WHERE `Messaggio`.`annuncio` = `Annuncio`.`id_annuncio` AND `Annuncio`.`libro` = `Libro`.`isbn` AND '.
+            '`'.$this->_key[0].'` = \''.$key[0].'\' AND `'.$this->_key[1].'` = \''.$key[1].'\'';
         $this->doQuery($query);
         $a = $this->getObjectArray(); //array di EMessaggio
         $b = new EConversazione(); //creo l'istanza di EConversazione
         foreach($a as $i){
             $b->aggiungiMessaggio($i);
         }
-        $b->setIdAnnuncio($a[0]->getAnnuncio());
+        //$b->setIdAnnuncio($a[0]->getAnnuncio());
         return $b;
     }
 

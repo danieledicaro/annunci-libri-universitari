@@ -104,7 +104,7 @@ class VHome extends View {
         $this->assign('content_title','Benvenuto ospite');
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button); //non usato
-        $this->aggiungiModuloLogin();
+        //$this->aggiungiModuloLogin();
         $this->aggiungiTastoLogin();
         $this->aggiungiTastoRegistrazione();
     }
@@ -126,7 +126,7 @@ class VHome extends View {
     }
 
     public function aggiungiTastoBoxmail() {
-        $tasto_boxmail = array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=lista');
+        $tasto_boxmail = array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=mostra');
         $this->_top_button[] = $tasto_boxmail;
 
     }

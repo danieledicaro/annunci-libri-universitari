@@ -3,7 +3,6 @@
 class EConversazione {
 
     private $messaggio;
-    private $idAnnuncio;
 
     public function aggiungiMessaggio($messaggio) {
         $this->messaggio[] = $messaggio;
@@ -14,7 +13,19 @@ class EConversazione {
     }
 
     public function getIdAnnuncio() {
-        return $this->idAnnuncio;
+        return $this->messaggio[0]->getAnnuncio();
+    }
+
+    public function getLibro() {
+        return $this->messaggio[0]->getLibro();
+    }
+
+    public function getAcquirente() {
+        return $this->messaggio[0]->getAcquirente();
+    }
+
+    public function getNumeroMessaggi() {
+        return sizeof($this->messaggio);
     }
 
     public function setIdAnnuncio($idAnnuncio) {

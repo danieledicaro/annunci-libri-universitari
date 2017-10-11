@@ -72,6 +72,18 @@ class VBoxmail extends View {
     }
 
     /**
+     * restituisce l'acquirente
+     *
+     * @return mixed
+     */
+    public function getAcquirente() {
+        if (isset($_REQUEST['acquirente']))
+            return $_REQUEST['acquirente'];
+        else
+            return false;
+    }
+
+    /**
      * restituisce l'id dell'annuncio
      *
      * @return mixed
@@ -90,9 +102,10 @@ class VBoxmail extends View {
      */
     public function getConversazione() {
         if (isset($_REQUEST['acquirente'])) {
-            $a = $_REQUEST['acquirente'];
+            $a = array();
+            $a[0]= $_REQUEST['acquirente'];
             if (isset($_REQUEST['idAnnuncio'])){
-                $a = array_merge($a, $_REQUEST['idAnnuncio']);
+                $a[1]=$_REQUEST['idAnnuncio'];
                 return $a;
             }
             else return false;
@@ -123,13 +136,13 @@ class VBoxmail extends View {
     }
 
     /**
-     * restituisce la username passata tramite GET o POST
+     * restituisce la username passata tramite GET o POST (modifica: prende dalla sessione)
      *
      * @return mixed
      */
     public function getUsername() {
-        if (isset($_REQUEST['username']))
-            return $_REQUEST['username'];
+        if (isset($_SESSION['username']))
+            return $_SESSION['username'];
         else
             return false;
     }

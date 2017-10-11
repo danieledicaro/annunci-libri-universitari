@@ -9,10 +9,11 @@
 class CBoxmail {
 
     public function lista() {
-        $view = USingleton::getInstance('CBoxmail');
+        $view = USingleton::getInstance('VBoxmail');
         $FBoxmail = new FBoxmail();
-        $risultato = $FBoxmail->pop()->getConversazioni();
+        $risultato = $FBoxmail->pop($view->getUsername())->getConversazioni();
         $view->setLayout('default');
+        $view->impostaDati('username', $view->getUsername());
         $view->impostaDati('task', 'mostra');
         $view->impostaDati('dati', $risultato);
         return $view->processaTemplate();
@@ -46,15 +47,15 @@ class CBoxmail {
     public function nuovoMessaggio() { // da chiamare dal form di un messaggio scritto da una conversazione esistente
         $view = USingleton::getInstance('VBoxmail');
         if($view->getMessaggio() != false) {
-            $id_annuncio = $view->getDati()['idAnnuncio'];
+            $id_annuncio = $view->getAnnuncio();
             $FAnnuncio = new FAnnuncio();
             $annuncio = $FAnnuncio->load($id_annuncio);
             if ($annuncio->getVenditore() == $view->getUsername()) $a = 0;
             else $a = 1;
-            $messaggio = array ($annuncio->getVenditore(), $id_annuncio, date("d-m-y"), date("H:i:s"), $view->getMessaggio(), $a);
+            $messaggio = array ('acquirente' => $view->getAcquirente(), "annuncio" => $id_annuncio, 'data' => date("d-m-y"), 'ora' => date("H:i:s"), 'testo' => $view->getMessaggio(), 'da_acquirente' => $a);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
-            return $view->processaTemplate();
+            return $this->dettagli();
         }
     }
 

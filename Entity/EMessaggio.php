@@ -4,6 +4,7 @@ class EMessaggio {
 
     private $acquirente;
     private $annuncio;
+    private $libro;
     private $data;
     private $ora;
     private $testo;
@@ -17,6 +18,11 @@ class EMessaggio {
     public function getAnnuncio()
     {
         return $this->annuncio;
+    }
+
+    public function getLibro()
+    {
+        return $this->libro;
     }
 
     public function getData(){
