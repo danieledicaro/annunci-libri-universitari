@@ -22,29 +22,29 @@ class CRegistrazione {
         $autenticato = false;
         $session = USingleton::getInstance('USession');
         $VRegistrazione = USingleton::getInstance('VRegistrazione');
-        $task = $VRegistrazione->getTask();
-        $controller = $VRegistrazione->getController();
-        $this->_username = $VRegistrazione->getUsername();
-        $this->_password = $VRegistrazione->getPassword();
-        if ($session->leggi_valore('username') != false) {
-            $autenticato=true;
-            //autenticato
-        } elseif ($task == 'autentica' && $controller == 'registrazione') {
-            //controlla autenticazione
-            $autenticato = $this->autentica($this->_username, $this->_password);
-        }
-        if ($task == 'esci' && $controller == 'registrazione') {
-            //logout
-            $this->logout();
-            $autenticato=false;
-        }
-        $VRegistrazione->impostaErrore($this->_errore);
-        $this->_errore='';
+            $task = $VRegistrazione->getTask();
+            $controller = $VRegistrazione->getController();
+            $this->_username = $VRegistrazione->getUsername();
+            $this->_password = $VRegistrazione->getPassword();
+            if ($session->leggi_valore('username') != false) {
+                $autenticato = true;
+                //autenticato
+            } elseif ($task == 'autentica' && $controller == 'registrazione') {
+                //controlla autenticazione
+                $autenticato = $this->autentica($this->_username, $this->_password);
+            }
+            if ($task == 'esci' && $controller == 'registrazione') {
+                //logout
+                $this->logout();
+                $autenticato = false;
+            }
+            $VRegistrazione->impostaErrore($this->_errore);
+            $this->_errore = '';
         return $autenticato;
     }
 
     /**
-     * Controlla se una coppia username e password corrispondono ad un utente regirtrato ed in tal caso impostano le variabili di sessione relative all'autenticazione
+     * Controlla se una coppia username e password corrispondono ad un utente registrato ed in tal caso impostano le variabili di sessione relative all'autenticazione
      *
      * @param string $username
      * @param string $password
@@ -58,6 +58,7 @@ class CRegistrazione {
                 $session = USingleton::getInstance('USession');
                 $session->imposta_valore('username',$username);
                 $session->imposta_valore('nome_cognome',$utente->getNome().' '.$utente->getCognome());
+                $session->imposta_valore('timeout',time());
                 return true;
             }
             else $this->_errore='Username o password errati'; //username password errati
@@ -109,7 +110,6 @@ class CRegistrazione {
             $result=$view->processaTemplate();
             $view->setLayout('modulo');
             $result.=$view->processaTemplate();
-            $view->impostaErrore('');
             return $result;
         } else {
             $view->setLayout('conferma');
@@ -182,6 +182,8 @@ class CRegistrazione {
     public function moduloLogin() {
         $VRegistrazione = USingleton::getInstance('VRegistrazione');
         $VRegistrazione->setLayout('moduloLogin');
+        if( isset($_REQUEST['idAnnuncio']) )
+            $VRegistrazione->impostaDati('annuncio',$_REQUEST['idAnnuncio']);
         return $VRegistrazione->processaTemplate();
     }
 
@@ -196,6 +198,35 @@ class CRegistrazione {
         $VRegistrazione->setLayout('logout');
         return $VRegistrazione->processaTemplate();
     }
+
+    /**
+     * Reindirizza alla home, o all'url dell'annuncio precedente il login
+     */
+    public function reindirizza() {
+        $view = new VRegistrazione();
+        if ( $view->getAnnuncioOldURL() ){
+            $view = new VRegistrazione();
+            $oldAnnuncioID = $view->getAnnuncioOldURL();
+            return CRicerca::dettagli($oldAnnuncioID);  // reindirizza all'annuncio visualizzato prima del login
+        }
+        else {
+            $view = new VRicerca();
+            $view->setLayout('default');
+            return $view->processaTemplate(); // home
+        }
+
+
+    }
+
+    /**
+     * Set dell'errore (usato solo da CHome quando la sessione è scaduta
+     */
+    public function setErrore($errore) {
+        $view = USingleton::getInstance('VRegistrazione');
+        $view->impostaErrore($errore);
+        $this->_errore = '';
+    }
+
 
     /**
      * Smista le richieste ai relativi metodi della classe
@@ -213,6 +244,8 @@ class CRegistrazione {
                 return $this->creaUtente();
             case 'esci':
                 return $this->logout();
+            default:
+                return $this->reindirizza();
         }
     }
 
