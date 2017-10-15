@@ -12,9 +12,15 @@ class CHome {
      */
     public function impostaPagina () {
         $CRegistrazione = USingleton::getInstance('CRegistrazione');
-        $registrato=$CRegistrazione->getUtenteRegistrato();
         $VHome = USingleton::getInstance('VHome');
-        $contenuto = $this->smista();
+        $session = USingleton::getInstance('USession');
+        if( $session->controlloInattivita() ) {
+            $CRegistrazione->setErrore("Sessione scaduta. Effettuare di nuovo il login.");
+            $contenuto = $CRegistrazione->moduloLogin();
+        } else {
+            $contenuto = $this->smista();
+        }
+        $registrato=$CRegistrazione->getUtenteRegistrato();
         $VHome->impostaContenuto($contenuto);
         if ($registrato) {
             $VHome->impostaPaginaRegistrato();
