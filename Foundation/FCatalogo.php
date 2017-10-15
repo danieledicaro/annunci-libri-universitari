@@ -28,6 +28,7 @@ class FCatalogo extends Fdb {
     public function search (array $a) {
         $filtro='';
         $b=$a[0];
+        /*
         if (count($b)==1) {
             $query = "SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo` AS libro, `Annuncio`.`venditore`,".
                 " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`foto`, `Annuncio`.`foto_tipo`, `Annuncio`.`descrizione`,".
@@ -73,6 +74,26 @@ class FCatalogo extends Fdb {
                 $query.='LIMIT '.$a[2].' ';
         }
         $query=substr($query, 0, strlen($query)-1);
+        */
+        /* ----------START NUOVO CODICE---------- */
+        $query = "SELECT DISTINCT `Annuncio`.`id_annuncio`, `Annuncio`.`data` , `Libro`.`titolo` AS libro, `Annuncio`.`venditore`,".
+            " `Annuncio`.`corso`, `Annuncio`.`citta_consegna`, `Annuncio`.`se_spedisce`, `Annuncio`.`foto`, `Annuncio`.`foto_tipo`, `Annuncio`.`descrizione`,".
+            " `Annuncio`.`condizione`, `Annuncio`.`prezzo` ".
+            "FROM `Annuncio`, `Libro`, `CasaEditrice`, `Autore`, `AutoreLibro`, `Citta` ".
+            "WHERE (`Annuncio`.descrizione LIKE '%".$b[0]."%' OR `Libro`.titolo LIKE '%".$b[0]."%' OR `Libro`.isbn LIKE '%".$b[0].
+            "%' OR `CasaEditrice`.nome LIKE "."'%".$b[0]."%' OR `Autore`.nome LIKE '%".$b[0]."%') ".
+            "AND `Libro`.isbn = `Annuncio`.libro AND `CasaEditrice`.id_casaeditrice = `Libro`.casaeditrice AND `Autore`.id_autore = `AutoreLibro`.autore ".
+            "AND `Libro`.isbn = `AutoreLibro`.libro";
+        if( isset($b['anno_stampa']) AND $b['anno_stampa'] != '' ) $query .= " AND `Libro`.anno_stampa > ".$b['anno_stampa'];
+        if( isset($b['comune']) AND $b['comune'] != '' ) $query .= " AND `Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b['comune']."'";
+        if( isset($b['se_spedisce']) AND $b['se_spedisce'] != '' ) $query .= " AND `Annuncio`.se_spedisce = ".$b['se_spedisce'];
+        if( isset($b['condizione']) AND $b['condizione'] != '' ) $query .= " AND `Annuncio`.condizione > ".$b['condizione'];
+        if( isset($b['prezzo']) AND $b['prezzo'] != '' ) $query .= " AND `Annuncio`.prezzo >=".$b['prezzo']."-10 AND `Annuncio`.prezzo <= 10+".$b['prezzo'];
+        if ($a[1] != '')
+            $query.=' ORDER BY '.$a[1];
+        if ($a[2] != '')
+            $query.=' LIMIT '.$a[2];
+        /* ----------END NUOVO CODICE---------- */
         $this->doQuery($query);
         $catalogo = new ECatalogo();
         $catalogo->setCatalogo($this->getObjectArray());
@@ -80,7 +101,6 @@ class FCatalogo extends Fdb {
     }
 
     public function iMieiAnnunci ($username) {
-        var_dump($username);
         $query = 'SELECT DISTINCT `id_annuncio`, `data` , `Libro`.`titolo` AS libro, `venditore`, `corso`, `citta_consegna`, `se_spedisce`,'.
             ' `descrizione`, `condizione`, `foto`, `Annuncio`.`foto_tipo`, `prezzo` '.'FROM `Annuncio`, `Libro` WHERE `Annuncio`.`venditore` = \''.$username.
             '\' AND `Libro`.`isbn` = `Annuncio`.`libro` ORDER BY data DESC';
