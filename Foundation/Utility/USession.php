@@ -8,6 +8,8 @@
 
 class USession {
 
+    private $_durataSessione = 3; // in secondi
+
     public function __construct() {
         session_start();
         debug($_SESSION);
@@ -23,6 +25,18 @@ class USession {
             return $_SESSION[$chiave];
         else
             return false;
+    }
+    function controlloInattivita() {
+        if ( !null == $this->leggi_valore('username') ) { // controllo se la sessione esiste
+            $inattivita = time() - $this->leggi_valore('timeout');
+            if ($inattivita > $this->_durataSessione) { // controllo il tempo di inattività
+                session_unset();
+                session_destroy();
+                return true;
+            } else
+                $this->imposta_valore('timeout', time());
+        }
+        return false;
     }
 
 }
