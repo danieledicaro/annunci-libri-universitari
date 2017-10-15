@@ -33,7 +33,7 @@ class VHome extends View {
     private $_layout='default';
 
     /**
-     * Aggiunge il modulo di login in $_top_content per l'utente non autenticato
+     * Aggiunge il modulo di login in $_top_content per l'utente non autenticato -----------NON USATO--------
      */
     public function aggiungiModuloLogin() {
         $VRegistrazione=USingleton::getInstance('VRegistrazione');
@@ -85,7 +85,7 @@ class VHome extends View {
      */
     public function impostaPaginaRegistrato() {
         $session=USingleton::getInstance('USession');
-        $this->assign('title','UniBookstore');
+        $this->assign('title','UniBookStore');
         $nickname=$session->leggi_valore('username');
         $this->assign('content_title','Benvenuto, '.$nickname);
         $this->assign('main_content',$this->_main_content);
@@ -126,13 +126,13 @@ class VHome extends View {
     }
 
     public function aggiungiTastoBoxmail() {
-        $tasto_boxmail = array('testo' => 'I miei messaggi', 'link' => '?controller=boxmail&task=mostra');
+        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => '?controller=boxmail&task=mostra');
         $this->_top_button[] = $tasto_boxmail;
 
     }
 
     public function aggiungiTastoProfilo() {
-        $tasto_profilo = array('testo' => 'Il mio profilo', 'link' => '?controller=profile&task=mostra');
+        $tasto_profilo = array('testo' => 'Profilo', 'link' => '?controller=profile&task=mostra');
         $this->_top_button[] = $tasto_profilo;
 
     }

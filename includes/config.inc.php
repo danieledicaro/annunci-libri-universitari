@@ -1,7 +1,7 @@
 <?php
 global $config;
 
-$config['debug']=true;
+$config['debug']=false;
 $config['db']['type'] = 'mysql';
 $config['db']['user'] = 'root';
 $config['db']['password'] = '';
