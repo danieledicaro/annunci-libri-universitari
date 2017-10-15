@@ -70,7 +70,12 @@ class CBoxmail {
                 return $this->nuovoMessaggio();
             case 'contatta_venditore':  // form da click contatta venditore
                 $VBoxmail = USingleton::getInstance('VBoxmail');
-                return $VBoxmail->nuovaConversazione();
+                if( $VBoxmail->nuovaConversazione() )
+                    return $this->nuovoMessaggio();
+                else {
+                    $view->setLayout('problemi');
+                    return $view->processaTemplate();
+                }
         }
     }
 
