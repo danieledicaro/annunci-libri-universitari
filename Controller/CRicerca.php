@@ -10,7 +10,7 @@ class CRicerca {
     /**
      * @var int
      */
-    private $_annunci_per_pagina=10;
+    private $_annunci_per_pagina=2;
 
     private $_errore = '';
 
@@ -52,17 +52,18 @@ class CRicerca {
         $FCatalogo = new FCatalogo();
         $parametri = $view->getParola();
         $limit = $view->getPage()*$this->_annunci_per_pagina.','.$this->_annunci_per_pagina;
-        $num_risultati=count($FCatalogo->search(array($parametri, '', '')));
+        $num_risultati=count($FCatalogo->search(array($parametri, '', ''))->getCatalogo());
         $pagine = ceil($num_risultati/$this->_annunci_per_pagina);
-        $foo = array ($parametri, 'data', $limit);
+        $foo = array ($parametri, $view->getOrdinamento(), $limit);
         $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
-        $view->setLayout('lista');
         $view->impostaDati('pagine',$pagine);
         $view->impostaDati('task','cerca');
-        if (isset($parametri[1])) $param = implode(",^,", $parametri); else $param = $parametri[0];
-        $view->impostaDati('parametri','keyword='.$param);
+        $param = implode(",^,", $parametri); //stringa che verrà passata tra le pagine dei risultati
+        $view->impostaDati('parametri','stringa='.$param);
         $view->impostaDati('dati',$risultato);
-        return $view->processaTemplate();
+        $strumenti = $view->aggiungiStrumenti();
+        $view->setLayout('lista');
+        return $strumenti.$view->processaTemplate();
     }
 
     /**
@@ -70,11 +71,15 @@ class CRicerca {
      *
      * @return string
      */
-    public function dettagli() {
+    public function dettagli($oldAnnuncioID = null) {
         $view = USingleton::getInstance('VRicerca');
-        $id_annuncio = $view->getIdAnnuncio();
+        if( !is_null($oldAnnuncioID))
+            $id_annuncio = $oldAnnuncioID;
+        else
+            $id_annuncio = $view->getIdAnnuncio();
         $FAnnuncio = new FAnnuncio();
         $dati = $FAnnuncio->load($id_annuncio)->getObjectVars();
+        $dati['acquirente'] = $view->getUsername();
         $view->setLayout('dettagli');
         $view->impostaDati('dati',$dati);
         return $view->processaTemplate();
