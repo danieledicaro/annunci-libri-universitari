@@ -10,7 +10,7 @@ class VRegistrazione extends View {
     /**
      * @var string $_layout
      */
-    private $_layout='default';
+    private $_layout='moduloLogin';
 
     /**
      * restituisce la password passata tramite GET o POST
@@ -98,13 +98,35 @@ class VRegistrazione extends View {
      * @return array();
      */
     public function getDatiRegistrazione() {
-        $dati_richiesti=array('username','password','password_1','nome','cognome', 'email', 'stato');
+        $dati_richiesti=array('username','password','password_1','nome','cognome', 'mail', 'stato');
         $dati=array();
         foreach ($dati_richiesti as $dato) {
             if (isset($_REQUEST[$dato]))
                 $dati[$dato]=$_REQUEST[$dato];
         }
         return $dati;
+    }
+
+    /**
+     * Restituisce annuncio dal quale è partito il login
+     *
+     * @return string;
+     */
+    public function getAnnuncioOldURL() {
+        if( isset($_REQUEST['idAnnuncio']) )
+            return ($_REQUEST['idAnnuncio']);
+        else
+            return false;
+    }
+
+    /**
+     * Imposta i dati nel template identificati da una chiave ed il relativo valore
+     *
+     * @param string $key
+     * @param mixed $valore
+     */
+    public function impostaDati($key,$valore) {
+        $this->assign($key,$valore);
     }
 
     /**
