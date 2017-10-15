@@ -1,4 +1,4 @@
-<div style="border:1px solid sandybrown">
+
     {if $dati != false}
         MESSAGGI RICEVUTI DAGLI ACQUIRENTI
         <table>
@@ -44,5 +44,3 @@
 
         </table>
     {/if}
-
-</div>

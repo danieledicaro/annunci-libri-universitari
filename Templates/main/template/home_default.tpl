@@ -30,11 +30,8 @@
 <!-- content -->
 <div class="wrapper row2">
     <div id="container" class="clear">
-        <!-- Slider -->
-        <section id="slider">immagine di ingresso</section>
         <!-- main content -->
         <div id="homepage">
-            <div style="border: 1px solid red">$top_content dove inserire gli strumenti</div>
             {$main_content}
         </div>
         <!-- / content body -->
@@ -45,7 +42,7 @@
     <div id="footer" class="clear">
         <!-- Section One -->
         <section class="one_quarter">
-            <h2 class="title">Pannello di controllo</h2>
+            <h2 class="title">Menu Principale</h2>
             <nav>
                 <ul>
                     <li style="color:red">{$content_title}</li>
@@ -95,7 +92,7 @@
 <!-- Copyright -->
 <div class="wrapper row4">
     <footer id="copyright" class="clear">
-        <p class="fl_left"><a href="#">UBS - UniBookStore</a></p>
+        <p class="fl_left"><a href="#">{$title}</a></p>
         <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     </footer>
 </div>

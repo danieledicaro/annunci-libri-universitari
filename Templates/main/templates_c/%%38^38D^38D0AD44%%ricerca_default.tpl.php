@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.26, created on 2017-10-15 23:55:10
+         compiled from ricerca_default.tpl */ ?>
     COMINCIA DICENDOCI COSA STAI CERCANDO
     <div class="searchform">
         <form action="index.php" method="get">

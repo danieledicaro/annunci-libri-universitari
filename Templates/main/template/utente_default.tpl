@@ -1,9 +1,9 @@
-<div style="border:1px solid grey">
     PAGINA UTENTE
-    {$username}
-    {$password}
-    {$nome}
-    {$cognome}
-    {$mail}
-    {$stato}
-</div>
+    <ul>
+        <li>{$username}</li>
+        <li>{$password}</li>
+        <li>{$nome}</li>
+        <li>{$cognome}</li>
+        <li>{$mail}</li>
+        <li>{$stato}</li>
+    </ul>

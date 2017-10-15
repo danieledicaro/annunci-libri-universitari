@@ -1,3 +1,3 @@
-<div style="border:1px solid sandybrown">
+
     form per l'invio del primo messaggio
-</div>
+    non usato perchè già presente direttamente nell'annuncio

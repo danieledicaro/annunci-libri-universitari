@@ -1,5 +1,4 @@
-<div style="border:1px solid green">
-    RISULTATO:
+    ANNUNCI PUBBLICATI:
     {if $dati == false}
     <p>nessun annuncio pubblicato</p>
     {/if}
@@ -48,4 +47,3 @@
             <a href="index.php?controller=ricerca&task={$task}{if $parametri!=''}&{$parametri}{/if}&page={$smarty.section.pages.iteration-1}">{$smarty.section.pages.iteration}</a>
         {/section}
     {/if}
-</div>

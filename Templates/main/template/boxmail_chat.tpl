@@ -1,4 +1,4 @@
-<div style="border:1px solid sandybrown">
+
     {if $dati != false}
         Messaggi con
         <b>{$dati.messaggio[0]->getAcquirente()}</b>
@@ -36,4 +36,3 @@
             <input type="submit" class="button" value="Invia" />
         </fieldset>
     </form>
-</div>

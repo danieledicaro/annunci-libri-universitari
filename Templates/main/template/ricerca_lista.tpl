@@ -1,4 +1,3 @@
-<div style="border:1px solid green">
     RISULTATO:
 
     {if $dati != false}
@@ -46,4 +45,3 @@
                 <a href="index.php?controller=ricerca&task={$task}{if $parametri!=''}&{$parametri}{/if}&page={$smarty.section.pages.iteration-1}">{$smarty.section.pages.iteration}</a>
             {/section}
 {/if}
-</div>
