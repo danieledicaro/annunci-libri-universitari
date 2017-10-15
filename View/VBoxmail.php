@@ -9,18 +9,23 @@
 class VBoxmail extends View {
     private $_layout;
 
-    public function nuovaConversazione() {  // form da click "contatta venditore"
+    public function nuovaConversazione() {  // form da click "contatta venditore" - controlla se autenticato e se venditore=acquirente
         $CRegistrazione = USingleton::getInstance('CRegistrazione');
         $registrato = $CRegistrazione->getUtenteRegistrato();
         $view = USingleton::getInstance('VBoxmail');
         if ($registrato) {
-            $view->setLayout('primoMessaggio');
-            return $view->processaTemplate();
+            /*$view->setLayout('primoMessaggio');
+            return $view->processaTemplate();*/
+            if ( $view->getUsername() == $view->getVenditore() ) {
+                $view->impostaErrore('Sei tu il venditore');
+                return false;
+            }
+            else
+                return true;
         }
         else {
             $view->impostaErrore('Devi prima effettuare il login');
-            $view->setLayout('problemi');
-            return $view->processaTemplate();
+            return false;
         }
     }
 
@@ -79,6 +84,18 @@ class VBoxmail extends View {
     public function getAcquirente() {
         if (isset($_REQUEST['acquirente']))
             return $_REQUEST['acquirente'];
+        else
+            return false;
+    }
+
+    /**
+     * restituisce il venditore
+     *
+     * @return mixed
+     */
+    public function getVenditore() {
+        if (isset($_REQUEST['venditore']))
+            return $_REQUEST['venditore'];
         else
             return false;
     }
