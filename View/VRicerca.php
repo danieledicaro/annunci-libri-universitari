@@ -53,6 +53,17 @@ class VRicerca extends View {
     }
 
     /**
+     * Aggiunge gli strumenti di filtro per la ricerca
+     *
+     */
+    public function aggiungiStrumenti() {
+        $VRegistrazione=USingleton::getInstance('VRicerca');
+        $VRegistrazione->setLayout('avanzata');
+        return $VRegistrazione->processaTemplate();
+
+    }
+
+    /**
      * Ritorna l'id dell'annuncio passato tramite GET o POST
      *
      * @return mixed
@@ -176,10 +187,43 @@ class VRicerca extends View {
      * @return mixed
      */
     public function getParola() {
-        if (isset($_REQUEST['stringa']))
-            return explode(",^,",  $_REQUEST['stringa']);
+        if (isset($_REQUEST['keyword'])) // ricerca semplice
+            return array($_REQUEST['keyword']);
+        else {
+            if (isset($_REQUEST['stringa'])) { // ricerca avanzata
+                $stringa = explode(",^,", $_REQUEST['stringa']);
+                if ( sizeof($stringa) == 1) {//eseguito dalla ricerca avanzata la prima volta (e non nel cambio pagina)
+                    if (isset($_REQUEST['anno_stampa'])) $stringa['anno_stampa'] = $_REQUEST['anno_stampa']; else $stringa['anno_stampa'] = '';
+                    if (isset($_REQUEST['comune'])) $stringa['comune'] = $_REQUEST['comune']; else $stringa['comune'] = '';
+                    if (isset($_REQUEST['se_spedisce']) AND $_REQUEST['se_spedisce'] == 'on') $stringa['se_spedisce'] = 1; else $stringa['se_spedisce'] = '';
+                    if (isset($_REQUEST['condizione'])) $stringa['condizione'] = $_REQUEST['condizione']; else $stringa['condizione'] = '';
+                    if (isset($_REQUEST['prezzo'])) $stringa['prezzo'] = $_REQUEST['prezzo']; else $stringa['prezzo'] = '';
+                }
+                else {
+                    $stringa['anno_stampa'] = $stringa[1]; unset($stringa[1]);
+                    $stringa['comune'] = $stringa[2]; unset($stringa[2]);
+                    $stringa['se_spedisce'] = $stringa[3]; unset($stringa[3]);
+                    $stringa['condizione'] = $stringa[4]; unset($stringa[4]);
+                    $stringa['prezzo'] = $stringa[5]; unset($stringa[5]);
+                }
+                return $stringa;
+            }
+            else
+                return false;
+        }
+
+    }
+
+    /**
+     * restituisce un array con l'ordinamento e il limite
+     *
+     * @return array
+     */
+    public function getOrdinamento() {
+        if (isset($_REQUEST['ordinamento']))
+            return $_REQUEST['ordinamento'];
         else
-            return false;
+            return '';
     }
 
     /**
