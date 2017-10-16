@@ -8,7 +8,7 @@
 
 class USession {
 
-    private $_durataSessione = 3; // in secondi
+    private $_durataSessione = 360; // in secondi
 
     public function __construct() {
         session_start();
