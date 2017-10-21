@@ -14,6 +14,7 @@
                     <option value="Chieti">Chieti</option>
                     <option value="Sambuceto">Sambuceto</option>
                     <option value="Rieti">Rieti</option>
+                    <option value="Ascoli Piceno">Ascoli Piceno</option>
                 </select>
                 prezzo (verrà filtrato da -10 a +10)<input name="prezzo" value="30" />
                 <select name="ordinamento">

@@ -6,9 +6,9 @@ $config['db']['type'] = 'mysql';
 $config['db']['user'] = 'root';
 $config['db']['password'] = '';
 $config['db']['host'] = '127.0.0.1';
-$config['db']['dbname'] = 'Unibookstore';
+$config['db']['dbname'] = 'annunci-libri-universitari';
 
-$pathPERSONALE = '/opt/lampp/htdocs/WebProg/annunci-libri-universitari';
+$pathPERSONALE = 'C:/xampp/htdocs/annunci-libri-universitari';
 
 $config['smarty']['template_dir'] =
     $pathPERSONALE.'/Templates/main/template';

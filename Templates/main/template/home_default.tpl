@@ -1,4 +1,4 @@
-{php}$pathPROVVISORIA = "/WebProg/annunci-libri-universitari";{/php}
+{php}$pathPROVVISORIA = "C:/xampp/htdocs/annunci-libri-universitari";{/php}
 <!DOCTYPE html>
 <html dir="ltr">
 <head>
