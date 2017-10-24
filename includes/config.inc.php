@@ -3,21 +3,16 @@ global $config;
 
 $config['debug']=false;
 $config['db']['type'] = 'mysql';
-$config['db']['user'] = 'root';
+$config['db']['user'] = 'unibookstore1';
 $config['db']['password'] = '';
-$config['db']['host'] = '127.0.0.1';
-$config['db']['dbname'] = 'annunci-libri-universitari';
+$config['db']['host'] = 'localhost';
+$config['db']['dbname'] = 'my_unibookstore1';
 
-$pathPERSONALE = 'C:/xampp/htdocs/annunci-libri-universitari';
 
-$config['smarty']['template_dir'] =
-    $pathPERSONALE.'/Templates/main/template';
-$config['smarty']['compile_dir'] =
-    $pathPERSONALE.'/Templates/main/templates_c/';
-$config['smarty']['config_dir'] =
-    $pathPERSONALE.'/Templates/main/configs/';
-$config['smarty']['cache_dir'] =
-    $pathPERSONALE.'/Templates/main/cache/';
+$config['smarty']['template_dir'] = '/membri/unibookstore1/Templates/main/template';
+$config['smarty']['compile_dir'] = '/membri/unibookstore1/Templates/main/templates_c/';
+$config['smarty']['config_dir'] = '/membri/unibookstore1/Templates/main/configs/';
+$config['smarty']['cache_dir'] = '/membri/unibookstore1/Templates/main/cache/';
 
 
 function debug($var){
