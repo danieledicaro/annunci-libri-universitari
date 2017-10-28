@@ -8,12 +8,10 @@ $config['db']['password'] = '';
 $config['db']['host'] = 'localhost';
 $config['db']['dbname'] = 'my_unibookstore1';
 
-$pathPersonale = 'C:\xampp\htdocs\annunci-libri-universitari';
-$config['smarty']['template_dir'] = $pathPersonale;
-$config['smarty']['compile_dir'] = $pathPersonale;
-$config['smarty']['config_dir'] = $pathPersonale;
-$config['smarty']['cache_dir'] = $pathPersonale;
-
+$config['smarty']['template_dir'] = '/membri/unibookstore1/Templates/main/template';
+$config['smarty']['compile_dir'] = '/membri/unibookstore1/Templates/main/templates_c/';
+$config['smarty']['config_dir'] = '/membri/unibookstore1/Templates/main/configs/';
+$config['smarty']['cache_dir'] = '/membri/unibookstore1/Templates/main/cache/';
 
 function debug($var){
     global $config;
