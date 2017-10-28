@@ -13,7 +13,11 @@
                 <p><label for="cognome" class="left">Cognome:</label>
                     <input type="text" name="cognome" id="cognome" class="field" value="" tabindex="9" /></p>
                 <p><label for="stato" class="left">Stato:</label>
-                    <input type="text" name="stato" id="stato" class="field" value="" tabindex="12" /></p>
+                    <select name="stato" id="stato" tabindex="10" >
+                        {foreach from=$stati item=nome key=id}
+                            <option value="{$id}">{$id} - {$nome}</option>
+                        {/foreach}
+                    </select></p>
                 <p><label for="email" class="left">Email:</label>
                     <input type="text" name="mail" id="mail" class="field" value="" tabindex="14" /></p>
                 <input type="hidden" name="controller" value="registrazione" />
