@@ -1,4 +1,4 @@
-        <form method="post" action="index.php">
+        <form id="formRegistrazione" method="post" action="index.php">
             <fieldset><legend>&nbsp;CREDENZIALI DI ACCESSO&nbsp;</legend>
                 <p><label for="username" class="left">Nome utente:</label>
                     <input type="text" name="username" id="username" class="field" value="" tabindex="5" /></p>

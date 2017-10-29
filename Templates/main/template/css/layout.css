@@ -182,3 +182,10 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
     content: "";
     display: table;
 }
+/* la regola seguente vale soltanto per le label contenute nel form che ha id formRegistrazione, in questo caso
+è contenuto nel template registrazione_registrazione
+ */
+#formRegistrazione label {
+    width: 100px;
+    display: inline-block;
+}
