@@ -31,13 +31,14 @@ class CBoxmail {
 
     public function primoMessaggio() {  // da chiamare dal form del primo messaggio (dopo click "contatta venditore")
         $view = USingleton::getInstance('VBoxmail');
-        if($view->getMessaggio() != false) {
+        if($view->getMessaggio() != '') {
             $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
             return $view->processaTemplate();
         }
         else {
+            $view->impostaDati('annuncio', $view->getAnnuncio());
             $view->impostaErrore('Devi scrivere un messaggio');
             $view->setLayout('problemi');
             return $view->processaTemplate();
@@ -46,7 +47,7 @@ class CBoxmail {
 
     public function nuovoMessaggio() { // da chiamare dal form di un messaggio scritto da una conversazione esistente
         $view = USingleton::getInstance('VBoxmail');
-        if($view->getMessaggio() != false) {
+        if($view->getMessaggio() != '') {
             $id_annuncio = $view->getAnnuncio();
             $FAnnuncio = new FAnnuncio();
             $annuncio = $FAnnuncio->load($id_annuncio);
@@ -55,6 +56,10 @@ class CBoxmail {
             $messaggio = array ('acquirente' => $view->getAcquirente(), "annuncio" => $id_annuncio, 'data' => date("y-m-d"), 'ora' => date("H:i:s"), 'testo' => $view->getMessaggio(), 'da_acquirente' => $a);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
+            return $this->dettagli();
+        }
+        else {
+            $view->impostaErrore('Devi scrivere un messaggio');
             return $this->dettagli();
         }
     }
@@ -71,7 +76,7 @@ class CBoxmail {
             case 'contatta_venditore':  // form da click contatta venditore
                 $VBoxmail = USingleton::getInstance('VBoxmail');
                 if( $VBoxmail->nuovaConversazione() )
-                    return $this->nuovoMessaggio();
+                    return $this->primoMessaggio();
                 else {
                     $view->setLayout('problemi');
                     return $view->processaTemplate();

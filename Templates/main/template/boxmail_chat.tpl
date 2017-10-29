@@ -1,4 +1,4 @@
-
+{if $errore != false}ERRORE {$errore} <br />{/if}
     {if $dati != false}
         Messaggi con
         <b>{$dati.messaggio[0]->getAcquirente()}</b>

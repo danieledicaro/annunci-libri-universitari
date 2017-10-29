@@ -1,2 +1,2 @@
 
-    ERRORE RICERCA: {$errore}
+    ERRORE RICERCA: {$errore} <br />

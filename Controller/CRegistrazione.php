@@ -391,7 +391,7 @@ class CRegistrazione {
                 "ZM" => "Zambia",
                 "ZW" => "Zimbabwe",
                 "AX" => "Åland Islands",
-            ); $codiciStati = array_keys($country_array);
+            ); $codiciStati = array_keys($country_array); unset($country_array);
             if ( !in_array($dati['stato'], $codiciStati ) ) throw new Exception("Stato non valido");
         } catch(Exception $e) {
             $this->_errore = $e->getMessage();

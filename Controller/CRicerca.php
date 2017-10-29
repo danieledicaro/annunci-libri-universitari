@@ -51,19 +51,30 @@ class CRicerca {
         $view = USingleton::getInstance('VRicerca');
         $FCatalogo = new FCatalogo();
         $parametri = $view->getParola();
-        $limit = $view->getPage()*$this->_annunci_per_pagina.','.$this->_annunci_per_pagina;
-        $num_risultati=count($FCatalogo->search(array($parametri, '', ''))->getCatalogo());
-        $pagine = ceil($num_risultati/$this->_annunci_per_pagina);
-        $foo = array ($parametri, $view->getOrdinamento(), $limit);
-        $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
-        $view->impostaDati('pagine',$pagine);
-        $view->impostaDati('task','cerca');
-        $param = implode(",^,", $parametri); //stringa che verrà passata tra le pagine dei risultati
-        $view->impostaDati('parametri','stringa='.$param);
-        $view->impostaDati('dati',$risultato);
-        $strumenti = $view->aggiungiStrumenti();
-        $view->setLayout('lista');
-        return $strumenti.$view->processaTemplate();
+        if ( strlen($parametri[0]) > 3 ) {
+            $limit = $view->getPage() * $this->_annunci_per_pagina . ',' . $this->_annunci_per_pagina;
+            $num_risultati = count($FCatalogo->search(array($parametri, '', ''))->getCatalogo());
+            $pagine = ceil($num_risultati / $this->_annunci_per_pagina);
+            $foo = array($parametri, $view->getOrdinamento(), $limit);
+            $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
+            $view->impostaDati('pagine', $pagine);
+            $view->impostaDati('task', 'cerca');
+            $param = implode(",^,", $parametri); //stringa che verrà passata tra le pagine dei risultati
+            $view->impostaDati('parametri', 'stringa=' . $param);
+            $view->impostaDati('dati', $risultato);
+            $strumenti = $view->aggiungiStrumenti();
+            $view->setLayout('lista');
+            return $strumenti.$view->processaTemplate();
+        }
+        else {
+            $view->impostaErrore("inserisci più di 3 caratteri");
+            $this->_errore='';
+            $view->setLayout('problemi');
+            $result=$view->processaTemplate();
+            $view->setLayout('default');
+            return $result.$view->processaTemplate();;
+        }
+
     }
 
     /**
