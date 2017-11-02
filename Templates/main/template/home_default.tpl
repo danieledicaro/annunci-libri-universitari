@@ -4,6 +4,7 @@
     <title>{$title}</title>
     <meta charset="iso-8859-1">
     <link rel="stylesheet" href="http://{$smarty.server.HTTP_HOST}/Templates/main/template/css/layout.css" type="text/css">
+    <script src="/Templates/main/template/scripts/functions.js"></script>
     <!--[if lt IE 9]><script src="/Templates/main/template/scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>

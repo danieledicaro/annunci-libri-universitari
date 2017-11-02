@@ -1,9 +1,9 @@
     <div class="searchform">
-        <form action="index.php" method="get">
+        <form name="ricercaAvanzata" action="index.php" method="get">
             <input type="hidden" name="controller" value="ricerca" />
             <input type="hidden" name="task" value="cerca" />
             <fieldset>
-                <input name="stringa" class="field"  placeholder="Ricerca..." />
+                <input name="stringa" class="field" placeholder="Ricerca..." required/>
                 condizione minima da 1 a 5<input name="condizione" value="2" />
                 anno stampa minimo <input name="anno_stampa" value="2010" />
                 comune
@@ -20,7 +20,7 @@
                     <option value="condizione">condizione</option>
                 </select>
                 se spedisce<input name="se_spedisce" type="checkbox" checked="checked"/>
-                <input type="submit" class="button" value="cerca" />
+                <input type="submit" class="button" value="cerca" onclick="return ValidazioneRicerca('avanzata')" />
             </fieldset>
         </form>
     </div>

@@ -123,7 +123,7 @@ class CRegistrazione {
     public function checkDatiRegistrazione($dati) {
         try {
             if ( !preg_match("/^[a-zA-Z0-9]{4,10}$/", $dati['username']) ) throw new Exception("Username non valido. Lunghezza minima 4, massima 10. Sono accettati i seguenti caratteri a-z A-z 0-9");
-            if ( !preg_match("/^[a-zA-Z0-9_-]{4,10}$/", $dati['password']) ) throw new Exception("Password non valida. Lunghezza minima 4, massima 10. Sono accettati i seguenti caratteri a-z A-z 0-9 - _ !");
+            if ( !preg_match("/^[a-zA-Z0-9]{4,10}$/", $dati['password']) ) throw new Exception("Password non valida. Lunghezza minima 4, massima 10. Sono accettati i seguenti caratteri a-z A-z 0-9");
             if ($dati['password'] != $dati['password_1']) throw new Exception("Le password immesse non coincidono");
             if ( !filter_var($dati['mail'], FILTER_VALIDATE_EMAIL) ) throw new Exception("Indirizzo e-mail non valido"); //oppure la mail con if ( !preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $dati['mail']) )
             $country_array = array(
