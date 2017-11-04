@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="189eccbd-1ec8-4c2c-b09c-019c2d70e236" name="altervista" url="http://ftp.unibookstore1.altervista.org">
+        <fileTransfer host="ftp.unibookstore1.altervista.org" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

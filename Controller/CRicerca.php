@@ -130,28 +130,31 @@ class CRicerca {
     }*/
 
     public function nuovoAnnuncio() {
-        $view = USingleton::getInstance('VRicerca');
-        $FAnnuncio = new FAnnuncio();
-        $FLibro = new FLibro();
-        if ($FLibro->load($view->getIsbn) != false) {
-            $FAnnuncio->store(array('', date("d-m-y"), $view->getIsbn(), $view->getUsername(), $view->getCorso(),
-                $view->getCittà(), $view->getSpedisce(), $view->getDescrizione(), $view->getCondizione(), $view->getFoto(), $view->getPrezzo()));
-        }
-        else $this->_errore = 'Isbn non trovato, controllare i dati immessi';
+        //aggiungo il controllo utente
+        $CRegistrazione = USingleton::getInstance('CRegistrazione');
+        $registrato=$CRegistrazione->getUtenteRegistrato();
+        if ($registrato) {
+            $view = USingleton::getInstance('VRicerca');
+            $FAnnuncio = new FAnnuncio();
+            $FLibro = new FLibro();
+            if ($FLibro->load($view->getIsbn) != false) {
+                $FAnnuncio->store(array('', date("d-m-y"), $view->getIsbn(), $view->getUsername(), $view->getCorso(),
+                    $view->getCittà(), $view->getSpedisce(), $view->getDescrizione(), $view->getCondizione(), $view->getFoto(), $view->getPrezzo()));
+            } else $this->_errore = 'Isbn non trovato, controllare i dati immessi';
 
-        if ($this->_errore != '') {
-            $view->impostaErrore($this->_errore);
-            $this->_errore='';
-            $view->setLayout('problemi');
-            $result=$view->processaTemplate();
-            $view->setLayout('modulo');
-            $result.=$view->processaTemplate();
-            $view->impostaErrore('');
-            return $result;
-        }
-        else {
-            $view->setLayout('conferma_creazione');
-            return $view->processaTemplate();
+            if ($this->_errore != '') {
+                $view->impostaErrore($this->_errore);
+                $this->_errore = '';
+                $view->setLayout('problemi');
+                $result = $view->processaTemplate();
+                $view->setLayout('modulo');
+                $result .= $view->processaTemplate();
+                $view->impostaErrore('');
+                return $result;
+            } else {
+                $view->setLayout('conferma_creazione');
+                return $view->processaTemplate();
+            }
         }
     }
 

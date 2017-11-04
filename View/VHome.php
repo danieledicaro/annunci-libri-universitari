@@ -143,6 +143,12 @@ class VHome extends View {
 
     }
 
+    public function aggiungiTastoCreaAnnuncio() {
+        $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => '?controller=ricerca&task=nuovo'); //dalla funzione smista di CRicerca
+        $this->_top_button[] = $tasto_creaannuncio;
+
+    }
+
     /**
      * imposta i tasti per le categorie nel menu principale
      */
