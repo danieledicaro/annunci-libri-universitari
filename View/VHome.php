@@ -48,7 +48,7 @@ class VHome extends View {
      */
 
     public function aggiungiTastoLogin() {
-        $tasto_registrazione = array('testo' => 'LogIn', 'link' => '?controller=registrazione&task=login');
+        $tasto_registrazione = array('testo' => 'LogIn', 'link' => 'login.html');
         $this->_top_button[] = $tasto_registrazione;
     }
 
@@ -113,7 +113,7 @@ class VHome extends View {
      * aggiunge il tasto logout al menu
      */
     public function aggiungiTastoLogout() {
-        $tasto_logout=array('testo' => 'Logout', 'link' => '?controller=registrazione&task=esci');
+        $tasto_logout=array('testo' => 'Logout', 'link' => 'logout.php');
         $this->_top_button[]=$tasto_logout;
     }
 
@@ -121,24 +121,24 @@ class VHome extends View {
      * aggiunge il tasto per la registrazione nel menu (per gli utenti non autenticati)
      */
     public function aggiungiTastoRegistrazione() {
-        $tasto_registrazione = array('testo' => 'Registrati', 'link' => '?controller=registrazione&task=registra');
+        $tasto_registrazione = array('testo' => 'Registrati', 'link' => 'registrazione.html');
         $this->_top_button[] = $tasto_registrazione;
     }
 
     public function aggiungiTastoBoxmail() {
-        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => '?controller=boxmail&task=mostra');
+        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => 'boxmail.html');
         $this->_top_button[] = $tasto_boxmail;
 
     }
 
     public function aggiungiTastoProfilo() {
-        $tasto_profilo = array('testo' => 'Profilo', 'link' => '?controller=profile&task=mostra');
+        $tasto_profilo = array('testo' => 'Profilo', 'link' => 'profilo.html');
         $this->_top_button[] = $tasto_profilo;
 
     }
 
     public function aggiungiTastoMieiAnnunci() {
-        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => '?controller=ricerca&task=miei_annunci');
+        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => 'annunci_pubblicati.html');
         $this->_top_button[] = $tasto_mieiannunci;
 
     }
