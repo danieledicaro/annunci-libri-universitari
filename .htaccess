@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteRule ^login\.html$ /WebProg/unibookstore/index.php?controller=registrazione&task=login [L]
+RewriteRule ^logout\.html$ /WebProg/unibookstore/index.php?controller=registrazione&task=esci [L]
+RewriteRule ^registrazione\.html$ /WebProg/unibookstore/index.php?controller=registrazione&task=registra [L]
+RewriteRule ^profilo\.html$ /WebProg/unibookstore/index.php?controller=profile&task=mostra [L]
+RewriteRule ^boxmail\.html$ /WebProg/unibookstore/index.php?controller=boxmail&task=mostra [L]
+RewriteRule ^annunci_pubblicati\.html$ /WebProg/unibookstore/index.php?controller=ricerca&task=miei_annunci [L]
+RewriteRule ^annuncio\=([^/]*)$ /WebProg/unibookstore/index.php?controller=ricerca&task=dettagli&id_annuncio=$1 [L]
+RewriteRule ^boxmail\=([^-]*)&([^-]*)$ /WebProg/unibookstore/index.php?controller=boxmail&task=dettagli&acquirente=$1&idAnnuncio=$2 [L]
+#RewriteRule ^cerca\=([^/]*)$ /WebProg/unibookstore/index.php?controller=ricerca&task=cerca&keyword=$1 [L]
+RewriteRule ^([^/]*)-([^/]*)\.html$ /WebProg/unibookstore/index.php?controller=$1&task=$2 [L]
