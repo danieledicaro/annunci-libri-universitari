@@ -94,6 +94,7 @@ class VHome extends View {
         $this->aggiungiTastoMieiAnnunci();
         $this->aggiungiTastoBoxmail();
         $this->aggiungiTastoLogout();
+        $this->aggiungiTastoCreaAnnuncio();
     }
 
     /*
@@ -107,13 +108,14 @@ class VHome extends View {
         //$this->aggiungiModuloLogin();
         $this->aggiungiTastoLogin();
         $this->aggiungiTastoRegistrazione();
+        $this->aggiungiTastoCreaAnnuncio();
     }
 
     /**
      * aggiunge il tasto logout al menu
      */
     public function aggiungiTastoLogout() {
-        $tasto_logout=array('testo' => 'Logout', 'link' => 'logout.php');
+        $tasto_logout=array('testo' => 'Logout', 'link' => 'logout.html');
         $this->_top_button[]=$tasto_logout;
     }
 
@@ -144,7 +146,7 @@ class VHome extends View {
     }
 
     public function aggiungiTastoCreaAnnuncio() {
-        $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => '?controller=ricerca&task=nuovo'); //dalla funzione smista di CRicerca
+        $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => 'nuovo_annuncio.html'); //dalla funzione smista di CRicerca
         $this->_top_button[] = $tasto_creaannuncio;
 
     }
