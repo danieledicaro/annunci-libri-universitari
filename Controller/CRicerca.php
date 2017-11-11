@@ -77,6 +77,18 @@ class CRicerca {
 
     }
 
+    public function foto() {
+        $view = USingleton::getInstance('VRicerca');
+        $FAnnuncio = new FAnnuncio();
+        $dati = $FAnnuncio->load($view->getIdAnnuncio())->getObjectVars();
+        header('Content-Type: '.$dati['foto_tipo']);
+        /*$view->setLayout('foto');
+        $view->impostaDati('dati',$dati['foto']);
+        $immagine = $view->processaTemplate();
+        echo $immagine;*/
+        echo $dati['foto'];
+    }
+
     /**
      * Mostra i dettagli di un libro, con la descrizione completa, i commenti e il form per l'invio di commenti, solo per utenti registrati
      *
@@ -170,6 +182,8 @@ class CRicerca {
                 return $this->lista();
             case 'miei_annunci':
                 return $this->mieiAnnunci();
+            case 'foto':
+                return $this->foto();
         }
     }
 

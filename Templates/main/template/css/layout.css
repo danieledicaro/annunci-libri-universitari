@@ -189,3 +189,7 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
     width: 100px;
     display: inline-block;
 }
+
+.copertina {
+    width:100px;
+}
