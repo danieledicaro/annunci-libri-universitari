@@ -145,10 +145,16 @@ class VHome extends View {
 
     }
 
-    public function aggiungiTastoCreaAnnuncio() {
-        $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => 'nuovo_annuncio.html'); //dalla funzione smista di CRicerca
-        $this->_top_button[] = $tasto_creaannuncio;
+    public function aggiungiTastoCreaAnnuncio()
+    {
+        //aggiungo il controllo utente
+        $CRegistrazione = USingleton::getInstance('CRegistrazione');
+        $registrato = $CRegistrazione->getUtenteRegistrato();
+        if ($registrato) {
+            $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => 'nuovo_annuncio.html'); //dalla funzione smista di CRicerca
+            $this->_top_button[] = $tasto_creaannuncio;
 
+        }
     }
 
     /**

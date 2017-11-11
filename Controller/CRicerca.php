@@ -130,10 +130,7 @@ class CRicerca {
     }*/
 
     public function nuovoAnnuncio() {
-        //aggiungo il controllo utente
-        $CRegistrazione = USingleton::getInstance('CRegistrazione');
-        $registrato=$CRegistrazione->getUtenteRegistrato();
-        if ($registrato) {
+
             $view = USingleton::getInstance('VRicerca');
             $FAnnuncio = new FAnnuncio();
             $FLibro = new FLibro();
@@ -156,7 +153,6 @@ class CRicerca {
                 return $view->processaTemplate();
             }
         }
-    }
 
     /**
      * Smista le richieste ai vari metodi
