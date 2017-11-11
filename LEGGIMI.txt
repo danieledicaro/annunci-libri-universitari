@@ -1,0 +1,10 @@
+---modificare path personale in
+includes->config.inc.php
+
+unix style "/opt/lampp/htdocs/unibookstore"
+ms-dos syle "C:/xampp/htdocs/unibookstore"
+
+---modifica path personale in
+Templates->main->template->home_default.tpl
+
+inserire solamente il path DOPO la cartella "htdocs"
