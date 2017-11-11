@@ -13,4 +13,4 @@
     </fieldset>
 </form>
 <a href="
-?controller=registrazione&task=registra">Non sei registrato? Clicca qui e registrati</a>
+registrazione.html">Non sei registrato? Clicca qui e registrati</a>

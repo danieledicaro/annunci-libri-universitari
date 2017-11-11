@@ -48,7 +48,7 @@ class VHome extends View {
      */
 
     public function aggiungiTastoLogin() {
-        $tasto_registrazione = array('testo' => 'LogIn', 'link' => 'login.html');
+        $tasto_registrazione = array('testo' => 'LogIn', 'link' => '?controller=registrazione&task=login');
         $this->_top_button[] = $tasto_registrazione;
     }
 
@@ -115,7 +115,7 @@ class VHome extends View {
      * aggiunge il tasto logout al menu
      */
     public function aggiungiTastoLogout() {
-        $tasto_logout=array('testo' => 'Logout', 'link' => 'logout.html');
+        $tasto_logout=array('testo' => 'Logout', 'link' => '?controller=registrazione&task=esci');
         $this->_top_button[]=$tasto_logout;
     }
 
@@ -123,24 +123,24 @@ class VHome extends View {
      * aggiunge il tasto per la registrazione nel menu (per gli utenti non autenticati)
      */
     public function aggiungiTastoRegistrazione() {
-        $tasto_registrazione = array('testo' => 'Registrati', 'link' => 'registrazione.html');
+        $tasto_registrazione = array('testo' => 'Registrati', 'link' => '?controller=registrazione&task=registra');
         $this->_top_button[] = $tasto_registrazione;
     }
 
     public function aggiungiTastoBoxmail() {
-        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => 'boxmail.html');
+        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => '?controller=boxmail&task=mostra');
         $this->_top_button[] = $tasto_boxmail;
 
     }
 
     public function aggiungiTastoProfilo() {
-        $tasto_profilo = array('testo' => 'Profilo', 'link' => 'profilo.html');
+        $tasto_profilo = array('testo' => 'Profilo', 'link' => '?controller=profile&task=mostra');
         $this->_top_button[] = $tasto_profilo;
 
     }
 
     public function aggiungiTastoMieiAnnunci() {
-        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => 'annunci_pubblicati.html');
+        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => '?controller=ricerca&task=miei_annunci');
         $this->_top_button[] = $tasto_mieiannunci;
 
     }
@@ -151,7 +151,7 @@ class VHome extends View {
         $CRegistrazione = USingleton::getInstance('CRegistrazione');
         $registrato = $CRegistrazione->getUtenteRegistrato();
         if ($registrato) {
-            $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => 'nuovo_annuncio.html'); //dalla funzione smista di CRicerca
+            $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => '?controller=ricerca&task=nuovo'); //dalla funzione smista di CRicerca
             $this->_top_button[] = $tasto_creaannuncio;
 
         }

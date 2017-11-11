@@ -1,17 +1,18 @@
+{php}$path = "/WebProg/unibookstore";{/php}
 <!DOCTYPE html>
 <html dir="ltr">
 <head>
     <title>{$title}</title>
     <meta charset="iso-8859-1">
-    <link rel="stylesheet" href="http://{$smarty.server.HTTP_HOST}/Templates/main/template/css/layout.css" type="text/css">
-    <script src="/Templates/main/template/scripts/functions.js"></script>
-    <!--[if lt IE 9]><script src="/Templates/main/template/scripts/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/css/layout.css" type="text/css">
+    <script src="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/scripts/functions.js"></script>
+    <!--[if lt IE 9]><script src="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
 <div class="wrapper row1">
     <header id="header" class="clear">
         <div id="hgroup">
-            <h1><a href="http://{$smarty.server.HTTP_HOST}">{$title}</a></h1>
+            <h1><a href="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}">{$title}</a></h1>
             <h2>Per i tuoi studi universitari</h2>
         </div>
         <nav>
