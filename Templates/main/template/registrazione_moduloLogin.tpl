@@ -12,5 +12,4 @@
         <p><input type="submit" class="button" value="LOGIN"  /></p>
     </fieldset>
 </form>
-<a href="
-registrazione.html">Non sei registrato? Clicca qui e registrati</a>
+<a href="?controller=registrazione&task=registra">Non sei registrato? Clicca qui e registrati</a>
