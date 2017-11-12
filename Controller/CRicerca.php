@@ -194,6 +194,11 @@ class CRicerca {
                 return $this->mieiAnnunci();
             case 'foto':
                 $this->foto();
+            default:
+                $VErrore = new VErrore();
+                $VErrore->setLayout('404');
+                $VErrore->impostaDati('url',"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+                return $VErrore->processaTemplate();
         }
     }
 
