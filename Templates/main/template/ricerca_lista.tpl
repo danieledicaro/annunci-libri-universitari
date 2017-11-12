@@ -8,7 +8,6 @@
                 <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
                 <br/>venditore {$dati[i]->getVenditore()}
                 <br/>foto <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
-                <br/>foto_tipo {$dati[i]->getFotoTipo()}
                 <br/>corso {$dati[i]->getCorso()}
                 <br/>prezzo {$dati[i]->getPrezzo()|string_format:"%.2f"}
                 <br/> citta consegna {$dati[i]->getCittaConsegna()}
@@ -27,7 +26,6 @@
         <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
         <br/>venditore {$dati[i]->getVenditore()}
         <br/>foto <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
-        <br/>foto_tipo {$dati[i]->getFotoTipo()}
         <br/>corso {$dati[i]->getCorso()}
         <br/>prezzo {$dati[i]->getPrezzo()|string_format:"%.2f"}
         <br/> citta consegna {$dati[i]->getCittaConsegna()}

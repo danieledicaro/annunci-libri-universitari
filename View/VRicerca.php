@@ -173,7 +173,6 @@ class VRicerca extends View {
                 $CRicerca = USingleton::getInstance('CRicerca');
                 $CRicerca->setErrore('La dimensione del file immagine è troppo grande.');
             }
-
         }
         return false;
 

@@ -11,7 +11,6 @@
     {$dati.condizione}
     foto{*$dati.foto*}
     <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati.id_annuncio}" />
-    {$dati.foto_tipo}
     {$dati.prezzo}
     {if $dati.acquirente != false}
     <form action="index.php" method="get">

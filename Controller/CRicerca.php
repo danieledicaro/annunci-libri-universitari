@@ -193,7 +193,7 @@ class CRicerca {
             case 'miei_annunci':
                 return $this->mieiAnnunci();
             case 'foto':
-                return $this->foto();
+                $this->foto();
         }
     }
 
