@@ -157,10 +157,25 @@ class VRicerca extends View {
     }
 
     public function uploadFoto() {
-            $foto[0] = $_FILES["foto"]["name"]; //nome file
-            $foto[1] = file_get_contents($_FILES["foto"]["tmp_name"]); //contenuto
-            $foto[2] = $_FILES["foto"]["type"]; //content type
-            return $foto;
+        if ( $_FILES["foto"]["size"] > 0) {
+            if ( $_FILES["foto"]["size"] < 5000000) {
+                $foto['nome'] = $_FILES["foto"]["name"]; //nome file
+                $foto['path'] = $_FILES["foto"]["tmp_name"]; // path e nome temporaneo
+                $foto['tipo'] = $_FILES["foto"]["type"]; //content type
+                $foto['dimensione'] = $_FILES["foto"]["size"];
+                $foto['errore'] = $_FILES["foto"]["error"];
+                $file = fopen($foto['path'], 'r');
+                $file_contents = fread($file, $foto['dimensione']);
+                fclose($file);
+                $foto['dati'] = addslashes($file_contents);
+                return $foto;
+            } else {
+                $CRicerca = USingleton::getInstance('CRicerca');
+                $CRicerca->setErrore('La dimensione del file immagine è troppo grande.');
+            }
+
+        }
+        return false;
 
     }
 

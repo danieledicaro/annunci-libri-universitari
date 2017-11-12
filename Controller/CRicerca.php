@@ -40,6 +40,10 @@ class CRicerca {
         return $view->processaTemplate();
     }*/
 
+    public function setErrore($stringa) {
+        $this->_errore = $stringa;
+    }
+
     /**
      * Seleziona sul database i libri per mostrarli all'utente e li filtra
      * in base alle variabili passate
@@ -142,27 +146,30 @@ class CRicerca {
         }
     }*/
 
+
     public function creaAnnuncio() {
         $view = USingleton::getInstance('VRicerca');
         $FAnnuncio = new FAnnuncio();
-        $annuncio = array(
-            'id_annuncio' => '',
-            'data' => date("d-m-y"),
-            'libro' => $view->getIsbn(),
-            'venditore' => $view->getUsername(),
-            'se_spedisce' => $view->getSpedisce(),
-            'descrizione' => $view->getDescrizione(),
-            'condizione' => $view->getCondizione(),
-            'prezzo' => $view->getPrezzo());
-
-        $annuncio['foto'] = $view->uploadFoto()[1];
-        $annuncio['foto_tipo'] = $view->uploadFoto()[2];
-        if ( $view->getCorso() != false)
-            $annuncio['corso'] = $view->getCorso();
-        if ( $view->getCittà() != false )
-            $annuncio['città'] = $view->getCittà();
-        $FAnnuncio->store($annuncio);
-        $view->setLayout('confermaCreazione');
+        $annuncio = array('id_annuncio' => '', 'data' => date("d-m-y"), 'libro' => $view->getIsbn(),
+            'venditore' => $view->getUsername(), 'se_spedisce' => $view->getSpedisce(), 'descrizione' => $view->getDescrizione(),
+            'condizione' => $view->getCondizione(), 'prezzo' => $view->getPrezzo());
+        $foto = $view->uploadFoto();
+            if ($foto != false) {
+                $annuncio['foto'] = $foto['dati'];
+                $annuncio['foto_tipo'] = $foto['tipo'];
+            }
+            if ( $view->getCorso() != false)
+                $annuncio['corso'] = $view->getCorso();
+            if ( $view->getCittà() != false )
+                $annuncio['città'] = $view->getCittà();
+            $FAnnuncio->store($annuncio);
+        if ( $this->_errore == '' ){
+            $view->setLayout('confermaCreazione');
+        } else {
+            $view->impostaErrore($this->_errore);
+            $this->_errore = '';
+            $view->setLayout('moduloISBN');
+        }
         return $view->processaTemplate();
     }
 
