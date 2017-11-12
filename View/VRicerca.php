@@ -63,6 +63,38 @@ class VRicerca extends View {
 
     }
 
+    public function nuovoAnnuncioDaISBN() { // questa è la prima cosa visualizzata -> inserimento isbn
+        $CRegistrazione = USingleton::getInstance('CRegistrazione');
+        if(  $this->getIsbn() == false ) { //abbiamo bisogno del template inserimento isbn
+            $registrato = $CRegistrazione->getUtenteRegistrato();
+            if ($registrato) {
+                $this->setLayout('moduloISBN');
+                return $this->processaTemplate();
+            } else {
+                $VRegistrazione = USingleton::getInstance('VRegistrazione');
+                $VRegistrazione->setLayout('moduloLogin');
+                return $VRegistrazione->processaTemplate();
+            }
+        } else { //abbiamo l'isbn e dobbiamo inviare la richiesta al web service
+            $FLibro = new FLibro();
+            if ($FLibro->load($this->getIsbn()) != false) {
+                $this->impostaDati('libro', $FLibro->load($this->getIsbn()));
+                $this->setLayout('creaAnnuncio');
+                return $this->processaTemplate();
+            }
+            else $this->_errore = 'Isbn non trovato, controllare i dati immessi'; //VAI DANIELE PENSACI TU
+        }
+            /*$CRicerca = USingleton::getInstance('CRicerca');
+            return $CRicerca->creaAnnuncio();
+            /* QUI SI EFFETTUA LA RICERCA
+            se esiste si rimanda a $this->moduloAnnuncio(); (non serve, l'ho tolto)
+            altrimenti
+            si imposta l'errore "isbn non trovato" e
+            $this->setLayout('moduloISBN');
+            return $this->processaTemplate();
+            */
+
+    }
     /**
      * Ritorna l'id dell'annuncio passato tramite GET o POST
      *
@@ -111,8 +143,8 @@ class VRicerca extends View {
     }
 
     public function getCondizione() {
-        if (isset($_REQUEST['condzione'])) {
-            return $_REQUEST['condzione'];
+        if (isset($_REQUEST['condizione'])) {
+            return $_REQUEST['condizione'];
         } else
             return false;
     }
@@ -122,6 +154,14 @@ class VRicerca extends View {
             return $_REQUEST['descrizione'];
         } else
             return false;
+    }
+
+    public function uploadFoto() {
+            $foto[0] = $_FILES["foto"]["name"]; //nome file
+            $foto[1] = file_get_contents($_FILES["foto"]["tmp_name"]); //contenuto
+            $foto[2] = $_FILES["foto"]["type"]; //content type
+            return $foto;
+
     }
 
     public function getFoto() {

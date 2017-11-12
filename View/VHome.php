@@ -91,10 +91,10 @@ class VHome extends View {
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button); //non usato
         $this->aggiungiTastoProfilo();
+        $this->aggiungiTastoCreaAnnuncio();
         $this->aggiungiTastoMieiAnnunci();
         $this->aggiungiTastoBoxmail();
         $this->aggiungiTastoLogout();
-        $this->aggiungiTastoCreaAnnuncio();
     }
 
     /*
@@ -106,9 +106,9 @@ class VHome extends View {
         $this->assign('main_content',$this->_main_content);
         $this->assign('menu',$this->_main_button); //non usato
         //$this->aggiungiModuloLogin();
+        $this->aggiungiTastoCreaAnnuncio();
         $this->aggiungiTastoLogin();
         $this->aggiungiTastoRegistrazione();
-        $this->aggiungiTastoCreaAnnuncio();
     }
 
     /**
@@ -145,16 +145,10 @@ class VHome extends View {
 
     }
 
-    public function aggiungiTastoCreaAnnuncio()
-    {
-        //aggiungo il controllo utente
-        $CRegistrazione = USingleton::getInstance('CRegistrazione');
-        $registrato = $CRegistrazione->getUtenteRegistrato();
-        if ($registrato) {
-            $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => '?controller=ricerca&task=nuovo'); //dalla funzione smista di CRicerca
-            $this->_top_button[] = $tasto_creaannuncio;
+    public function aggiungiTastoCreaAnnuncio() {
+        $tasto_creaannuncio = array('testo' => 'Crea il tuo annuncio', 'link' => '?controller=ricerca&task=nuovo_annuncio'); //dalla funzione smista di CRicerca
+        $this->_top_button[] = $tasto_creaannuncio;
 
-        }
     }
 
     /**
