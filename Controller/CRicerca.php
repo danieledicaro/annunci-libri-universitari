@@ -89,6 +89,7 @@ class CRicerca {
         echo $dati['foto'];
     }
 
+
     /**
      * Mostra i dettagli di un libro, con la descrizione completa, i commenti e il form per l'invio di commenti, solo per utenti registrati
      *
@@ -141,30 +142,30 @@ class CRicerca {
         }
     }*/
 
-    public function nuovoAnnuncio() {
+    public function creaAnnuncio() {
+        $view = USingleton::getInstance('VRicerca');
+        $FAnnuncio = new FAnnuncio();
+        $annuncio = array(
+            'id_annuncio' => '',
+            'data' => date("d-m-y"),
+            'libro' => $view->getIsbn(),
+            'venditore' => $view->getUsername(),
+            'se_spedisce' => $view->getSpedisce(),
+            'descrizione' => $view->getDescrizione(),
+            'condizione' => $view->getCondizione(),
+            'prezzo' => $view->getPrezzo());
 
-            $view = USingleton::getInstance('VRicerca');
-            $FAnnuncio = new FAnnuncio();
-            $FLibro = new FLibro();
-            if ($FLibro->load($view->getIsbn) != false) {
-                $FAnnuncio->store(array('', date("d-m-y"), $view->getIsbn(), $view->getUsername(), $view->getCorso(),
-                    $view->getCittà(), $view->getSpedisce(), $view->getDescrizione(), $view->getCondizione(), $view->getFoto(), $view->getPrezzo()));
-            } else $this->_errore = 'Isbn non trovato, controllare i dati immessi';
+        $annuncio['foto'] = $view->uploadFoto()[1];
+        $annuncio['foto_tipo'] = $view->uploadFoto()[2];
+        if ( $view->getCorso() != false)
+            $annuncio['corso'] = $view->getCorso();
+        if ( $view->getCittà() != false )
+            $annuncio['città'] = $view->getCittà();
+        $FAnnuncio->store($annuncio);
+        $view->setLayout('confermaCreazione');
+        return $view->processaTemplate();
+    }
 
-            if ($this->_errore != '') {
-                $view->impostaErrore($this->_errore);
-                $this->_errore = '';
-                $view->setLayout('problemi');
-                $result = $view->processaTemplate();
-                $view->setLayout('modulo');
-                $result .= $view->processaTemplate();
-                $view->impostaErrore('');
-                return $result;
-            } else {
-                $view->setLayout('conferma_creazione');
-                return $view->processaTemplate();
-            }
-        }
 
     /**
      * Smista le richieste ai vari metodi
@@ -174,8 +175,10 @@ class CRicerca {
     public function smista() {
         $view=USingleton::getInstance('VRicerca');
         switch ($view->getTask()) {
-            case 'nuovo':
-                return $this->nuovoAnnuncio();
+            case 'nuovo_annuncio':
+                return $view -> nuovoAnnuncioDaISBN();
+            case 'salva':
+                return $this->creaAnnuncio();
             case 'dettagli':
                 return $this->dettagli();
             case 'cerca':
