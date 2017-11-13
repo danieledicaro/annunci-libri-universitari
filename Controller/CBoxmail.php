@@ -32,7 +32,7 @@ class CBoxmail {
     public function primoMessaggio() {  // da chiamare dal form del primo messaggio (dopo click "contatta venditore")
         $view = USingleton::getInstance('VBoxmail');
         if($view->getMessaggio() != '') {
-            $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("d-m-y"), date("H:i:s"), $view->getMessaggio(), 1);
+            $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("y-m-d"), date("H:i:s"), $view->getMessaggio(), 1);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
             return $view->processaTemplate();
