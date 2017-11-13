@@ -59,7 +59,8 @@ class CRicerca {
             $limit = $view->getPage() * $this->_annunci_per_pagina . ',' . $this->_annunci_per_pagina;
             $num_risultati = count($FCatalogo->search(array($parametri, '', ''))->getCatalogo());
             $pagine = ceil($num_risultati / $this->_annunci_per_pagina);
-            $foo = array($parametri, $view->getOrdinamento(), $limit);
+            if( isset($parametri['ordinamento']) ) $ordinamento = $parametri['ordinamento']; else $ordinamento = '';
+            $foo = array($parametri, $ordinamento, $limit);
             $risultato = $FCatalogo->search($foo)->getCatalogo(); //array di EAnnunci
             $view->impostaDati('pagine', $pagine);
             $view->impostaDati('task', 'cerca');

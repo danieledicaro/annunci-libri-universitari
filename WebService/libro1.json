@@ -1,8 +1,8 @@
 {
 	"isbn": "1234",
 	"titolo": "titoloProva1",
-	"autore": "autore1",
-	"casaeditrice": "casaeditrice1",
+	"autore": "",
+	"casaeditrice": "",
 	"anno_stampa": "2000",
-	"ambito": "scientifico"
+	"ambito": ""
 }

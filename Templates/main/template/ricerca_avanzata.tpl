@@ -13,13 +13,17 @@
                     <option value="Sambuceto">Sambuceto</option>
                     <option value="Rieti">Rieti</option>
                 </select>
-                prezzo (verrà filtrato da -10 a +10)<input name="prezzo" value="30" />
-                <select name="ordinamento">
+                prezzo (verrà filtrato da -10 a +10): <input name="prezzo" value="30" />
+                Ordina per: <select name="ordinamento">
                     <option value="data">data</option>
                     <option value="prezzo">prezzo</option>
                     <option value="condizione">condizione</option>
                 </select>
-                se spedisce<input name="se_spedisce" type="checkbox" checked="checked"/>
+                Se spedisce: <select name="se_spedisce">
+                    <option value=""> </option>
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>
+                </select>
                 <input type="submit" class="button" value="cerca" onclick="return ValidazioneRicerca('avanzata')" />
             </fieldset>
         </form>

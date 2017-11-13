@@ -88,6 +88,9 @@ class VRicerca extends View {
                 if ( $libroJson ) {
                     $libro = cast('ELibro',$libroJson);
                     $this->impostaDati('libro', $libro);
+                    $libro= array('isbn' => $libro->getIsbn(), 'titolo' => $libro->getTitolo(),
+                        'anno_stampa' => $libro->getAnno_stampa(), 'casaeditrice' => 1, 'ambito' => 1);
+                    $FLibro->store($libro);
                     $this->setLayout('creaAnnuncio');
                     return $this->processaTemplate();
                 } else {
@@ -265,6 +268,7 @@ class VRicerca extends View {
                     if (isset($_REQUEST['se_spedisce']) AND $_REQUEST['se_spedisce'] == 'on') $stringa['se_spedisce'] = 1; else $stringa['se_spedisce'] = '';
                     if (isset($_REQUEST['condizione'])) $stringa['condizione'] = $_REQUEST['condizione']; else $stringa['condizione'] = '';
                     if (isset($_REQUEST['prezzo'])) $stringa['prezzo'] = $_REQUEST['prezzo']; else $stringa['prezzo'] = '';
+                    if (isset($_REQUEST['ordinamento'])) $stringa['ordinamento'] = $_REQUEST['ordinamento']; else $stringa['ordinamento'] = '';
                 }
                 else {
                     $stringa['anno_stampa'] = $stringa[1]; unset($stringa[1]);
@@ -272,6 +276,7 @@ class VRicerca extends View {
                     $stringa['se_spedisce'] = $stringa[3]; unset($stringa[3]);
                     $stringa['condizione'] = $stringa[4]; unset($stringa[4]);
                     $stringa['prezzo'] = $stringa[5]; unset($stringa[5]);
+                    $stringa['ordinamento'] = $stringa[6]; unset($stringa[6]);
                 }
                 return $stringa;
             }

@@ -87,10 +87,12 @@ class FCatalogo extends Fdb {
         if( isset($b['anno_stampa']) AND $b['anno_stampa'] != '' ) $query .= " AND `Libro`.anno_stampa > ".$b['anno_stampa'];
         if( isset($b['comune']) AND $b['comune'] != '' ) $query .= " AND `Annuncio`.citta_consegna = `Citta`.id_citta AND `Citta`.comune = '".$b['comune']."'";
         if( isset($b['se_spedisce']) AND $b['se_spedisce'] != '' ) $query .= " AND `Annuncio`.se_spedisce = ".$b['se_spedisce'];
-        if( isset($b['condizione']) AND $b['condizione'] != '' ) $query .= " AND `Annuncio`.condizione > ".$b['condizione'];
+        if( isset($b['condizione']) AND $b['condizione'] != '' ) $query .= " AND `Annuncio`.condizione >= ".$b['condizione'];
         if( isset($b['prezzo']) AND $b['prezzo'] != '' ) $query .= " AND `Annuncio`.prezzo >=".$b['prezzo']."-10 AND `Annuncio`.prezzo <= 10+".$b['prezzo'];
         if ($a[1] != '')
-            $query.=' ORDER BY '.$a[1];
+            $query.=' ORDER BY '.$a[1].' DESC';
+        else
+            $query.=' ORDER BY data DESC';
         if ($a[2] != '')
             $query.=' LIMIT '.$a[2];
         /* ----------END NUOVO CODICE---------- */
