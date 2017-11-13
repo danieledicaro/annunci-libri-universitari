@@ -77,12 +77,25 @@ class VRicerca extends View {
             }
         } else { //abbiamo l'isbn e dobbiamo inviare la richiesta al web service
             $FLibro = new FLibro();
-            if ($FLibro->load($this->getIsbn()) != false) {
+            if ($FLibro->load($this->getIsbn()) != false) { // isbn presente nel database
                 $this->impostaDati('libro', $FLibro->load($this->getIsbn()));
                 $this->setLayout('creaAnnuncio');
                 return $this->processaTemplate();
+            } else {// isbn non presente nel database
+                global $webservice;
+                $webservice = $webservice."?isbn=".$this->getIsbn();
+                $libroJson = json_decode(file_get_contents($webservice));
+                if ( $libroJson ) {
+                    $libro = cast('ELibro',$libroJson);
+                    $this->impostaDati('libro', $libro);
+                    $this->setLayout('creaAnnuncio');
+                    return $this->processaTemplate();
+                } else {
+                    $CRicerca = USingleton::getInstance('CRicerca');
+                    $CRicerca->setErrore('ISBN inserito non trovato.');
+                    return false;
+                }
             }
-            else $this->_errore = 'Isbn non trovato, controllare i dati immessi'; //VAI DANIELE PENSACI TU
         }
             /*$CRicerca = USingleton::getInstance('CRicerca');
             return $CRicerca->creaAnnuncio();
@@ -290,4 +303,34 @@ class VRicerca extends View {
             return false;
     }
 
+}
+
+/**
+ * Ricevuto un oggetto, ne ritorna uno con la classe desiderata (a parità di struttura interna)
+ *
+ * @param $destination
+ * @param $sourceObject
+ * @return mixed
+ */
+function cast($destination, $sourceObject)
+{
+    if (is_string($destination)) {
+        $destination = new $destination();
+    }
+    $sourceReflection = new ReflectionObject($sourceObject);
+    $destinationReflection = new ReflectionObject($destination);
+    $sourceProperties = $sourceReflection->getProperties();
+    foreach ($sourceProperties as $sourceProperty) {
+        $sourceProperty->setAccessible(true);
+        $name = $sourceProperty->getName();
+        $value = $sourceProperty->getValue($sourceObject);
+        if ($destinationReflection->hasProperty($name)) {
+            $propDest = $destinationReflection->getProperty($name);
+            $propDest->setAccessible(true);
+            $propDest->setValue($destination,$value);
+        } else {
+            $destination->$name = $value;
+        }
+    }
+    return $destination;
 }

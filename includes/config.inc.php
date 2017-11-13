@@ -8,6 +8,7 @@ $config['db']['host'] = '127.0.0.1';
 $config['db']['dbname'] = 'Unibookstore';
 
 $pathPERSONALE = '/opt/lampp/htdocs/WebProg/unibookstore';
+$webservice = 'http://localhost/WebProg/unibookstore/WebService/';
 
 $config['smarty']['template_dir'] =
     $pathPERSONALE.'/Templates/main/template';

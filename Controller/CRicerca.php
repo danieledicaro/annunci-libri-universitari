@@ -150,7 +150,7 @@ class CRicerca {
     public function creaAnnuncio() {
         $view = USingleton::getInstance('VRicerca');
         $FAnnuncio = new FAnnuncio();
-        $annuncio = array('id_annuncio' => '', 'data' => date("d-m-y"), 'libro' => $view->getIsbn(),
+        $annuncio = array('id_annuncio' => '', 'data' => date("y-m-d"), 'libro' => $view->getIsbn(),
             'venditore' => $view->getUsername(), 'se_spedisce' => $view->getSpedisce(), 'descrizione' => $view->getDescrizione(),
             'condizione' => $view->getCondizione(), 'prezzo' => $view->getPrezzo());
         $foto = $view->uploadFoto();
@@ -183,7 +183,15 @@ class CRicerca {
         $view=USingleton::getInstance('VRicerca');
         switch ($view->getTask()) {
             case 'nuovo_annuncio':
-                return $view -> nuovoAnnuncioDaISBN();
+                $x = $view -> nuovoAnnuncioDaISBN();
+                if ( $this->_errore == '' ){
+                    return $x;
+                } else {
+                    $view->impostaErrore($this->_errore);
+                    $this->_errore = '';
+                    $view->setLayout('moduloISBN');
+                    return $view->processaTemplate();
+                }
             case 'salva':
                 return $this->creaAnnuncio();
             case 'dettagli':
