@@ -120,9 +120,7 @@ class CRicerca {
         $FAnnuncio = new FAnnuncio();
         $dati = $FAnnuncio->load($id_annuncio);
         $FAnnuncio->delete($dati);
-        //$view->setLayout('dettagli');
-        $view->impostaDati('dati',$dati);
-        return $view->processaTemplate();
+        return $this->mieiAnnunci();
     }
 
     /**

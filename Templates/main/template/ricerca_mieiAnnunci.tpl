@@ -8,7 +8,7 @@
                 <br/>----------------------------------------------
                 <br/> titolo {$dati[i]->getLibro()}
                 <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
-                <br /> <a href="?controller=ricerca&task=cancella&id_annuncio={$dati[i]->getIdAnnuncio()}">cancella</a>
+                <br /> <a onclick="return BeSure()" href="?controller=ricerca&task=cancella&id_annuncio={$dati[i]->getIdAnnuncio()}">cancella</a>
                 <br/>venditore {$dati[i]->getVenditore()}
                 <br/><img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
                 <br/>corso {$dati[i]->getCorso()}
@@ -27,7 +27,7 @@
                 <br/>----------------------------------------------
                 <br/> titolo {$dati[i]->getLibro()}
                 <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
-                <br /> <a href="?controller=ricerca&task=cancella&id_annuncio={$dati[i]->getIdAnnuncio()}">cancella</a>
+                <br /> <a onclick="return BeSure()" href="?controller=ricerca&task=cancella&id_annuncio={$dati[i]->getIdAnnuncio()}">cancella</a>
                 <br/>venditore {$dati[i]->getVenditore()}
                 <br/><img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
                 <br/>corso {$dati[i]->getCorso()}

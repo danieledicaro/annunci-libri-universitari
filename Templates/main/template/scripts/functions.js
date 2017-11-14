@@ -47,3 +47,10 @@ function ValidazioneRicerca(type) {
 
     return true;
 }
+
+function BeSure() {
+    if( confirm('L\'azione sarà irreversibile. Desideri continuare?') )
+        return true;
+    else
+        return false;
+}
