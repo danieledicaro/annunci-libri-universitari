@@ -19,9 +19,11 @@ class CBoxmail {
         return $view->processaTemplate();
     }
 
-    public function dettagli() {
+    public function dettagli($acquirente = false) {
         $view = USingleton::getInstance('VBoxmail');
         $conversazione = $view->getConversazione();
+        if ( $acquirente )
+            $conversazione[0] = $acquirente;
         $FConversazione = new FConversazione();
         $dati = $FConversazione->load($conversazione)->getObjectVars();
         $view->setLayout('chat');
@@ -32,17 +34,22 @@ class CBoxmail {
     public function primoMessaggio() {  // da chiamare dal form del primo messaggio (dopo click "contatta venditore")
         $view = USingleton::getInstance('VBoxmail');
         if($view->getMessaggio() != '') {
-            $messaggio = array ($view->getUsername(), $view->getAnnuncio(), date("y-m-d"), date("H:i:s"), $view->getMessaggio(), 1);
+            $messaggio = array ('acquirente' => $view->getUsername(), "annuncio" => $view->getAnnuncio(), 'data' => date("y-m-d"), 'ora' => date("H:i:s"), 'testo' => $view->getMessaggio(), 'da_acquirente' => 1);
             $FMessaggio = new FMessaggio();
-            $FMessaggio->store($messaggio);
-            return $view->processaTemplate();
+            $view->impostaDati('annuncio', $view->getAnnuncio());
+            if ( $FMessaggio->store($messaggio) ) {
+                $this->dettagli($view->getUsername());
+            } else {
+                $view->impostaErrore('Invio messaggio fallito.');
+                $view->setLayout('problemi');
+            }
         }
         else {
             $view->impostaDati('annuncio', $view->getAnnuncio());
             $view->impostaErrore('Devi scrivere un messaggio');
             $view->setLayout('problemi');
-            return $view->processaTemplate();
         }
+        return $view->processaTemplate();
     }
 
     public function nuovoMessaggio() { // da chiamare dal form di un messaggio scritto da una conversazione esistente
