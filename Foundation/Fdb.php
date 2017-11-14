@@ -147,8 +147,21 @@ class Fdb {
             }
         }
         $query="INSERT INTO $this->_table ($fields) VALUES ($values)";
+        $error = false;
+        try{
+            $this->_connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            $this->_connection->beginTransaction();
+            $this->_connection->exec($query);
+            $this->_connection->commit();
+        }
+        catch(PDOException $e){
+            $this->_connection->rollBack();
+            $error = $e->getMessage();
+        }
+        /*
         $this->_connection->exec($query);
         $error = $this->_connection->errorInfo();
+        */
         if ($error)
             $return = false;
         else
