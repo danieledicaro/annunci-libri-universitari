@@ -1,0 +1,19 @@
+---modificare path personale in
+includes->config.inc.php
+
+unix style "/opt/lampp/htdocs/unibookstore"
+ms-dos syle "C:/xampp/htdocs/unibookstore"
+
+---modifica path personale in
+Templates->main->template->home_default.tpl
+
+inserire solamente il path DOPO la cartella "htdocs"
+
+---modifica path personale in
+Templates->main->template->boxmail_problemi.tpl
+
+uguale a home_default.tpl
+
+---su linux modifica permessi cartella Templates
+
+posizionarsi nella cartella "Templates" e da terminale eseguire "sudo chmod 777 -R ./"
