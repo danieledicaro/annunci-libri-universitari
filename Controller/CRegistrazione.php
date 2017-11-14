@@ -94,8 +94,10 @@ class CRegistrazione {
                     foreach ($dati_registrazione as $key => $value) {
                         $utente[$key] = $value;
                     }
-                    $FUtente->store($utente);
-                    $registrato = true;
+                    if( $FUtente->store($utente) )
+                        $registrato = true;
+                    else
+                        $this->_errore = 'Creazione account fallita.';
             } else {
                 //utente esistente
                 $this->_errore = 'Username gi&agrave; utilizzato';
@@ -106,7 +108,7 @@ class CRegistrazione {
             $this->_errore='';
             $view->setLayout('problemi');
             $result=$view->processaTemplate();
-            $view->setLayout('modulo');
+            $view->setLayout('registrazione');
             $result.=$view->processaTemplate();
             return $result;
         } else {

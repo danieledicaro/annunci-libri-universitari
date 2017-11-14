@@ -114,6 +114,17 @@ class CRicerca {
         return $view->processaTemplate();
     }
 
+    public function cancellaAnnuncio() {
+        $view = USingleton::getInstance('VRicerca');
+        $id_annuncio = $view->getIdAnnuncio();
+        $FAnnuncio = new FAnnuncio();
+        $dati = $FAnnuncio->load($id_annuncio);
+        $FAnnuncio->delete($dati);
+        //$view->setLayout('dettagli');
+        $view->impostaDati('dati',$dati);
+        return $view->processaTemplate();
+    }
+
     /**
      * Mostra gli annunci dell'utente registrato
      * @return mixed
@@ -195,6 +206,8 @@ class CRicerca {
                 }
             case 'salva':
                 return $this->creaAnnuncio();
+            case 'cancella':
+                return $this->cancellaAnnuncio();
             case 'dettagli':
                 return $this->dettagli();
             case 'cerca':
