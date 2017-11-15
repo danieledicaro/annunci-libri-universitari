@@ -5,7 +5,7 @@ $(document).ready( function() {
         credits.document.write("<div style='text-align: center;'><h2>"+credits.name+"</h2><p>Unibookstore by Daniele, Enrico, Ilaria, Rajan</p>" +
             "<p><a href='' onclick='window.close();'>Chiudi questa finestra</a></p></div>");
     });
-    $('div.ricerca').css('visibility','visible').hide().fadeIn(3000);
+    $('div.ricerca').css('visibility','visible').hide().fadeIn(1500);
 
 
 });

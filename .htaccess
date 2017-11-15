@@ -10,4 +10,4 @@ RewriteEngine On
 #RewriteRule ^nuovo_annuncio.html$ /index.php?controller=ricerca&task=nuovo [L]
 #RewriteRule ^cerca\=([^/]*)$ /index.php?controller=ricerca&task=cerca&keyword=$1 [L]
 ErrorDocument 404 /WebProg/unibookstore/index.php?controller=ricerca&task=404
-RewriteRule ^([^/]*)-([^/]*)\.html$ /WebProg/unibookstore/index.php?controller=$1&task=$2 [L]
+RewriteRule ^([^/]*)-([^/]*)\.html/?([^/]*)$ /WebProg/unibookstore/index.php?controller=$1&task=$2&$3 [L]

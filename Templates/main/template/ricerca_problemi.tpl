@@ -1,2 +1,2 @@
 
-    ERRORE RICERCA: {$errore} <br />
+    ERRORE RICERCA: <span id="errore">{$errore}</span><br />
