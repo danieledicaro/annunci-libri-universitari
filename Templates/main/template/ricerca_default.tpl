@@ -1,4 +1,4 @@
-<div class="ricerca">
+<div class="ricerca hidden">
     <h3>COMINCIA DICENDOCI COSA STAI CERCANDO</h3>
     <form name="ricercaDefault" action="index.php" method="get">
         <fieldset>
