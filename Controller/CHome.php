@@ -22,8 +22,8 @@ class CHome {
         }
         $registrato=$CRegistrazione->getUtenteRegistrato();
         // se il login è stato reindirizzato dal tentativo di invio messaggio dalla visualizzazione di un annuncio
-        if ( $registrato && isset($_REQUEST['idAnnuncio'])) {
-            if ( $_REQUEST['idAnnuncio'] != '' )
+        if ( $registrato && isset($_REQUEST['idAnnuncio']) && isset($_REQUEST['ricerca']) ) {
+            if ( $_REQUEST['idAnnuncio'] != '' AND $_REQUEST['controllore'] == 'ricerca' )
                 $VHome->impostaContenuto($this->reindirizzaAnnuncio());
             else
                 $VHome->impostaContenuto($contenuto);
