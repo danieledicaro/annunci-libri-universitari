@@ -65,6 +65,8 @@ class VHome extends View {
      * imposta il contenuto principale alla variabile privata della classe
      */
     public function impostaContenuto($contenuto) {
+        global $appPath;
+        $this->assign('appPath', $appPath);
         $this->_main_content=$contenuto;
     }
 

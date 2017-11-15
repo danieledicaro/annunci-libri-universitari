@@ -42,6 +42,8 @@ class VBoxmail extends View {
      * @param string $errore
      */
     public function impostaErrore($errore) {
+        global $appPath;
+        $this->assign('appPath', $appPath);
         $this->assign('errore',$errore);
     }
 
