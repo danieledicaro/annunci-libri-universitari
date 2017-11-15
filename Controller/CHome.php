@@ -21,7 +21,15 @@ class CHome {
             $contenuto = $this->smista();
         }
         $registrato=$CRegistrazione->getUtenteRegistrato();
-        $VHome->impostaContenuto($contenuto);
+        // se il login è stato reindirizzato dal tentativo di invio messaggio dalla visualizzazione di un annuncio
+        if ( $registrato && isset($_REQUEST['idAnnuncio'])) {
+            if ( $_REQUEST['idAnnuncio'] != '' )
+                $VHome->impostaContenuto($this->reindirizzaAnnuncio());
+            else
+                $VHome->impostaContenuto($contenuto);
+        }
+        else
+            $VHome->impostaContenuto($contenuto);
         if ($registrato) {
             $VHome->impostaPaginaRegistrato();
         } else {
@@ -56,4 +64,8 @@ class CHome {
         }
     }
 
+    public function reindirizzaAnnuncio() {
+            $CRicerca = USingleton::getInstance('CRicerca');
+            return $CRicerca->dettagli($_REQUEST['idAnnuncio']);
+    }
 }
