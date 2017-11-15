@@ -6,6 +6,7 @@
     <meta charset="iso-8859-1">
     <link rel="stylesheet" href="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/css/template_layout.css" type="text/css">
     <link rel="stylesheet" href="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/css/layout.css" type="text/css">
+    <script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/scripts/functions.js"></script>
     <!--[if lt IE 9]><script src="http://{$smarty.server.HTTP_HOST}{php}echo $path;{/php}/Templates/main/template/scripts/html5shiv.js"></script><![endif]-->
 </head>
@@ -24,7 +25,7 @@
                         <li><a href="{$tasti_in_cima[i].link}">{$tasti_in_cima[i].testo}</a></li>
                     {/section}
                 {/if}
-                <li class="last"><a href="#">?</a></li>
+                <li class="last"><a id="chisiamo" href="#">?</a></li>
             </ul>
         </nav>
     </header>
