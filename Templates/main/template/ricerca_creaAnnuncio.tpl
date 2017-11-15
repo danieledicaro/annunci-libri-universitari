@@ -1,4 +1,4 @@
-{$errore}
+{if $errore != false}ERRORE <span id="errore">{$errore}</span><br />{/if}
 Stai creando un annuncio riferito al libro:
 <br />ISBN: {$libro->getIsbn()}
 <br />TITOLO: {$libro->getTitolo()}

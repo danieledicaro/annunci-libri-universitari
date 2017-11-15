@@ -1,5 +1,5 @@
 ERRORE 404
 
 <br />La risorsa cercata<br />
-{$url}
+{if $errore != false}ERRORE <span id="errore">{$url}</span><br />{/if}
 <br />non esiste.

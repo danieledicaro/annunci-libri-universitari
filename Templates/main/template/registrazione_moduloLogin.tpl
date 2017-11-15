@@ -1,4 +1,4 @@
-{$errore}
+{if $errore != false}ERRORE <span id="errore">{$errore}</span><br />{/if}
 <form method="post" action="index.php">
     <p><input type="hidden" name="rememberme" value="0" /></p>
     <p><input type="hidden" name="controller" value="registrazione" /></p>

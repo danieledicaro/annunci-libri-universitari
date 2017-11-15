@@ -1,1 +1,1 @@
-    PROBLEMI REGISTRAZIONI: {$errore}
+    PROBLEMI REGISTRAZIONI: <span id="errore">{$errore}</span><br />
