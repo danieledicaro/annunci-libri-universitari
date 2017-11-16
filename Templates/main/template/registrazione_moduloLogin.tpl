@@ -3,7 +3,7 @@
     <p><input type="hidden" name="rememberme" value="0" /></p>
     <p><input type="hidden" name="controller" value="registrazione" /></p>
     <p><input type="hidden" name="task" value="autentica" /></p>
-    <p><input type="hidden" name="idAnnuncio" value="{$annuncio}" /></p>
+    <p><input type="hidden" name="oldIdAnnuncio" value="{$annuncio}" /></p>
     <fieldset>
         <p><label for="username" class="top">Nome utente:</label><br />
             <input type="text" name="username" id="username" tabindex="1" class="field" value="" /></p>

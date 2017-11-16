@@ -22,8 +22,8 @@ class CHome {
         }
         $registrato=$CRegistrazione->getUtenteRegistrato();
         // se il login è stato reindirizzato dal tentativo di invio messaggio dalla visualizzazione di un annuncio
-        if ( $registrato && isset($_REQUEST['idAnnuncio']) && isset($_REQUEST['ricerca']) ) {
-            if ( $_REQUEST['idAnnuncio'] != '' AND $_REQUEST['controllore'] == 'ricerca' )
+        if ( $registrato && isset($_REQUEST['oldIdAnnuncio']) ) {
+            if ( $_REQUEST['oldIdAnnuncio'] != '' )
                 $VHome->impostaContenuto($this->reindirizzaAnnuncio());
             else
                 $VHome->impostaContenuto($contenuto);
@@ -66,6 +66,6 @@ class CHome {
 
     public function reindirizzaAnnuncio() {
             $CRicerca = USingleton::getInstance('CRicerca');
-            return $CRicerca->dettagli($_REQUEST['idAnnuncio']);
+            return $CRicerca->dettagli($_REQUEST['oldIdAnnuncio']);
     }
 }

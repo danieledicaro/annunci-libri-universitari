@@ -81,8 +81,7 @@ class CBoxmail {
             case 'nuovo_messaggio': // form da conversazione
                 return $this->nuovoMessaggio();
             case 'contatta_venditore':  // form da click contatta venditore
-                $VBoxmail = USingleton::getInstance('VBoxmail');
-                if( $VBoxmail->nuovaConversazione() )
+                if( $view->nuovaConversazione() )
                     return $this->primoMessaggio();
                 else {
                     $view->setLayout('problemi');
