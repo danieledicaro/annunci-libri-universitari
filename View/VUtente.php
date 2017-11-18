@@ -114,4 +114,15 @@ class VUtente extends View {
         return $dati;
     }
 
+    /**
+     *
+     * @return array();
+     */
+    public function getModifica() {
+        if (isset($_REQUEST['modifica']))
+            return $_REQUEST['modifica'];
+        else
+            return false;
+    }
+
 }

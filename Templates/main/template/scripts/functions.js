@@ -9,6 +9,12 @@ $(document).ready( function() {
 
 
 });
+window.onload = function() {
+    var x = document.getElementById('disabilitaIncolla');
+    x.onpaste = function(e) {
+        e.preventDefault();
+    }
+}
 
 
 function  ValidazioneRegistrazione() {

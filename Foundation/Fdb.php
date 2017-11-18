@@ -46,13 +46,23 @@ class Fdb {
 
     // doQuery con gestione eccezioni
     public function doQuery($query) {
-        try {
+        try{
+            $this->_connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            $this->_connection->beginTransaction();
+            $this->_result = $this->_connection->query($query);
+            $this->_connection->commit();
+        }
+        catch(PDOException $e){
+            $this->_connection->rollBack();
+            $this->_error = $e->getMessage();
+        }
+        /*try {
             $this->_result = $this->_connection->query($query);
         } catch(PDOException $e) {
             echo "Query fallita!" . $e->getMessage();
         }
+        $this->_error = $this->_connection->errorInfo();*/
         debug($query);
-        $this->_error = $this->_connection->errorInfo();
         debug($this->_error);
         if ($this->_error)
             return false;

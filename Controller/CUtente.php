@@ -26,23 +26,24 @@ class CUtente {
     public function modificaPassword () {
         $view = USingleton::getInstance('VUtente');
         $modifiche = $view->getModifiche();
-        if ($modifiche['old'] == $view->getPassword()){
+        $FUtente = new FUtente();
+        $utente = $FUtente->load($view->getUsername());
+        if ($modifiche['old'] == $utente->getPassword()){
             if ($modifiche['new'] == $modifiche['new_1']){
-                $FUtente = new FUtente();
-                $utente = $FUtente->load($view->getUsername());
-                $FUtente->update(array($utente->getUsername, $modifiche['new'], $utente->getTipologiaUtente(), $utente->getNome(),
-                    $utente->getCognome(), $utente->getMail(), $utente->getStato()));
+                $FUtente->update(array('username' => $utente->getUsername(), 'password' => $modifiche['new'], 'tipologia_utente' => $utente->getTipologia(), 'nome' => $utente->getNome(),
+                    'cognome' => $utente->getCognome(), 'mail' => $utente->getMail(), 'stato' => $utente->getStato()));
             }
             else $this->_errore = 'Le password non coincidono';
         }
-        else $this->_errore = 'Password sbagliata';
+        else $this->_errore = 'Password attuale errata';
 
         if ($this->_errore != '') {
             $view->impostaErrore($this->_errore);
             $this->_errore='';
             $view->setLayout('problemi');
             $result=$view->processaTemplate();
-            $view->setLayout('modPassword');
+            $view->setLayout('modifica');
+            $view->impostaDati('modifica', 'password');
             $result.=$view->processaTemplate();
             $view->impostaErrore('');
             return $result;
@@ -57,11 +58,11 @@ class CUtente {
     public function modificaMail () {
         $view = USingleton::getInstance('VUtente');
         $modifiche = $view->getModifiche();
+        $FUtente = new FUtente();
+        $utente = $FUtente->load($view->getUsername());
         if ($modifiche['new'] == $modifiche['new_1']){
-            $FUtente = new FUtente();
-            $utente = $FUtente->load($view->getUsername());
-            $FUtente->update(array($utente->getUsername, $utente->getPassword(), $utente->getTipologiaUtente(), $utente->getNome(),
-                $utente->getCognome(), $modifiche['new'], $utente->getStato()));
+            $FUtente->update(array('username' => $utente->getUsername(), 'password' => $utente->getPassword(), 'tipologia_utente' => $utente->getTipologia(), 'nome' => $utente->getNome(),
+                'cognome' => $utente->getCognome(), 'mail' => $modifiche['new'], 'stato' => $utente->getStato()));
         }
         else $this->_errore = 'Le mail non coincidono';
 
@@ -70,7 +71,9 @@ class CUtente {
             $this->_errore='';
             $view->setLayout('problemi');
             $result=$view->processaTemplate();
-            $view->setLayout('modMail');
+            $view->setLayout('modifica');
+            $view->impostaDati('mail', $utente->getMail());
+            $view->impostaDati('modifica', 'mail');
             $result.=$view->processaTemplate();
             $view->impostaErrore('');
             return $result;
@@ -81,9 +84,22 @@ class CUtente {
         }
     }
 
+    public function moduloModifica() {
+        $view = USingleton::getInstance('VUtente');
+        $FUtente = new FUtente();
+        $utente = $FUtente->load($view->getUsername());
+        $view->setLayout('modifica');
+        $view->impostaDati('mail', $utente->getMail());
+        $view->impostaDati('modifica', $view->getModifica());
+        return $view->processaTemplate();
+    }
+
+
     public function smista() {
         $view=USingleton::getInstance('VUtente');
         switch ($view->getTask()) {
+            case 'modifica':
+                return $this->moduloModifica();
             case 'mostra':
                 return $this->mostra();
             case 'modifica_password':
