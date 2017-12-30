@@ -10,6 +10,17 @@
     display: inline-block;
 }
 
+/*aggiungo una nuova regola che vale solo per i campi d'inserimento (escludendo i pulsanti, solo i campi in cui si digita
+metto un'ombra interna che dà il 3D, e faccio i bordi tondi
+ */
+input:not([type="submit"]), textarea { /*le quadre dopo il tag indicano l'input di un certo tipo soltanto*/
+border-radius: 3px;
+padding: 5px;
+background-color: snow; /* visto che è Natale ho messo color neve, ma possiamo mettere quello che ci pare*/
+box-shadow: 1px 1px 5px 1px #ddd inset;
+    border: 1px solid #ccc;
+}
+
 .copertina {
     width:100px;
 }

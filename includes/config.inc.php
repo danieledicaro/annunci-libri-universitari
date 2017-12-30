@@ -3,9 +3,9 @@
 // BEGIN - FUNZIONAMENTO LOCALE
 $locale['flag'] = true; // true per abilitare il funzionamento in locale
 if ( $locale['flag'] ) {
-    $locale['so'] = 'unix'; // 'unix' per linux e 'ms' per windows
+    $locale['so'] = 'ms'; // 'unix' per linux e 'ms' per windows
     $locale['unix'] = '/opt/lampp/htdocs/WebProg/unibookstore'; // se usi linux inserisci qui il percorso
-    $locale['ms'] = 'C:/xampp/htdocs/unibookstore"'; // se usi windows inserisci qui il percorso
+    $locale['ms'] = 'C:/xampp/htdocs/unibookstore'; // se usi windows inserisci qui il percorso
     locale($locale);
 }
 
@@ -17,9 +17,9 @@ if ( $locale['flag'] ) {
 
 
 // BEGIN - VARIABILI DI SISTEMA
-$subPath = '/WebProg/unibookstore'; // path relativo (se l'applicazione non è nella root)
+$subPath = '/unibookstore'; // path relativo (se l'applicazione non è nella root)
 $appPath = 'http://'.$_SERVER['SERVER_NAME'].$subPath;
-$webservice = $appPath.'/WebProg/unibookstore/WebService/'; // path del web service
+$webservice = $appPath.'/unibookstore/WebService/'; // path del web service
 
 global $config;
 $config['debug']= false;
