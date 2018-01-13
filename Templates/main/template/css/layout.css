@@ -20,7 +20,14 @@ background-color: snow; /* visto che è Natale ho messo color neve, ma possiamo 
 box-shadow: 1px 1px 5px 1px #ddd inset;
     border: 1px solid #ccc;
 }
-
+/*modifico bottoni*/
+input[type="submit"], input[type="button"] {
+    background-color: darkred;
+    padding: 10px 20px;
+    border: 0;
+    color: white;
+    border-radius: 3px;
+}
 .copertina {
     width:100px;
 }

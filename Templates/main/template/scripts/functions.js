@@ -2,7 +2,7 @@ $(document).ready( function() {
     $('#chisiamo').on('click', function (event) {
         event.preventDefault();
         var credits = window.open('', 'CREDITI', 'scrollbars=yes,resizable=yes,top=300,left=500,width=400,height=200');
-        credits.document.write("<div style='text-align: center;'><h2>"+credits.name+"</h2><p>Unibookstore by Daniele, Enrico, Ilaria, Rajan</p>" +
+        credits.document.write("<div style='text-align: center;'><h2>"+credits.name+"</h2><img src='/unibookstore/team.png'> <p>Unibookstore by Daniele, Enrico, Ilaria, Rajan</p>" +
             "<p><a href='' onclick='window.close();'>Chiudi questa finestra</a></p></div>");
     });
     $('div.ricerca').css('visibility','visible').hide().fadeIn(1500);

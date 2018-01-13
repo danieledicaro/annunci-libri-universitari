@@ -7,7 +7,7 @@
                 <th>Annuncio</th>
                 <th>Acquirente</th>
                 <th>Numero messaggi</th>
-            </th>
+            </tr>
 
         {section name=i loop=$dati}
                 {if $dati[i]->getAcquirente() != $username}
@@ -29,7 +29,7 @@
                 <th>Annuncio</th>
                 <th>Acquirente</th>
                 <th>Numero messaggi</th>
-                </th>
+                </tr>
 
                 {section name=i loop=$dati}
                 {if $dati[i]->getAcquirente() == $username}

@@ -7,7 +7,7 @@
         <hr width="200px"/>
         <table>
             <tr>
-                <th></th>
+                <th>Tipologia</th>
                 <th>Data</th>
                 <th>Ora</th>
                 <th>Messaggio</th>

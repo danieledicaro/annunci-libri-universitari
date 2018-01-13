@@ -188,7 +188,8 @@ INSERT INTO `Citta` (`id_citta`, `comune`, `provincia`, `stato`) VALUES
 (1, 'L\'Aquila', 'L\'Aquila', 'IT'),
 (2, 'Chieti', 'Chieti', 'IT'),
 (3, 'Sambuceto', 'Chieti', 'IT'),
-(4, 'Rieti', 'Rieti', 'IT');
+(4, 'Rieti', 'Rieti', 'IT'),
+(5, 'Ascoli Piceno', 'Ascoli Piceno', 'IT') ;
 
 -- --------------------------------------------------------
 
