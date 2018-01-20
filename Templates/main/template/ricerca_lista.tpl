@@ -1,19 +1,28 @@
-    RISULTATO:
-
+<table class="listaAnnunci">
+    <tr>
+        <th></th>
+        <th colspan="2">Libro</th>
+        <th>Corso</th>
+        <th>Prezzo</th>
+        <th>Città</th>
+        <th>se Spedisce</th>
+        <th>Condizione</th>
+    </tr>
     {if $dati != false}
         {section name=i loop=$dati}
             {if $smarty.section.i.iteration % 2 == 1}
-                <br/>----------------------------------------------
-                <br/> titolo {$dati[i]->getLibro()}
-                <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
-                <br/>venditore {$dati[i]->getVenditore()}
-                <br/>foto <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
-                <br/>corso {$dati[i]->getCorso()}
-                <br/>prezzo {$dati[i]->getPrezzo()|string_format:"%.2f"}
-                <br/> citta consegna {$dati[i]->getCittaConsegna()}
-                <br/> se spedisce {$dati[i]->getSeSpedisce()}
-                <br/> descrizione {$dati[i]->getDescrizione()}
-                <br/> condizione {$dati[i]->getCondizione()}
+                <tr>
+                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
+                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
+                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
+                    <td>{$dati[i]->getCorso()}</td>
+                    <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
+                    <td>{$dati[i]->getCittaConsegna()}</td>
+                    <td>{$dati[i]->getSeSpedisce()}</td>
+                    <td>{section name=foo start=1 loop=$dati[i]->getCondizione() step=1}
+                            <img src="{$appPath}/img/star.png" />
+                        {/section}</td>
+                </tr>
             {/if}
         {/section}
     {/if}
@@ -21,21 +30,22 @@
     {if $dati != false}
     {section name=i loop=$dati}
     {if $smarty.section.i.iteration % 2 == 0}
-        <br/>----------------------------------------------
-        <br/> titolo {$dati[i]->getLibro()}
-        <br/> <a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">dettagli</a>
-        <br/>venditore {$dati[i]->getVenditore()}
-        <br/>foto <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" />
-        <br/>corso {$dati[i]->getCorso()}
-        <br/>prezzo {$dati[i]->getPrezzo()|string_format:"%.2f"}
-        <br/> citta consegna {$dati[i]->getCittaConsegna()}
-        <br/> se spedisce {$dati[i]->getSeSpedisce()}
-        <br/> descrizione {$dati[i]->getDescrizione()}
-        <br/> condizione {$dati[i]->getCondizione()}
+        <tr>
+            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
+            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
+            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
+            <td>{$dati[i]->getCorso()}</td>
+            <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
+            <td>{$dati[i]->getCittaConsegna()}</td>
+            <td>{$dati[i]->getSeSpedisce()}</td>
+            <td>{section name=foo start=1 loop=$dati[i]->getCondizione() step=1}
+                    <img src="{$appPath}/img/star.png" />
+                {/section}</td>
+        </tr>
     {/if}
     {/section}
     {/if}
-
+    </table>
 {if $pagine!=''}
     <br/>----------------------------------------------
     <br/>naviga le pagine

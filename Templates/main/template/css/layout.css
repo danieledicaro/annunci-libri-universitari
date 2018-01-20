@@ -28,9 +28,6 @@ input[type="submit"], input[type="button"] {
     color: white;
     border-radius: 3px;
 }
-.copertina {
-    width:100px;
-}
 
 /* ricerca semplice */
 .ricerca h3{
@@ -65,4 +62,65 @@ input[type="submit"], input[type="button"] {
 
 .width75 {
 width: 75%;
+}
+
+/* lista annunci da ricerca */
+
+.listaAnnunci img:hover {
+    border: 1px solid red;
+}
+
+.listaAnnunci {
+    width: 100%;
+    text-align: center;
+}
+.listaAnnunci tr:nth-child(even) {
+    background-color: ghostwhite;
+}
+.listaAnnunci tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+.listaAnnunci th {
+    background-color: white;
+}
+/* cella immagine*/
+.listaAnnunci td:nth-child(2) {
+    width:110px;
+}
+.listaAnnunci img{
+    width:100px;
+    border: 1px solid grey;
+    padding:5px;
+    margin: 5px;
+    text-align: center;
+}
+/* cella titolo*/
+.listaAnnunci td:nth-child(3) {
+    max-width: 350px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    padding-left: 5px;
+}
+/* cella valutazione*/
+.listaAnnunci td:nth-last-child(1) {
+    width: 160px;
+}
+/* immagine in cella valutazione */
+.listaAnnunci td:nth-last-child(1) img{
+    border: none;
+    width:20px;
+    padding: 0;
+    margin: 0;
+}
+/* form */
+.formRicercaAvanzata {
+    width: 100%;
+    text-align: center;
+}
+.formRicercaAvanzata td {
+    padding: 0 10px;
+}
+.formRicercaAvanzata #stringaRicerca {
+    width: 75%;
 }

@@ -30,6 +30,8 @@ class VRicerca extends View {
      * @return string
      */
     public function processaTemplate() {
+        global $appPath;
+        $this->assign('appPath', $appPath);
         return $this->fetch('ricerca_'.$this->_layout.'.tpl');
     }
 
