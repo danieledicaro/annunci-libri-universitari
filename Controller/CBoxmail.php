@@ -26,6 +26,8 @@ class CBoxmail {
             $conversazione[0] = $acquirente;
         $FConversazione = new FConversazione();
         $dati = $FConversazione->load($conversazione)->getObjectVars();
+        $FAnnuncio = new FAnnuncio();
+        $dati['venditore'] = $FAnnuncio->load($dati['messaggio'][0]->getAnnuncio())->getVenditore();
         $view->setLayout('chat');
         $view->impostaDati('dati',$dati);
         return $view->processaTemplate();
