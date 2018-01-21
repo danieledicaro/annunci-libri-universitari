@@ -14,10 +14,10 @@
 metto un'ombra interna che dà il 3D, e faccio i bordi tondi
  */
 input:not([type="submit"]), textarea { /*le quadre dopo il tag indicano l'input di un certo tipo soltanto*/
-border-radius: 3px;
-padding: 5px;
-background-color: snow; /* visto che è Natale ho messo color neve, ma possiamo mettere quello che ci pare*/
-box-shadow: 1px 1px 5px 1px #ddd inset;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: snow; /* visto che è Natale ho messo color neve, ma possiamo mettere quello che ci pare*/
+    box-shadow: 1px 1px 5px 1px #ddd inset;
     border: 1px solid #ccc;
 }
 /*modifico bottoni*/
@@ -61,7 +61,7 @@ input[type="submit"], input[type="button"] {
 }
 
 .width75 {
-width: 75%;
+    width: 75%;
 }
 
 /* lista annunci da ricerca */
