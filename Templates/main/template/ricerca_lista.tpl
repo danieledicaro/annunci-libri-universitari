@@ -1,4 +1,8 @@
 <table class="listaAnnunci">
+    {if $dati == false}
+    <p>nessun annuncio pubblicato</p>
+    {/if}
+    {if $dati != false}
     <tr>
         <th></th>
         <th colspan="2">Libro</th>
@@ -8,7 +12,7 @@
         <th>se Spedisce</th>
         <th>Condizione</th>
     </tr>
-    {if $dati != false}
+    
         {section name=i loop=$dati}
             {if $smarty.section.i.iteration % 2 == 1}
                 <tr>

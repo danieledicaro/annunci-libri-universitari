@@ -108,6 +108,13 @@ class CRicerca {
             $id_annuncio = $view->getIdAnnuncio();
         $FAnnuncio = new FAnnuncio();
         $dati = $FAnnuncio->load($id_annuncio)->getObjectVars();
+        $FLibro = new FLibro();
+        $dati['titolo'] = $FLibro->load($dati['libro'])->getObjectVars()['titolo'];
+        $dati['citta_consegna'] = $FAnnuncio->getCitta($dati['citta_consegna'])[0];
+        if ( $dati['citta_consegna']['comune'] != $dati['citta_consegna']['provincia'])
+            $dati['citta_consegna'] = $dati['citta_consegna']['comune'].' ('.$dati['citta_consegna']['provincia'].')';
+        else
+            $dati['citta_consegna'] = $dati['citta_consegna']['comune'];
         $dati['acquirente'] = $view->getUsername();
         $view->setLayout('dettagli');
         $view->impostaDati('dati',$dati);

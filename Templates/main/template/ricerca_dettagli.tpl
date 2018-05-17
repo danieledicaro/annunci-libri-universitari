@@ -1,17 +1,32 @@
-    DETTAGLI RICERCA:
-    {$dati.titolo}
-    {$dati.id_annuncio}
-    {$dati.data}
-    {$dati.libro}
-    {$dati.venditore}
+    <h1>{$dati.titolo}</h1>
+    <table class="dettagli-annuncio">
+        <tr>
+            <td><img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati.id_annuncio}" /></td>
+            <td>
+                <ul><h3>€{$dati.prezzo}</h3>
+                    <li>ISBN: {$dati.libro}</li>
+                    <li>Condizione: {section name=foo start=1 loop=$dati.condizione step=1}
+                            <img style="width:20px" src="{$appPath}/img/star.png" />
+                        {/section}</li>
+                    <li>Consegna a: {$dati.citta_consegna}
+                    {if $dati.se_spedisce != true}
+                        <li>Spedizione non disponibile</li>
+                    {else}
+                        <li>Spedizione disponibile</li>
+                    {/if}
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p>Annuncio (id: {$dati.id_annuncio})inserito il {$dati.data} da {$dati.venditore}.</p>
+    <p>Descrizione: {$dati.descrizione}</p>
     {$dati.corso}
-    {$dati.citta_consegna}
-    {$dati.se_spedisce}
-    {$dati.descrizione}
-    {$dati.condizione}
-    foto{*$dati.foto*}
-    <img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati.id_annuncio}" />
-    {$dati.prezzo}
+    
+    
+    
+    
+    
+    
     {if $dati.acquirente != false}
     <form action="index.php" method="get">
         <input type="hidden" name="controller" value="boxmail" />

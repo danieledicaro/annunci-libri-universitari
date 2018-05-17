@@ -172,3 +172,12 @@ input[type="submit"], input[type="button"] {
 #chatContainer .campoMessaggio{
     width: 75%;
 }
+
+/* dettagli annuncio */
+
+.dettagli-annuncio tr>td>img {
+    max-height: 200px;
+}
+.dettagli-annuncio tr>td>ul {
+    list-style: circle;
+}

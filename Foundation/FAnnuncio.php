@@ -16,5 +16,12 @@ class FAnnuncio extends Fdb {
         $this->_auto_increment=true;
         //USingleton::getInstance('Fdb');
     }
+    public function getCitta($id){
+        $query='SELECT `comune`, `provincia` ' .
+            'FROM `Citta` '.
+            'WHERE `id_citta` = '.$id;
+        $this->doQuery($query);
+        return $this->getResultAssoc();
+    }
 
 }

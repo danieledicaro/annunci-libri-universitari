@@ -1,8 +1,8 @@
 {if $errore != false}ERRORE <span id="errore">{$errore}</span><br />{/if}
 {if $dati != false}
-Messaggi con
-<b>{$dati.venditore}</b>
-riferiti all'annuncio
+Messaggi
+{*$dati.venditore*}
+per 
 <b>{$dati.messaggio[0]->getLibro()}</b>
 <hr width="200px"/>
 <table id="chatContainer">
