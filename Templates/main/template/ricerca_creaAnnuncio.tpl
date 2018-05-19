@@ -2,14 +2,20 @@
 Stai creando un annuncio riferito al libro:
 <br />ISBN: {$libro->getIsbn()}
 <br />TITOLO: {$libro->getTitolo()}
-<br />CASA EDITRICE: {$libro->getCasaeditrice()}
+<br />CASA EDITRICE: {$libro->getCasaeditrice('nome')}
 <br />ANNO STAMPA: {$libro->getAnno_stampa()}
-<br />AMBITO: {$libro->getAmbito()}
+<br />AMBITO: {$libro->getAmbito('nome')}
 <form method="post" id="form" enctype="multipart/form-data" action="index.php?controller=ricerca&task=salva">
     <input type="hidden" name="isbn" value="{$libro->getIsbn()}"/>
     <fieldset>
-        <p>corso: <input type="text" name="corso" value="" disabled /></p>
-        <p>città consegna: <input type="text" name="città" value="" disabled /></p>
+        <input type="hidden" name="corso" value="" disabled />
+        <p>città consegna:
+        <select name="citta" required>
+            <option value="1">L'Aquila</option>
+            <option value="2">Chieti</option>
+            <option value="3">Sambuceto</option>
+            <option value="4">Rieti</option>
+        </select></p>
         <p>se spedisce:
         <input type="radio" name="spedisce" value="1" checked="checked">Si
         <input type="radio" name="spedisce" value="0">No</p>

@@ -18,7 +18,7 @@
             </td>
         </tr>
     </table>
-    <p>Annuncio (id: {$dati.id_annuncio})inserito il {$dati.data} da {$dati.venditore}.</p>
+    <p>Annuncio (id: {$dati.id_annuncio}) inserito il {$dati.data} da {$dati.venditore}.</p>
     <p>Descrizione: {$dati.descrizione}</p>
     {$dati.corso}
     

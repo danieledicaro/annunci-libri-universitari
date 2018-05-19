@@ -91,7 +91,7 @@ class VRicerca extends View {
                     $libro = cast('ELibro',$libroJson);
                     $this->impostaDati('libro', $libro);
                     $libro= array('isbn' => $libro->getIsbn(), 'titolo' => $libro->getTitolo(),
-                        'anno_stampa' => $libro->getAnno_stampa(), 'casaeditrice' => 1, 'ambito' => 1);
+                        'anno_stampa' => $libro->getAnno_stampa(), 'casaeditrice' => $libro->getCasaeditrice(), 'ambito' => $libro->getAmbito());
                     $FLibro->store($libro);
                     $this->setLayout('creaAnnuncio');
                     return $this->processaTemplate();
@@ -146,9 +146,9 @@ class VRicerca extends View {
             return false;
     }
 
-    public function getCittà() {
-        if (isset($_REQUEST['città'])) {
-            return $_REQUEST['città'];
+    public function getCitta() {
+        if (isset($_REQUEST['citta'])) {
+            return $_REQUEST['citta'];
         } else
             return false;
     }

@@ -6,7 +6,6 @@
     <tr>
         <th></th>
         <th colspan="2">Libro</th>
-        <th>Corso</th>
         <th>Prezzo</th>
         <th>Città</th>
         <th>se Spedisce</th>
@@ -19,9 +18,8 @@
                     <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
                     <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
                     <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
-                    <td>{$dati[i]->getCorso()}</td>
                     <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
-                    <td>{$dati[i]->getCittaConsegna()}</td>
+                    <td>{$citta[i]}</td>
                     <td>{$dati[i]->getSeSpedisce()}</td>
                     <td>{section name=foo start=1 loop=$dati[i]->getCondizione() step=1}
                             <img src="{$appPath}/img/star.png" />
@@ -38,9 +36,8 @@
             <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
             <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
             <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
-            <td>{$dati[i]->getCorso()}</td>
             <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
-            <td>{$dati[i]->getCittaConsegna()}</td>
+            <td>{$citta[i]}</td>
             <td>{$dati[i]->getSeSpedisce()}</td>
             <td>{section name=foo start=1 loop=$dati[i]->getCondizione() step=1}
                     <img src="{$appPath}/img/star.png" />
