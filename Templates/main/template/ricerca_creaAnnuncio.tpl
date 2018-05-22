@@ -5,7 +5,7 @@ Stai creando un annuncio riferito al libro:
 <br />CASA EDITRICE: {$libro->getCasaeditrice('nome')}
 <br />ANNO STAMPA: {$libro->getAnno_stampa()}
 <br />AMBITO: {$libro->getAmbito('nome')}
-<form method="post" id="form" enctype="multipart/form-data" action="index.php?controller=ricerca&task=salva">
+<form method="post" id="form" enctype="multipart/form-data" action="/index.php?controller=ricerca&task=salva">
     <input type="hidden" name="isbn" value="{$libro->getIsbn()}"/>
     <fieldset>
         <input type="hidden" name="corso" value="" disabled />

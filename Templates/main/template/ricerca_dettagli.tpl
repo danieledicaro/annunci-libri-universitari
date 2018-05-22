@@ -1,7 +1,7 @@
     <h1>{$dati.titolo}</h1>
     <table class="dettagli-annuncio">
         <tr>
-            <td><img class="copertina" src="?controller=ricerca&task=foto&id_annuncio={$dati.id_annuncio}" /></td>
+            <td><img class="copertina" src="/?controller=ricerca&task=foto&id_annuncio={$dati.id_annuncio}" /></td>
             <td>
                 <ul><h3>€{$dati.prezzo}</h3>
                     <li>ISBN: {$dati.libro}</li>

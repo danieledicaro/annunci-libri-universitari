@@ -15,9 +15,9 @@
         {section name=i loop=$dati}
             {if $smarty.section.i.iteration % 2 == 1}
                 <tr>
-                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
-                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
-                    <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
+                    <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
+                    <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="/?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
+                    <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
                     <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
                     <td>{$citta[i]}</td>
                     <td>{$dati[i]->getSeSpedisce()}</td>
@@ -33,9 +33,9 @@
     {section name=i loop=$dati}
     {if $smarty.section.i.iteration % 2 == 0}
         <tr>
-            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
-            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
-            <td><a href="?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
+            <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">APRI</a></td>
+            <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}"><img src="/?controller=ricerca&task=foto&id_annuncio={$dati[i]->getIdAnnuncio()}" /></a></td>
+            <td><a href="/?controller=ricerca&task=dettagli&id_annuncio={$dati[i]->getIdAnnuncio()}">{$dati[i]->getLibro()}</a></td>
             <td>{$dati[i]->getPrezzo()|string_format:"%.2f"}</td>
             <td>{$citta[i]}</td>
             <td>{$dati[i]->getSeSpedisce()}</td>

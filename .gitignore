@@ -1,7 +1,7 @@
-.idea/*
-Templates/main/templates_c/*
-includes/config.inc.php
-includes/config.inc.php
-includes/config.inc.php
-includes/config.inc.php
-includes/config.inc.php
+/lib/
+/includes/
+/Templates/main/cache/
+/Templates/main/configs/
+/Templates/main/templates_c/
+.gitignore
+.htaccess

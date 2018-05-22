@@ -65,7 +65,8 @@ class CBoxmail {
             $messaggio = array ('acquirente' => $view->getAcquirente(), "annuncio" => $id_annuncio, 'data' => date("y-m-d"), 'ora' => date("H:i:s"), 'testo' => $view->getMessaggio(), 'da_acquirente' => $a);
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
-            return $this->dettagli();
+            //return $this->dettagli();
+            header("location: /?controller=boxmail&task=dettagli&acquirente=".$messaggio['acquirente']."&idAnnuncio=".$id_annuncio);
         }
         else {
             $view->impostaErrore('Devi scrivere un messaggio');

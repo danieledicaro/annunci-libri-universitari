@@ -11,7 +11,7 @@
     {assign var='task' value='password'}
 {/if}
 
-<form method="post" action="index.php">
+<form method="post" action="/index.php">
     <p><input type="hidden" name="controller" value="profile" /></p>
     <p><input type="hidden" name="task" value="modifica_{$task}" /></p>
     <fieldset>

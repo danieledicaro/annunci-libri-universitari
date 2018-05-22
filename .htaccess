@@ -1,13 +1,13 @@
 RewriteEngine On
-#RewriteRule ^login\.html$ /index.php?controller=registrazione&task=login [L]
-#RewriteRule ^logout\.html$ /index.php?controller=registrazione&task=esci [L]
-#RewriteRule ^registrazione\.html$ /index.php?controller=registrazione&task=registra [L]
-#RewriteRule ^profilo\.html$ /index.php?controller=profile&task=mostra [L]
-#RewriteRule ^boxmail\.html$ /index.php?controller=boxmail&task=mostra [L]
-#RewriteRule ^annunci_pubblicati\.html$ /index.php?controller=ricerca&task=miei_annunci [L]
-#RewriteRule ^annuncio\=([^/]*)$ /index.php?controller=ricerca&task=dettagli&id_annuncio=$1 [L]
-#RewriteRule ^boxmail\=([^-]*)&([^-]*)$ /index.php?controller=boxmail&task=dettagli&acquirente=$1&idAnnuncio=$2 [L]
-#RewriteRule ^nuovo_annuncio.html$ /index.php?controller=ricerca&task=nuovo [L]
-#RewriteRule ^cerca\=([^/]*)$ /index.php?controller=ricerca&task=cerca&keyword=$1 [L]
-ErrorDocument 404 /WebProg/unibookstore/index.php?controller=ricerca&task=404
-RewriteRule ^([^/]*)-([^/]*)\.html/?([^/]*)$ /WebProg/unibookstore/index.php?controller=$1&task=$2&$3 [L]
+RewriteBase /
+RewriteRule ^login$ /?controller=registrazione&task=login [L]
+RewriteRule ^logout$ /?controller=registrazione&task=esci [L]
+RewriteRule ^signup$ /?controller=registrazione&task=registra [L]
+RewriteRule ^boxmail$ /?controller=boxmail&task=mostra [L]
+RewriteRule ^profilo$ /?controller=profile&task=mostra [L]
+RewriteRule ^profilo/([A-Za-z0-9-_]+)$ /?controller=ricerca&task=$1 [L]
+#RewriteRule ^conversazione/?$ /?controller=boxmail&task=dettagli [L]
+RewriteRule ^([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)?$ /?controller=$1&task=$2[L]
+ErrorDocument 404 /index.php?controller=ricerca&task=404
+
+

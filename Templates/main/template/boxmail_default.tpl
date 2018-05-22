@@ -12,7 +12,7 @@
         {section name=i loop=$dati}
                 {if $dati[i]->getAcquirente() != $username}
             <tr>
-                <td><a href="?controller=boxmail&task=dettagli&acquirente={$dati[i]->getAcquirente()}&idAnnuncio={$dati[i]->getIdAnnuncio()}">Apri</a></td>
+                <td><a href="/?controller=boxmail&task=dettagli&acquirente={$dati[i]->getAcquirente()}&idAnnuncio={$dati[i]->getIdAnnuncio()}">Apri</a></td>
                 <td>{$dati[i]->getIdAnnuncio()}</td>
                 <td>{$dati[i]->getAcquirente()}</td>
                 <td>{$dati[i]->getNumeroMessaggi()}</td>
@@ -34,7 +34,7 @@
                 {section name=i loop=$dati}
                 {if $dati[i]->getAcquirente() == $username}
             <tr>
-                <td><a href="?controller=boxmail&task=dettagli&acquirente={$dati[i]->getAcquirente()}&idAnnuncio={$dati[i]->getIdAnnuncio()}">Apri</a></td>
+                <td><a href="/?controller=boxmail&task=dettagli&acquirente={$dati[i]->getAcquirente()}&idAnnuncio={$dati[i]->getIdAnnuncio()}">Apri</a></td>
                 <td>{$dati[i]->getIdAnnuncio()}</td>
                 <td>{$dati[i]->getAcquirente()}</td>
                 <td>{$dati[i]->getNumeroMessaggi()}</td>

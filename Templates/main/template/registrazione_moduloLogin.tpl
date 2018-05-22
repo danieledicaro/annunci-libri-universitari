@@ -1,5 +1,5 @@
 {if $errore != false}ERRORE <span id="errore">{$errore}</span><br />{/if}
-<form method="post" action="index.php">
+<form method="post" action="/index.php">
     <p><input type="hidden" name="rememberme" value="0" /></p>
     <p><input type="hidden" name="controller" value="registrazione" /></p>
     <p><input type="hidden" name="task" value="autentica" /></p>
@@ -12,4 +12,4 @@
         <p><input type="submit" class="button" value="LOGIN"  /></p>
     </fieldset>
 </form>
-<a href="?controller=registrazione&task=registra">Non sei registrato? Clicca qui e registrati</a>
+<a href="/?controller=registrazione&task=registra">Non sei registrato? Clicca qui e registrati</a>

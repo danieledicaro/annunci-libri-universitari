@@ -50,7 +50,7 @@ class VHome extends View {
 
     public function aggiungiTastoLogin() {
         global $appPath;
-        $tasto_registrazione = array('testo' => 'LogIn', 'link' => $appPath.'/?controller=registrazione&task=login');
+        $tasto_registrazione = array('testo' => 'LogIn', 'link' => $appPath.'/login');
         $this->_top_button[] = $tasto_registrazione;
     }
 
@@ -120,7 +120,7 @@ class VHome extends View {
      */
     public function aggiungiTastoLogout() {
         global $appPath;
-        $tasto_logout=array('testo' => 'Logout', 'link' => $appPath.'/?controller=registrazione&task=esci');
+        $tasto_logout=array('testo' => 'Logout', 'link' => $appPath.'/logout');
         $this->_top_button[]=$tasto_logout;
     }
 
@@ -129,34 +129,34 @@ class VHome extends View {
      */
     public function aggiungiTastoRegistrazione() {
         global $appPath;
-        $tasto_registrazione = array('testo' => 'Registrati', 'link' => $appPath.'/?controller=registrazione&task=registra');
+        $tasto_registrazione = array('testo' => 'Registrati', 'link' => $appPath.'/signup');
         $this->_top_button[] = $tasto_registrazione;
     }
 
     public function aggiungiTastoBoxmail() {
         global $appPath;
-        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => $appPath.'/?controller=boxmail&task=mostra');
+        $tasto_boxmail = array('testo' => 'Messaggi', 'link' => $appPath.'/boxmail');
         $this->_top_button[] = $tasto_boxmail;
 
     }
 
     public function aggiungiTastoProfilo() {
         global $appPath;
-        $tasto_profilo = array('testo' => 'Profilo', 'link' => $appPath.'/?controller=profile&task=mostra');
+        $tasto_profilo = array('testo' => 'Profilo', 'link' => $appPath.'/profilo');
         $this->_top_button[] = $tasto_profilo;
 
     }
 
     public function aggiungiTastoMieiAnnunci() {
         global $appPath;
-        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => $appPath.'/?controller=ricerca&task=miei_annunci');
+        $tasto_mieiannunci = array('testo' => 'I miei annunci', 'link' => $appPath.'/profilo/miei_annunci');
         $this->_top_button[] = $tasto_mieiannunci;
 
     }
 
     public function aggiungiTastoCreaAnnuncio() {
         global $appPath;
-        $tasto_creaannuncio = array('testo' => 'Crea annuncio', 'link' => $appPath.'/?controller=ricerca&task=nuovo_annuncio'); //dalla funzione smista di CRicerca
+        $tasto_creaannuncio = array('testo' => 'Crea annuncio', 'link' => $appPath.'/profilo/nuovo_annuncio'); //dalla funzione smista di CRicerca
         $this->_top_button[] = $tasto_creaannuncio;
 
     }

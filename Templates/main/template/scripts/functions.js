@@ -3,7 +3,7 @@ $(document).ready( function() {
         event.preventDefault();
         var credits = window.open('', 'CREDITI', 'scrollbars=yes,resizable=yes,top=200,left=400,width=400,height=350');
 		var getUrl = window.location;
-		var urlBase = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/unibookstore/img";
+		var urlBase = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/img";
         credits.document.write("<div style='text-align: center;'><h2>"+credits.name+"</h2><img style='width:200px' src='"+urlBase+"/team.png'> <p>Unibookstore by Daniele, Enrico, Ilaria, Rajan</p>" +
             "<p><a href='' onclick='window.close();'>Chiudi questa finestra</a></p></div>");
     });

@@ -1,5 +1,5 @@
     <div class="formRicercaAvanzata">
-        <form name="ricercaAvanzata" action="index.php" method="get">
+        <form name="ricercaAvanzata" action="/index.php" method="get">
             <input type="hidden" name="controller" value="ricerca" />
             <input type="hidden" name="task" value="cerca" />
             <fieldset>
