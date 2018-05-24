@@ -40,7 +40,8 @@ class CBoxmail {
             $FMessaggio = new FMessaggio();
             $view->impostaDati('annuncio', $view->getAnnuncio());
             if ( $FMessaggio->store($messaggio) ) {
-                $this->dettagli($view->getUsername());
+                //$this->dettagli($view->getUsername());
+                header("location: /boxmail/".$messaggio['acquirente']."/".$view->getAnnuncio());
             } else {
                 $view->impostaErrore('Invio messaggio fallito.');
                 $view->setLayout('problemi');
@@ -66,7 +67,7 @@ class CBoxmail {
             $FMessaggio = new FMessaggio();
             $FMessaggio->store($messaggio);
             //return $this->dettagli();
-            header("location: /?controller=boxmail&task=dettagli&acquirente=".$messaggio['acquirente']."&idAnnuncio=".$id_annuncio);
+            header("location: /boxmail/".$messaggio['acquirente']."/".$id_annuncio);
         }
         else {
             $view->impostaErrore('Devi scrivere un messaggio');
