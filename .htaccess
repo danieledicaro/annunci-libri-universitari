@@ -4,10 +4,9 @@ RewriteRule ^login$ /?controller=registrazione&task=login [L]
 RewriteRule ^logout$ /?controller=registrazione&task=esci [L]
 RewriteRule ^signup$ /?controller=registrazione&task=registra [L]
 RewriteRule ^boxmail$ /?controller=boxmail&task=mostra [L]
+RewriteRule ^boxmail/([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)$ /?controller=boxmail&task=dettagli&acquirente=$1&idAnnuncio=$2 [L]
 RewriteRule ^profilo$ /?controller=profile&task=mostra [L]
 RewriteRule ^profilo/([A-Za-z0-9-_]+)$ /?controller=ricerca&task=$1 [L]
-#RewriteRule ^conversazione/?$ /?controller=boxmail&task=dettagli [L]
+RewriteRule ^([A-Za-z0-9-_]+)$ /?keyword=$1&controller=ricerca&task=cerca [L]
 RewriteRule ^([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)?$ /?controller=$1&task=$2[L]
 ErrorDocument 404 /index.php?controller=ricerca&task=404
-
-
